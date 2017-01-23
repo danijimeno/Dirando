@@ -9,7 +9,7 @@ Aplicación web de una "tienda online".
  1. Producto: Cada producto tendrá un nombre e identificador, además de una fotografía, descripcón, precio, etc.
  2. Pedido: El usuario podrá añadir los productos para más tarde tramitar la compra.
  3. Usuarios: Pefil de cada usuario y funciones diferenciadas entre Usuario no logueado, Usuario logueado y administrador.
- 4. Categoría de productos: 
+ 4. Categoría de productos: Además, se podrán identificar los productos mediante su categoría asignada.
 
 ## Integrantes
 - Ignacio de Lucas Noguero  :arrow_right:  i.delucasn@alumnos.urjc.es   :arrow_right: https://github.com/Igna91
