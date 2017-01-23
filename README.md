@@ -1,5 +1,6 @@
 # Dirando
-*Aplicación web práctica de DAW*
+
+Aplicación web práctica de DAW.
 
 ## Descripción de la temática de la web
 *La temática de la web será la de una tienda on-line donde habrá una parte pública donde los Clientes podrán ver los productos existentes y una segunda parte privada donde el Usuario deberá entrar usando su "usuario" y "contraseña" para ver sus pedidos, productos favoritos, etc.*
