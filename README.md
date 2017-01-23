@@ -1,5 +1,5 @@
 # Dirando
-Aplicación web práctica de DAW
+Aplicación web práctica de DAW.
 
 ## Descripción de la temática de la web
 
