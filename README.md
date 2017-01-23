@@ -1,15 +1,15 @@
 # Dirando
-
-Aplicación web de una "tienda online".
+*Aplicación web de compra de productos de ciclismo*
 
 ## Descripción de la temática de la web
-*La temática de la web será la de una tienda on-line donde habrá una parte pública donde los Clientes podrán interactuar con los productos disponibles en la tienda-online (ver descripción, disponibilidad...), si el cliente está registrado podrá mantener un historial de los pedidos que realice, si no, solo podrá añadirlos al carro, pero necesitara loguearse para finalizar el proceso de compra. La administración de los productos que consten en dicha página solo podrán ser modificados, editados y añadidos desde la parte privada de esta, para poder acceder a esta funcionalidad el administrador deberá identificarse.*
+La aplicación dispondrá de una parte pública y otra pivada. La pública estará destinada a los clientes externos, con posibilidad de interactuar con los productos, ver sus descripciones, precios o su disponibilidad. Si el cliente está registrado, las funcionalidades aumentan (p.ej historial de compra). No obstante, si no está registrado, podrá añadir productos a su carro/pedido (aunque para finalizar su compra deba estar registrado).
+Por otro lado, la parte privada de la aplicación poseerá el control sobre la lista de productos alojados, sus categorías, descripciones y demás. Dichas funcionalidades de gestión estarán disponibles para el/los administrador/es mediante usuarios específicos. 
 
 ## Entidades
- 1. Producto: Cada producto tendrá un nombre e identificador, además de una fotografía, descripcón, precio, etc.
- 2. Pedido: El usuario podrá añadir los productos para más tarde tramitar la compra.
- 3. Usuarios: Pefil de cada usuario y funciones diferenciadas entre Usuario no logueado, Usuario logueado y administrador.
- 4. Categoría de productos: Además, se podrán identificar los productos mediante su categoría asignada.
+ 1. Producto: Cada producto tendrá un nombre e identificador, además de una fotografía, descripción, precio y demás características.
+ 2. Pedido: El usuario podrá añadir los productos a una lista que conformará el/la pedido/compra.
+ 3. Usuarios: Perfil de cada usuario y funciones diferenciadas entre Usuario no logueado, Usuario logueado y Administrador.
+ 4. Categoría Productos: Además, se podrán identificar los productos mediante una categoría asignada.
 
 ## Integrantes
 - Ignacio de Lucas Noguero  :arrow_right:  i.delucasn@alumnos.urjc.es   :arrow_right: https://github.com/Igna91
