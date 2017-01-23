@@ -1,7 +1,6 @@
 # Dirando
 
-*Aplicación web práctica de DAW.*\n
-*"Tienda online"*
+Aplicación web práctica de DAW.
 
 ## Descripción de la temática de la web
 *La temática de la web será la de una tienda on-line donde habrá una parte pública donde los Clientes podrán ver los productos existentes y una segunda parte privada donde el Usuario deberá entrar usando su "usuario" y "contraseña" para ver sus pedidos, productos favoritos, etc.*
@@ -20,3 +19,5 @@
 - Alejandro Pinto Fernández :arrow_right:  a.pinto@alumnos.urjc.es    :arrow_right:   https://github.com/AlejandroPinto
 
 - Daniel Jimeno Sáez       :arrow_right:   d.jimeno@alumnos.urjc.es   :arrow_right:   https://github.com/danijimeno
+
+- Prueba
