@@ -2,8 +2,8 @@
 *Aplicación web de compra de productos de ciclismo*
 
 ## Descripción de la temática de la web
-La aplicación dispondrá de una parte pública y otra pivada. La pública estará destinada a los clientes externos, con posibilidad de interactuar con los productos, ver sus descripciones, precios o su disponibilidad. Si el cliente está registrado, las funcionalidades aumentan (p.ej historial de compra). No obstante, si no está registrado, podrá añadir productos a su carro/pedido (aunque para finalizar su compra deba estar registrado).
-Por otro lado, la parte privada de la aplicación poseerá el control sobre la lista de productos alojados, sus categorías, descripciones y demás. Dichas funcionalidades de gestión estarán disponibles para el/los administrador/es mediante usuarios específicos. 
+*La aplicación dispondrá de una parte pública y otra pivada. La pública estará destinada a los clientes externos, con posibilidad de interactuar con los productos, ver sus descripciones, precios o su disponibilidad. Si el cliente está registrado, las funcionalidades aumentan (p.ej historial de compra). No obstante, si no está registrado, podrá añadir productos a su carro/pedido (aunque para finalizar su compra deba estar registrado).
+Por otro lado, la parte privada de la aplicación poseerá el control sobre la lista de productos alojados, sus categorías, descripciones y demás. Dichas funcionalidades de gestión estarán disponibles para el/los administrador/es mediante usuarios específicos.*
 
 ## Entidades
  1. Producto: Cada producto tendrá un nombre e identificador, además de una fotografía, descripción, precio y demás características.
