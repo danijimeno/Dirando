@@ -13,26 +13,20 @@
 </head>
 
 <body>
-    <div class="cabecera">
+    <div class="header">
         <div class="container">
             <div class="col-md-12 col-sm-12 fondo-logotipo">
                 <div class="col-md-7 ">
-                    <div class="col-sm-6"> <img src="img/logoNEW.png" alt="Logo"> </div>
+                    <div class="col-sm-6">
+                        <a href="#"> <img src="img/logoNEW.png" alt="Logo"> </a>
+                    </div>
                 </div>
-                <div class="col-md-5 col-sm-6">
-                    <form class="navbar-form search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        </div>
-                    </form> <img src="img/publi.gif" alt="publi"> </div>
+                <div class="col-md-5 col-sm-6" id="publi"> <img src="img/publi.gif" alt="publi"> </div>
             </div>
         </div>
         <nav class="navbar navbar-inverse col-md-12 col-sm-12">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="#">Home</a> </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
@@ -95,7 +89,14 @@
                                 <li><a href="#">kids</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Sales!</a></li>
+                        <li>
+                            <form class="navbar-form search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </form>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="">Administration</a></li>
@@ -132,7 +133,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href=" "> <span class="glyphicon glyphicon-shopping-cart"></span> Carrito <span class="badge">0</span> </a>
+                            <a href=" "> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge">0</span> </a>
                         </li>
                     </ul>
                 </div>
@@ -165,37 +166,33 @@
                 <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
             </div>
         </div>
-        <div>
-            <br>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail"> <img src="img/ejemplo1.jpg" alt="...">
-                            <div class="caption">
-                                <h3>Specialized Epic HT 2017</h3>
-                                <p>If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight, and a build from the racing gods—this bike is ready to shatter the mold. </p>
-                                <p><a href="#" class="btn btn-primary" role="button">Ver más</a> </div>
-                        </div>
+    </div>
+    <div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail"> <img src="img/ejemplo1.jpg" alt="...">
+                        <div class="caption">
+                            <h3>Specialized Epic HT 2017</h3>
+                            <p>If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight, and a build from the racing gods—this bike is ready to shatter the mold. </p>
+                            <p><a href="#" class="btn btn-primary" role="button">More...</a> </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail"> <img src="img/ejemplo2.jpg" alt="...">
-                                <div class="caption">
-                                    <h3>2017 BMC TE 01 XTR Di2</h3>
-                                    <p>BMC has long figured that softening up a hardtail makes it faster without adding the complexity and weight of pivoted full-suspension design. With their Teamelite01 frame, they bring Micro Travel ...</p>
-                                    <p><a href="#" class="btn btn-primary" role="button">Ver más</a> </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-4">
-                                <div class="thumbnail"> <img src="img/ejemplo3.jpg" alt="...">
-                                    <div class="caption">
-                                        <h3>PODIUM CARBON RR SL 29er</h3>
-                                        <p>Podium 29er Stealth Air Carbon, redesigned internal structure , Integrated Stem Technology (IST EVO), XC Forward Geometry, PF30 bottom bracket ...</p>
-                                        <p><a href="#" class="btn btn-primary" role="button">Ver más</a> </div>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail"> <img src="img/ejemplo2.jpg" alt="...">
+                        <div class="caption">
+                            <h3>2017 BMC TE 01 XTR Di2</h3>
+                            <p>BMC has long figured that softening up a hardtail makes it faster without adding the complexity and weight of pivoted full-suspension design. With their Teamelite01 frame, they bring Micro Travel ...</p>
+                            <p><a href="#" class="btn btn-primary" role="button">More...</a> </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail"> <img src="img/ejemplo3.jpg" alt="...">
+                        <div class="caption">
+                            <h3>PODIUM CARBON RR SL 29er</h3>
+                            <p>Podium 29er Stealth Air Carbon, redesigned internal structure , Integrated Stem Technology (IST EVO), XC Forward Geometry, PF30 bottom bracket ...</p>
+                            <p><a href="#" class="btn btn-primary" role="button">More...</a> </div>
                     </div>
                 </div>
             </div>

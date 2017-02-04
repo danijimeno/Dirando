@@ -5,10 +5,26 @@
     width: 70%;
     margin: auto;
 }
+
 .row {
-    margin: auto;
+    margin: 0 -15px 0 -15px !important;
 }
 
+.login-panel > li {
+    margin: 5%;
+}
+
+.panel-body{
+    margin: 5%;
+}
+
+#myCarousel {
+    margin-top: 12px;
+}
+
+#publi {
+    margin-top: 4%;
+}
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
 footer {
@@ -154,4 +170,3 @@ footer {
 .btn btn-block btn-success2 {
     border-top-color: aqua
 }
-

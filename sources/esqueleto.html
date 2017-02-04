@@ -13,26 +13,20 @@
 </head>
 
 <body>
-    <div class="cabecera">
+    <div class="header">
         <div class="container">
             <div class="col-md-12 col-sm-12 fondo-logotipo">
                 <div class="col-md-7 ">
-                    <div class="col-sm-6"> <img src="img/logoNEW.png" alt="Logo"> </div>
+                    <div class="col-sm-6">
+                        <a href="#"> <img src="img/logoNEW.png" alt="Logo"> </a>
+                    </div>
                 </div>
-                <div class="col-md-5 col-sm-6">
-                    <form class="navbar-form search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        </div>
-                    </form> <img id=publi src="img/publi.gif" alt="publi"> </div>
+                <div class="col-md-5 col-sm-6" id="publi"> <img src="img/publi.gif" alt="publi"> </div>
             </div>
         </div>
         <nav class="navbar navbar-inverse col-md-12 col-sm-12">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="#">Home</a> </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
@@ -95,7 +89,14 @@
                                 <li><a href="#">kids</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Sales!</a></li>
+                        <li>
+                            <form class="navbar-form search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </form>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="">Administration</a></li>
@@ -132,7 +133,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href=" "> <span class="glyphicon glyphicon-shopping-cart"></span> Carrito <span class="badge">0</span> </a>
+                            <a href=" "> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge">0</span> </a>
                         </li>
                     </ul>
                 </div>
