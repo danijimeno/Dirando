@@ -10,11 +10,16 @@
     margin: 0 -15px 0 -15px !important;
 }
 
+select[name="list"] {
+    margin-bottom: 1%;
+    float: right;
+}
+
 .login-panel > li {
     margin: 5%;
 }
 
-.panel-body{
+.panel-body {
     margin: 5%;
 }
 
