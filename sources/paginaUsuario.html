@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dirando Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css/principal.css" rel="stylesheet">
+    <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="col-md-12 col-sm-12 fondo-logotipo">
+                <div class="col-md-7 ">
+                    <div class="col-sm-6">
+                        <a href="#"> <img src="img/logoNEW.png" alt="Logo"> </a>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-6" id="publi"> <img src="img/publi.gif" alt="publi"> </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-inverse col-md-12 col-sm-12">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">XCO</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Protections</a></li>
+                                <li><a href="#">Clothing</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Bikes</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downhill</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Protections</a></li>
+                                <li><a href="#">Clothing</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Bikes</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Road</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Protections</a></li>
+                                <li><a href="#">Clothing</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Bikes</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cyclocross</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Protections</a></li>
+                                <li><a href="#">Clothing</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Bikes</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Triathlon</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Protections</a></li>
+                                <li><a href="#">Clothing</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Bikes</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accessories</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">hydration</a></li>
+                                <li><a href="#">gloves</a></li>
+                                <li><a href="#">glasses</a></li>
+                                <li><a href="#">Watches</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">food</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clothing</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Protections</a></li>
+                                <li><a href="#">winter</a></li>
+                                <li><a href="#">summer</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">kids</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <form class="navbar-form search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="">Administration</a></li>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b class="color-blue"><span class="glyphicon glyphicon-user"></span>Login/register</b> <span class="caret"></span></a>
+                            <ul class="dropdown-menu login-panel">
+                                <li>
+                                    <div class="dropdown-header"> <span class="login-header color-blue">Sign In</span> <span class="forgot-password color-blue"><a href="">Forgot password?</a></span> </div>
+                                    <div class="clearfix"></div>
+                                    <div>
+                                        <form id="loginform" class="form-horizontal" role="form" autocomplete="off">
+                                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user color-blue"></i></span>
+                                                <!-- USERNAME OR EMAIL ADDRESS -->
+                                                <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email" pattern="[a-zA-Z0-9]{5,}" title="Minimum 5 letters or numbers." required> </div>
+                                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
+                                                <!--  PASSWORD  -->
+                                                <input id="login-password" type="password" class="form-control" name="password" placeholder="password" pattern=".{5,}" title="Minmimum 5 letters or numbers." required> </div>
+                                            <div class="center-text">
+                                                <label>
+                                                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me</label>
+                                            </div>
+                                            <div class="center-text"> <span class="error-message color-red"><i class="glyphicon glyphicon-warning-sign"></i> Username & password don't match!</span> </div>
+                                            <div class="form-group">
+                                                <!-- Button -->
+                                                <div class="col-sm-12 controls center-text"> <a id="btn-login" href="#" class="btn btn-block btn-success">Login</a>
+                                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
+                                                    <br> </div>
+                                                <div class="col-sm-12 controls center-text"> <a id="btn-login2" href="#" class="btn btn-block btn-success2">Register</a>
+                                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>--></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                                <!--<li class="divider"></li>-->
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=" "> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge">0</span> </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </div>
+    <div>
+        <!--CONTENIDO AQUÍ!-->
+        <div class="Cuerpo row">
+        <div class="container col-md-10 col-md-offset-1">
+                <section class=" container infomacion-articulo-general col-md-12">
+                    <div class="container info-articulo col-md-12" id="usuario">
+                        <div class="info-articulo-imagen col-md-4">
+                            <div class="col-md-7 ">
+                                <div class="col-sm-6"> <img src="img/user.jpg" alt="foto"> </div>
+                            </div>
+                        </div>
+                        <div class="info-articulo-texto col-md-6">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        Personal Details </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse1" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li>Name: XXXXXX</li>
+                                                <li>E-mail:: XXXXXX@XXXXX</li>
+                                                <li>Telephone: *********</li>
+                                                <li>Adress: XXXXXXXXX</li>
+                                                <li>Data Details
+                                                    <ul>
+                                                        <li>Card Number: ****************</li>
+                                                        <li>Expiration: **/**</li>
+                                                    </ul> 
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                            Favourites List</a>
+                                        </h4>
+                                    </div>
+                                <div id="collapse2" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li>item 1</li>
+                                            <li>item 2</li>
+                                            <li>item 3</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                            My Personal List</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse3" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <ul>
+                                                    <li> item1 purchased **/**/****</li>
+                                                    <li> item2 purchased **/**/****</li>
+                                                    <li> item3 purchased **/**/****</li>
+                                                    <li> item4 purchased **/**/****</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </section>
+                    
+        </div>
+
+    </div>
+        <!-- FIN CONTENIDO AQUÍ!-->
+        <br>
+        <div class="container"> </div>
+    </div>
+    <footer>
+        <!--footer start from here-->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 footerleft ">
+                        <div class="logofooter"> Dirando Shop</div>
+                        <p>Dirando is an online store that distributes specialized cycling material of high quality. Since 2017.</p>
+                        <p><i class="fa fa-map-pin"></i> Calle Ferraz, 1228008 Madrid</p>
+                        <p><i class="fa fa-phone"></i> Phone (Madrid) : +91 9999 878 398</p>
+                        <p><i class="fa fa-envelope"></i> E-mail : info@dirando.com</p>
+                    </div>
+                    <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                        <h6 class="heading7">HIGH INTEREST</h6>
+                        <ul class="footer-ul">
+                            <li><a href="#">Payment Methods</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6 paddingtop-bottom">
+                        <h6 class="heading7">US...</h6>
+                        <ul class="footer-ul">
+                            <li><a href="https://github.com/Igna91" target="_blank"> Ignacio de Lucas Noguero</a></li>
+                            <li><a href="https://github.com/danijimeno" target="_blank"> Daniel Jimeno Sáez</a></li>
+                            <li><a href="https://github.com/rperezll" target="_blank"> Roberto Pérez Llanos</a></li>
+                            <li><a href="https://github.com/AlejandroPinto" target="_blank"> Alejandro Pinto Fernández</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6 paddingtop-bottom">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6074.652808006513!2d-3.7159819887295646!3d40.42377077161084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1485886121582" width="250" height="250" frameborder="0" style="border:40" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--Minifooter start from here-->
+        <div class="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p>© 2017 - All rights reserved - dirando.com</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="bottom_ul">
+                        <li><a href="#">dirando.com</a></li>
+                        <li><a href="#">info@dirando.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
