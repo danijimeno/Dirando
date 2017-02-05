@@ -58,7 +58,7 @@
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="index.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -110,70 +110,122 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Usuarios</h1>
+                        <h1 class="page-header">Categorias</h1>
                     </div>
                     <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
                     <div class="col-lg-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                Alta de una nueva categoría
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                   <div class="col-lg-8 col-lg-offset-2">
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <label for="">Categoría:</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Añadir categoría</button>
+                                        </form>
+                                    </div>
+                                    <!-- col-lg-8 -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                Lista de categorias
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                   <div class="col-lg-6 col-lg-offset-3">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Categoría</th>
+                                                    <th>Eliminar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>Bicicletas</td>
+                                                <td><a class="btn btn-danger" href="#" aria-label="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Complementos</td>
+                                                <td><a class="btn btn-danger" href="#" aria-label="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Accesorios</td>
+                                                <td><a class="btn btn-danger" href="#" aria-label="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Componentes</td>
+                                                <td><a class="btn btn-danger" href="#" aria-label="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                        </table>
+                                        <!-- table -->
+                                    </div>
+                                    <!-- col-lg-8 -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                Datos de los usuarios
+                                Productos por categorias
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <div class="table-responsive table-bordered">
+                                <div class="table-responsive table-striped">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nombre</th>
-                                                <th>Apellidos</th>
-                                                <th>E-mail</th>
-                                                <th>Teléfono</th>
-                                                <th>Ciudad</th>
-                                                <th>Pedidos</th>
-                                                <th>Eliminar</th>
+                                                <th>Bicicletas</th>
+                                                <th>Complementos</th>
+                                                <th>Accesorios</th>
+                                                <th>Componentes</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td><strong>1</strong></td>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>mdo@gmail.com</td>
-                                                <td>889787878</td>
-                                                <td>Móstoles</td>
-                                                <td>2</td>
-                                                <td><a class="btn btn-danger" href="#" aria-label="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                                <td>Specialized Epic HT 2017</td>
+                                                <td>Casco Bell 300</td>
+                                                <td>Bidón ciclismo</td>
+                                                <td>Calas Shimano BTT</td>
                                             </tr>
-                                            <tr class="active">
+                                            <tr>
                                                 <td><strong>2</strong></td>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                                <td>fat@hotmail.com</td>
-                                                <td>802456554</td>
-                                                <td>Móstoles</td>
-                                                <td>1</td>
-                                                <td><a class="btn btn-danger" href="#" aria-label="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                                <td>BMC TE 01 XTR Di2 2017</td>
+                                                <td>Zapatillas Shimano</td>
+                                                <td>Rodillo entrenamiento</td>
+                                                <td>Cámara de aire 26''</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>3</strong></td>
-                                                <td>Larry</td>
-                                                <td>the Bird</td>
-                                                <td>labird@gmail.com</td>
-                                                <td>880032878</td>
-                                                <td>Madrid</td>
-                                                <td>4</td>
-                                                <td><a class="btn btn-danger" href="#" aria-label="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                                <td>PODIUM CARBON RR SL 29er</td>
+                                                <td>Camiseta térmica</td>
+                                                <td>Bomba de mano</td>
+                                                <td>Neumático BTT Michelin</td>
                                             </tr>
-                                            <tr class="active">
+                                            <tr>
                                                 <td><strong>4</strong></td>
-                                                <td>July</td>
-                                                <td>Dooley</td>
-                                                <td>july@example.com</td>
-                                                <td>877458898</td>
-                                                <td>Madrid</td>
-                                                <td>0</td>
-                                                <td><a class="btn btn-danger" href="#" aria-label="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                                <td></td>
+                                                <td>Culotte corto tirantes</td>
+                                                <td>Bomba de pie</td>
+                                                <td>Cable freno</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -182,8 +234,9 @@
                             </div>
                             <!-- /.panel-body -->
                         </div>
-                    <!-- /.panel -->
+                        <!-- /.panel -->
                     </div>
+                    <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
             </div>
