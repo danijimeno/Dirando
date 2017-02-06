@@ -638,7 +638,7 @@ body {
 }
 
 
-/*NAVBAR STYLES*/
+/*Login panel*/
 
 .navbar-border {
     border-bottom: solid 5px #0080c5;
@@ -694,4 +694,201 @@ body {
 
 .error-message {
     font-size: 11px;
+}
+
+/*Producto*/
+
+section.Categorias {
+    margin-top: 30px;
+}
+
+section.Categorias > div {
+    margin-top: 30px;
+    border: 1px solid #5473a6;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px 3px #5473a6;
+    padding-right: 100px;
+}
+
+section.Categorias > div > .nav {
+    padding-left: 10%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: transparent;
+    border-radius: 0px;
+}
+
+section.Categorias > div > .nav .tree > li a {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+
+/* Información Productos imagenes */
+
+.thumbnail {
+    padding: 0px;
+    width: 100%;
+}
+
+.infomacion-articulo-general {
+    margin-top: 20px;
+}
+
+.info-articulo-texto > div >.titulo-producto {
+    border: 0;
+    font-family: serif;
+    font-size: 1.6em;
+}
+
+.info-articulo-texto > div >.descripcion p {
+    font-size: 0.8em;
+    color: #777;
+}
+
+.info-articulo-texto > div,
+.info-articulo-texto > div >.descripcion {
+    padding-bottom: 0px;
+}
+
+.info-articulo-texto > div >.descripcion li {
+    border: 0px;
+}
+
+.carousel-inner {}
+
+.info-articulo .imagenes-minuatura .span3 > a img {
+    width: 100%;
+}
+
+.info-articulo .imagenes-minuatura .carousel-control {
+    width: 6%;
+}
+
+.info-articulo .imagenes-minuatura .carousel-control span {
+    width: 6%;
+}
+
+.info-articulo .imagenes-minuatura .span3 {
+    width: 23%;
+    margin-left: 2px;
+    display: inline-table;
+}
+
+.info-articulo-texto> div >.descripcion li:not(:last-child) {
+    border-bottom: 2px solid #eee;
+}
+
+.info-articulo-texto > div >.descripcion li:last-child {
+    padding-bottom: 1px;
+}
+
+.info-articulo-texto > div >.descripcion form div {
+    padding-bottom: 10px;
+}
+
+.pop-imagenes {
+    position: relative;
+    visibility: hidden;
+    width: 100%;
+}
+
+.caption > h3 {
+    margin-top: 0px;
+    color: #888;
+}
+
+.pop-imagenes .btn:first-child {
+    width: 40%;
+    border-radius: 0;
+    margin: 0;
+    color: white;
+    background-color: black;
+}
+
+.pop-imagenes .btn:nth-child(2) {
+    width: 60%;
+    border-radius: 0;
+    margin: 0;
+}
+
+.cortar {
+    width: 100%;
+    padding-left: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.cortar:hover {
+    white-space: initial;
+    overflow: visible;
+    cursor: pointer;
+}
+
+.thumbnail:hover > .pop-imagenes {
+    visibility: inherit;
+}
+
+.pop-imagenes .btn:first-child:hover {
+    background-color: dimgrey;
+}
+
+.caption > .precio,
+.card-content .precio{
+    font-size: 1em;
+    color: white;
+    background-color: #5473a6;
+    padding: 4px;
+}
+
+.caption > .progress ,
+.card-action > .progress{
+    float: right;
+    width: 60%;
+    cursor: pointer;
+}
+
+@media (min-width: 100px) and (max-width: 986px) {
+    .cabecera .logotipo {
+        display: none;
+    }
+    .jumbotron {
+        padding-bottom: 20px;
+    }
+    .logotipo-texto {
+        margin-top: 15px;
+    }
+    .login-buscador form,
+    li {
+        display: inline-flex;
+
+    }
+    .vdivide [class*='separ']:not(:last-child):after{
+        display: none;
+    }
+    .login-buscador form input {
+        margin-right: 10px;
+    }
+    .login-buscador form button {
+        height: 35px;
+    }
+
+
+    .Productos-Categoria .container,
+    .Productos-Categoria .panel-body{
+        padding: 0px;
+
+    }
+    .thumbnail .caption,
+    .card .card-action{
+        padding: 10px;
+    }
+    .thumbnail button,
+    .thumbnail a,
+    .card button,
+    .card a{
+        font-size: 0.8em;
+    }
 }
