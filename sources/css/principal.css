@@ -892,3 +892,15 @@ section.Categorias > div > .nav .tree > li a {
         font-size: 0.8em;
     }
 }
+
+.warning{
+    background-color: #f0ad4e !important;
+}
+
+.danger{
+    background-color: #d9534f !important;
+}
+
+.success{
+    background-color: #5cb85c !important;
+}

@@ -147,85 +147,74 @@
     <div>
         <!--CONTENIDO AQUÍ!-->
         <section class="container">
-        <h3 class="panel-heading">Purchase Order</h3>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-
-                        <th>
-                            <p>Id. Number</p>
-                        </th>
-                        <th>
-                            <p>Item</p>
-                        </th>
-                        <th>
-                            <p>Price</p>
-                        </th>
-                        <th>
-                            <p>Unds</p>
-                        </th>
-                        <th>
-                            <p>Total Price</p>
-                        </th>
-                        <th>
-                            <p>Opciones</p>
-                        </th>
-
+            <h3 class="panel-heading">Purchase Order</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                <p>Id. Number</p>
+                            </th>
+                            <th>
+                                <p>Item</p>
+                            </th>
+                            <th>
+                                <p>Price</p>
+                            </th>
+                            <th>
+                                <p>Unds</p>
+                            </th>
+                            <th>
+                                <p>Total Price</p>
+                            </th>
+                            <th>
+                                <p>Opciones</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="#producto of pedidos">
+                        <td WIDTH="100" HEIGHT="40">
+                            <p>*****</p>
+                        </td>
+                        <td> <a>Item1</a> </td>
+                        <td>
+                            <p>PriceItem</p>
+                        </td>
+                        <td WIDTH="100" HEIGHT="40">
+                            <input class="form-control" type="number" min="0"> </td>
+                        <td WIDTH="200" HEIGHT="40">
+                            <p>Price * number of items</p>
+                        </td>
+                        <td>
+                            <a role="button">
+                                <p>Delete</p>
+                            </a>
+                        </td>
                     </tr>
-                </thead>
-                <tr *ngFor="#producto of pedidos">
-                    <td WIDTH="100" HEIGHT="40">
-                        <p>*****</p>
-                    </td>
-                    <td>
-                      <a >Item1</a>
-                    </td>
-                    <td>
-                        <p>PriceItem</p>
-                    </td>
-                    <td WIDTH="100" HEIGHT="40" >
-                        <input  class="form-control" type="number" min="0">
-                    </td>
-                    <td WIDTH="200"  HEIGHT="40">
-                        <p>Price * number of items</p>
-                    </td>
-                    <td>
-                        <a role="button"><p>Delete</p></a>
-                    </td>
-                </tr>
-                 <tr>
-                    <td>
-                        <p>*****</p>
-                    </td>
-                    <td>
-                      <a >Item1</a>
-                    </td>
-                    <td>
-                        <p>PriceItem</p>
-                    </td>
-                    <td>
-                        <input  class="form-control" type="number" min="0">
-                    </td>
-                    <td>
-                        <p>Price * number of items</p>
-                    </td>
-                    <td>
-                        <a role="button"><p>Delete</p></a>
-                    </td>
-                </tr>
-            </table>
-            
-        </div>
-        <div id="CarritoBtts">
-            <p class="col-md-8 col-sm-7"></p>
-            
-            <a class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Delete Purchase Order</a>
-            <a class="btn btn-success" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a>
-           
-        </div>
-
-    </section>
+                    <tr>
+                        <td>
+                            <p>*****</p>
+                        </td>
+                        <td> <a>Item1</a> </td>
+                        <td>
+                            <p>PriceItem</p>
+                        </td>
+                        <td>
+                            <input class="form-control" type="number" min="0"> </td>
+                        <td>
+                            <p>Price * number of items</p>
+                        </td>
+                        <td>
+                            <a role="button">
+                                <p>Delete</p>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="CarritoBtts">
+                <p class="col-md-8 col-sm-7"></p> <a class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Delete Purchase Order</a> <a href="paginaPago.html" class="btn btn-success" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a> </div>
+        </section>
         <!--FIN CONTENIDO AQUÍ-->
         <br>
         <div class="container"> </div>
