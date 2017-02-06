@@ -7,7 +7,7 @@
 }
 
 .navbar-form-2 {
-    margin-right: 0px !important; 
+    margin-right: 0px !important;
     margin-left: 0px !important;
 }
 
@@ -635,4 +635,63 @@ body {
     .reply-list .comment-box {
         width: 320px;
     }
+}
+
+
+/*NAVBAR STYLES*/
+
+.navbar-border {
+    border-bottom: solid 5px #0080c5;
+}
+
+.login-panel {
+    min-width: 250px;
+    border-top: 2px solid #0080c5;
+    border-right: 1px solid #0080c5;
+    border-bottom-right-radius: 0.5em;
+    -moz-border-radius-bottomright: 0.5em;
+    border-bottom: 3px solid #0080c5;
+    border-left: 1px solid #0080c5;
+    border-bottom-left-radius: 0.5em;
+    -moz-border-radius-bottomleft: 0.5em;
+}
+
+.login-panel #loginform {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.login-panel #loginform > .input-group {
+    padding-bottom: 10px;
+}
+
+.controls.center-text {}
+
+.dropdown-header {
+    display: block !imnportant;
+    padding-bottom: 30px;
+    height: 5px;
+}
+
+.login-header {
+    font-size: 20px;
+    font-weight: bold;
+    display: inline;
+    float: left;
+}
+
+.forgot-password {
+    font-size: 10px;
+    display: inline;
+    float: right;
+    vertical-align: bottom;
+    padding-top: 10px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.error-message {
+    font-size: 11px;
 }
