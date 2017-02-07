@@ -102,37 +102,11 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b class="color-blue"><span class="glyphicon glyphicon-user"></span>Login/register</b> <span class="caret"></span></a>
-                            <ul class="dropdown-menu login-panel">
-                                <li>
-                                    <div class="dropdown-header"> <span class="login-header color-blue">Sign In</span> <span class="forgot-password color-blue"><a href="paginaForgotPassword.html">Forgot password?</a></span> </div>
-                                    <div class="clearfix"></div>
-                                    <div>
-                                        <form id="loginform" class="form-horizontal" role="form" autocomplete="off">
-                                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user color-blue"></i></span>
-                                                <!-- USERNAME OR EMAIL ADDRESS -->
-                                                <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email" pattern="[a-zA-Z0-9]{5,}" title="Minimum 5 letters or numbers." required> </div>
-                                            <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
-                                                <!--  PASSWORD  -->
-                                                <input id="login-password" type="password" class="form-control" name="password" placeholder="password" pattern=".{5,}" title="Minmimum 5 letters or numbers." required> </div>
-                                            <div class="center-text">
-                                                <label>
-                                                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me</label>
-                                            </div>
-                                            <div class="center-text"> <span class="error-message color-red"><i class="glyphicon glyphicon-warning-sign"></i> Username & password don't match!</span> </div>
-                                            <div class="form-group">
-                                                <!-- Button -->
-                                                <div class="col-sm-12 controls center-text"> <a id="btn-login" href="#" class="btn btn-block btn-success">Login</a>
-                                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
-                                                    <br> </div>
-                                                <div class="col-sm-12 controls center-text"> <a id="btn-login2" href="paginaRegistro.html" class="btn btn-block btn-success2">Register</a>
-                                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>--></div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </li>
-                                <!--<li class="divider"></li>-->
-                            </ul>
+                        <li>
+                            <a href="paginaUsuario.html"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Lucía González</a>
+                        </li>
+                        <li>
+                            <a href="index.html" title="Log out"><span class="glyphicon glyphicon-off"></span>&nbsp;</a>
                         </li>
                         <li>
                             <a href="paginaCarrito.html"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge">0</span> </a>
@@ -147,70 +121,87 @@
     <div>
         <!--CONTENIDO AQUÍ!-->
         <div>
-            <section class=" container infomacion-articulo-general col-md-12">
-                <div class="container info-articulo col-md-12" id="usuario">
-                    <div class="info-articulo-imagen col-md-4">
-                        <div class="col-md-7 ">
-                            <div class="col-sm-6">
-                                <img src="img/user.jpg" alt="foto">
-
+                <section class=" container infomacion-articulo-general col-md-12">
+                    <div class="container info-articulo col-md-12" id="usuario">
+                        <div class="info-articulo-imagen col-md-4">
+                            <div class="col-md-7 ">
+                                <div class="col-sm-6"> 
+                                    <img src="img/user.jpg" alt="foto"> 
+                                    
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="info-articulo-texto col-sm-6">
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
+                        <div class="info-articulo-texto col-sm-6">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
                                         Personal Details </a>
                                         </h4>
+                                    </div>
+                                    <div id="collapse1" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li>Name: XXXXXX</li>
+                                                <li>E-mail:: XXXXXX@XXXXX</li>
+                                                <li>Telephone: *********</li>
+                                                <li>Adress: XXXXXXXXX</li>
+                                                <li>Data Details
+                                                    <ul>
+                                                        <li>Card Number: ****************</li>
+                                                        <li>Expiration: **/**</li>
+                                                    </ul> 
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                            Favourites List</a>
+                                        </h4>
+                                    </div>
+                                <div id="collapse2" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul>
-                                            <li>Name: Manolo Escobar Gaviria </li>
-                                            <li>E-mail:: Manesga@gmail.com</li>
-                                            <li>Telephone: 604251215</li>
-                                            <li>Adress: C/ Colombia, Nº4, 2ºA</li>
-                                            <li>Data Details
-                                                <ul>
-                                                    <li>Card Number: 8437-3455-4532-8045</li>
-                                                    <li>Expiration: 11/18</li>
-                                                </ul>
-                                            </li>
+                                            <li>item 1</li>
+                                            <li>item 2</li>
+                                            <li>item 3</li>
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
+                                </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
                                             My Personal List</a>
                                             </h4>
-                                </div>
-                                <div id="collapse3" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="paginaDetalleProducto.html">item1</a> purchased 10/03/2012</li>
-                                            <li><a href="paginaDetalleProducto.html">item2</a> purchased 03/11/2012</li>
-                                            <li><a href="paginaDetalleProducto.html">item3</a> purchased 01/05/2013</li>
-                                        </ul>
+                                        </div>
+                                        <div id="collapse3" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <ul>
+                                                    <li> item1 purchased **/**/****</li>
+                                                    <li> item2 purchased **/**/****</li>
+                                                    <li> item3 purchased **/**/****</li>
+                                                    <li> item4 purchased **/**/****</li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
+                        
                     </div>
-
-                </div>
-            </section>
-
-
+                </section>
+                    
+        
 
         </div>
-        <!--FIN CONTENIDO AQUÍ!-->
+        <!-- FIN CONTENIDO AQUÍ!-->
         <br>
         <div class="container"> </div>
     </div>
