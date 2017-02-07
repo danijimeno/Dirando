@@ -21,3 +21,10 @@ Por otro lado, la parte privada de la aplicación poseerá el control sobre la l
 - Alejandro Pinto Fernández :arrow_right:  a.pinto@alumnos.urjc.es    :arrow_right:   https://github.com/AlejandroPinto
 
 - Daniel Jimeno Sáez       :arrow_right:   d.jimeno@alumnos.urjc.es   :arrow_right:   https://github.com/danijimeno
+
+## Diagrama navegación fase 2: ##
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama%20de%20navegaci%C3%B3n/Daw.PNG)
+
+## Template bootstrap ##
+El template de bootstrap que hemos usado ha sido en la zona de administración, hemos cambiado los cuerpos de las páginas y modificado alguna parte del menu.
+https://startbootstrap.com/template-overviews/sb-admin-2/
