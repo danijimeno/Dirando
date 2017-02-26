@@ -1,10 +1,20 @@
 package es.daw.dirando.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import es.daw.dirando.model.Categoria;
+
+
 
 @Entity
 public class Producto {
@@ -13,4 +23,110 @@ public class Producto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="COD_Producto")
 	private int id;
+
+	@Column(name="Nom_Producto")
+	private String nombre;
+
+	@Column(name="Des_Producto")
+	private String desProducto;
+
+	@Column(name="EUR_Producto")
+	private float precio;
+
+	@Column(name="Cod_Referencia")
+	private int ref;
+	
+	@Column(name="Valoracion")
+	private int valoracion;
+
+	@Column(name="Rut_Imagen")
+	private String image;
+
+	@Column(name="Stock")
+	private int stock;
+	
+	
+	@ManyToOne
+	private Categoria categoria;
+
+
+	public Producto(){}
+	
+	public Producto(String nombre,String desProducto,float precio,int valoracion,String imagen,int stock ,String... categoria){
+		this.nombre = nombre;
+		this.desProducto = desProducto; 
+		this.precio= precio;
+		this.valoracion = valoracion;
+		this.image = imagen;
+		this.stock = stock;
+		
+		setReferencia(0, this.id);
+	}
+	
+	//GETTERs AND SETTERs
+	
+	public int getReferencia(){
+		return this.ref;
+	}
+	
+	private void setReferencia(int id,int cod){
+		this.ref=1000*cod+id;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDesProducto() {
+		return desProducto;
+	}
+
+	public void setDesProducto(String desProducto) {
+		this.desProducto = desProducto;
+	}
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(long precio) {
+		this.precio = precio;
+	}
+
+	public int getValoracion() {
+		return valoracion;
+	}
+
+	public void setValoracion(int valoracion) {
+		this.valoracion = valoracion;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}	
+
 }

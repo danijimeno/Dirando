@@ -1,10 +1,13 @@
 package es.daw.dirando.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Pedido {
@@ -14,6 +17,9 @@ public class Pedido {
 	@Column(name="COD_Pedido")
 	private int id;
 	
+	@Column(name="Pedidos")
+	@OneToMany
+	private List<Pedido> pedidos;
 	
 	
 
