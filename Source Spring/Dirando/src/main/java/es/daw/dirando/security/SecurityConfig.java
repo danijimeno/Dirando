@@ -22,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/usuario").permitAll();
         http.authorizeRequests().antMatchers("/registro").permitAll();
         http.authorizeRequests().antMatchers("/logout").permitAll();
+        http.authorizeRequests().antMatchers("/Producto/{id}").permitAll();
 
         // Private pages (all other pages)
         http.authorizeRequests().antMatchers("/usuario").hasAnyRole("USER");

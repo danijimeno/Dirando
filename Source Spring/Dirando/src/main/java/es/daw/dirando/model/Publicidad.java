@@ -12,7 +12,7 @@ public class Publicidad {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private long id;
 	
 	@Column(name="Nom_Publicidad")
 	private String nomPublicidad;
@@ -20,7 +20,12 @@ public class Publicidad {
 	@Column(name="Rut_Imagen")
 	private String imagen;
 	
+	public Publicidad(){}
 	
+	public Publicidad(String nombre,String ruta){
+		this.nomPublicidad = nombre;
+		this.imagen = ruta;
+	}
 	
 
 
@@ -28,11 +33,11 @@ public class Publicidad {
 	//GETTERs AND SETTERs
 	
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

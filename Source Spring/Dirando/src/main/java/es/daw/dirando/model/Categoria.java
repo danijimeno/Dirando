@@ -18,7 +18,7 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="COD_Categoria")
-	private int id;
+	private long id;
 	
 	@Column(name="Nom_Categoria")
 	private String nombre;
@@ -34,11 +34,11 @@ public class Categoria {
 	
 	
 	//GETTERs AND SETTERs
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

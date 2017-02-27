@@ -1,7 +1,6 @@
 package es.daw.dirando.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import es.daw.dirando.model.Categoria;
 
@@ -22,7 +20,7 @@ public class Producto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="COD_Producto")
-	private int id;
+	private long id;
 
 	@Column(name="Nom_Producto")
 	private String nombre;
@@ -60,7 +58,7 @@ public class Producto {
 		this.image = imagen;
 		this.stock = stock;
 		
-		setReferencia(0, this.id);
+		setReferencia(this.id, 0);
 	}
 	
 	//GETTERs AND SETTERs
@@ -69,11 +67,11 @@ public class Producto {
 		return this.ref;
 	}
 	
-	private void setReferencia(int id,int cod){
-		this.ref=1000*cod+id;
+	private void setReferencia(long id,int cod){
+		this.ref=(int) (1000*cod+id);
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
