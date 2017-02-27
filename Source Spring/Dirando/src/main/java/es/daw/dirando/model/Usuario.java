@@ -38,16 +38,23 @@ public class Usuario {
 	@Column(name="Role")
 	private List<String> role;
 	
+	@Column(name="Img_Usuario")
+	private String imgRuta;
+	
 	@Column(name="Pedidos")
 	@OneToMany
-	private List<Pedido> pedidos;
+	private List<Producto> pedidos;
 
 	public Usuario(){}
 	
-	public Usuario(String nombre, String pass, String... role){
+	public Usuario(String nombre,String apellidos,String email,String imgRuta ,String pass, String... role){
 		this.name = nombre;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.imgRuta = imgRuta;
 		this.password = new BCryptPasswordEncoder().encode(pass);;
 		this.role = new ArrayList<>(Arrays.asList(role));
+		this.pedidos = new ArrayList<Producto>();
 	}
 	
 
@@ -105,11 +112,11 @@ public class Usuario {
 		this.role.add(role);
 	}
 	
-	public List<Pedido> getPedidos() {
+	public List<Producto> getPedidos() {
 		return pedidos;
 	}
 
-	public void setPedidos(List<Pedido> pedidos) {
+	public void setPedidos(List<Producto> pedidos) {
 		this.pedidos = pedidos;
 	}
 

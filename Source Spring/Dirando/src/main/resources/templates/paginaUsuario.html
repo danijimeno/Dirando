@@ -125,17 +125,12 @@
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
+						{{#usuario}}
 						<li><a href="paginaUsuario.html"><span
-								class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;</a></li>
-						<li>
-							<form action="/logout" method="post">
-								<button class="glyphicon glyphicon-off" type="submit"><span
-									></span></button> <input
-									type="hidden" name="_csrf" value="{{token}}" />
-							</form>
-								
-							
+								class="glyphicon glyphicon-user"></span> {{apellidos}},{{name}}</a>
 						</li>
+						<li><a class="glyphicon glyphicon-off" href="/logout"></a></li>
+						{{/usuario}}
 						<li><a href="paginaCarrito.html"> <span
 								class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
 								<span class="badge">0</span>
@@ -151,11 +146,12 @@
 		<!--CONTENIDO AQUÍ!-->
 		<div>
 			<section class=" container infomacion-articulo-general col-md-12">
+			{{#usuario}}
 				<div class="container info-articulo col-md-12" id="usuario">
 					<div class="info-articulo-imagen col-md-4">
 						<div class="col-md-7 ">
 							<div class="col-sm-6">
-								<img src="img/user.jpg" alt="foto">
+								<img src="{{imgRuta}}" alt="foto">
 
 							</div>
 						</div>
@@ -172,10 +168,8 @@
 								<div id="collapse1" class="panel-collapse collapse in">
 									<div class="panel-body">
 										<ul>
-											<li>Name: XXXXXX</li>
-											<li>E-mail:: XXXXXX@XXXXX</li>
-											<li>Telephone: *********</li>
-											<li>Adress: XXXXXXXXX</li>
+											<li>Name: {{name}}</li>
+											<li>E-mail:: {{email}}</li>
 											<li>Data Details
 												<ul>
 													<li>Card Number: ****************</li>
@@ -223,12 +217,9 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
+				{{/usuario}}
 			</section>
-
-
-
 		</div>
 		<!-- FIN CONTENIDO AQUÍ!-->
 		<br>

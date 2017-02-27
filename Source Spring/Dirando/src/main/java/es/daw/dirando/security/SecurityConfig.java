@@ -24,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/logout").permitAll();
         http.authorizeRequests().antMatchers("/Producto/{id}").permitAll();
 
+
         // Private pages (all other pages)
         http.authorizeRequests().antMatchers("/usuario").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
@@ -39,6 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         // Logout
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
+        
+     // Disable CSRF at the moment
+        http.csrf().disable();
     }
 
     @Override

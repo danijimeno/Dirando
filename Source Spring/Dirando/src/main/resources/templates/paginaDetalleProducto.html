@@ -125,6 +125,12 @@
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
+						{{#usuario}}
+						<!-- IF -->
+						<li><a href="/usuario"><span
+								class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{name}}
+								,{{apellidos}}</a></li> {{/usuario}} {{^usuario}}
+						<!-- else -->
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
 								class="color-blue"><span class="glyphicon glyphicon-user"></span>Login/register</b>
@@ -169,7 +175,7 @@
 													password don't match!</span>
 											</div>
 											<div class="form-group">
-												<input type="hidden" name="_csrf" value="{{token}}" />
+
 												<!-- Button -->
 												<div class="col-sm-12 controls center-text">
 													<input id="btn-login" type="submit"
@@ -188,11 +194,12 @@
 									</div>
 								</li>
 								<!--<li class="divider"></li>-->
-							</ul></li>
+							</ul></li> {{/usuario}}
+						<!--FIN Else -->
 						<li><a href="paginaCarrito.html"> <span
-							class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span
-							class="badge">0</span>
-					</a></li>
+								class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+								<span class="badge">0</span>
+						</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
