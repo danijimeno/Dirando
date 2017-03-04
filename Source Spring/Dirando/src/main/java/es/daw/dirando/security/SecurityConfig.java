@@ -17,19 +17,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	
-    	// Public pages
+    	
+    	//Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/usuario").permitAll();
         http.authorizeRequests().antMatchers("/registro").permitAll();
         http.authorizeRequests().antMatchers("/logout").permitAll();
         http.authorizeRequests().antMatchers("/Producto/{id}").permitAll();
+        http.authorizeRequests().antMatchers("/ListadoProducto").permitAll();
+        http.authorizeRequests().antMatchers("/ListadoProductoAjax").permitAll();
+       
+        
 
 
-        // Private pages (all other pages)
+        //Private pages (all other pages)
         http.authorizeRequests().antMatchers("/usuario").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
 
-        // Login form
+        //Login form
         http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("username");
         http.formLogin().passwordParameter("password");
@@ -37,12 +42,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.formLogin().failureUrl("/registro");
 
         
-        // Logout
+        //Logout
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
         
-     // Disable CSRF at the moment
+        //Disable CSRF at the moment
         http.csrf().disable();
+        
+        //How to disable 'X-Frame-Options' response header in Spring Security
+    	http.headers().frameOptions().disable();
     }
 
     @Override

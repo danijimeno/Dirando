@@ -21,8 +21,6 @@ public class Pedido {
 	@OneToMany
 	private List<Pedido> pedidos;
 	
-	
-
 	public long getId() {
 		return id;
 	}
@@ -31,6 +29,4 @@ public class Pedido {
 		this.id = id;
 	}
 	
-	
-
 }
