@@ -9,11 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.stereotype.Component;
 
 import es.daw.dirando.model.Categoria;
 
 
-
+@Component
 @Entity
 public class Producto {
 
@@ -49,6 +50,10 @@ public class Producto {
 
 
 	public Producto(){}
+	
+	public Producto(long id){
+		this.id=id;
+	}
 	
 	public Producto(String nombre,String desProducto,float precio,int valoracion,String imagen,int stock ,String... categoria){
 		this.nombre = nombre;
