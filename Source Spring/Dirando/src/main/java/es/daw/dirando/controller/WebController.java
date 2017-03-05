@@ -140,6 +140,11 @@ public class WebController {
 	    
 	    @RequestMapping("/shoppingCartAjax")
 	    public @ResponseBody List<Producto> shoppingCartAjax() {
+	    	try {
+	    	    Thread.sleep(1000);
+	    	} catch(InterruptedException ex) {
+	    	    Thread.currentThread().interrupt();
+	    	}
 	    	return pedido.getPedidos();
 	    }
 	    
