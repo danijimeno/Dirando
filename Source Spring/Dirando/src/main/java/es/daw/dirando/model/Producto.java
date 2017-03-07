@@ -55,6 +55,17 @@ public class Producto {
 		this.id=id;
 	}
 	
+	public Producto(String nombre, String imagen, String desProducto,float precio,int stock ,Categoria categoria){
+		this.nombre = nombre;
+		this.image = imagen;
+		this.desProducto = desProducto; 
+		this.categoria = categoria;
+		this.precio= precio;
+		this.stock = stock;
+		
+		setReferencia(this.id, 0);
+	}
+	
 	public Producto(String nombre,String desProducto,float precio,int valoracion,String imagen,int stock ,String... categoria){
 		this.nombre = nombre;
 		this.desProducto = desProducto; 
@@ -131,5 +142,11 @@ public class Producto {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}	
+	
+	@Override
+	public String toString() {
+		return "Producto [nombre=" + nombre + ", descripcion=" + desProducto + ", imagen=" + image +
+				", precio=" + precio + ", cantidad=" + stock + ", categoria=" + categoria + "]";
+	}
 
 }
