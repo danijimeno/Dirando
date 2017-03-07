@@ -10,23 +10,6 @@
     <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../js/ajax-query-paginaCarrito.js"></script>
-    <script>
-    $(document).ready(function () {
-    	//When I pulse "buy" I check if I am logged
-    	$('#buyButton').click(function(){
-    		$.ajax({
-        		url: '/buy2'
-            }).done ( function(data){
-            	if (data==1){
-            		alert("¡Necesitas estar Logueado!");
-            	}
-            });
-    	});
-    });
-    
-    </script>
-    
 </head>
 
 <body>
@@ -189,10 +172,10 @@
 								</li>
 								<!--<li class="divider"></li>-->
 							</ul></li> {{/usuario}}
-						<!--FIN Else -->
-                        <li>
-                            <a> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge">{{countItems}}</span> </a>
-                        </li>
+                        <li><a href="/shoppingCart"> <span
+								class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+								<span class="badge" id="countItems">{{countItems}}</span>
+						</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -203,50 +186,91 @@
     <div>
         <!--CONTENIDO AQUÍ!-->
         <section class="container">
-            <h3 class="panel-heading">Purchase Order</h3>
-            <div class="table-responsive">
-            
-                <table class="table table-striped" id="productList">
-                    <thead>
-                        <tr>
-                            <th WIDTH="100" HEIGHT="40">
-                                <p>Code Product</p>
-                            </th>
-                            <th>
-                                <p>Product Name</p>
-                            </th>
-                            <th >
-                                <p>Price</p>
-                            </th>
-                            <th  WIDTH="100" HEIGHT="40">
-                                <p>Units</p>
-                            </th>
-                            <th  WIDTH="200" HEIGHT="40">
-                                <p>Total Price</p>
-                            </th>
-                            <th>
-                                <p>Options</p>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    	<!-- HERE GOES  PRODUCT'S LIST CONTENT -->
-                    </tbody>
-                </table>
 
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        Card Payment <img src="img/euro6000Logo.jpg" WIDTH="40" HEIGHT="40" ><img src="img/maestroLogo.jpg" WIDTH="40" HEIGHT="40" > </a>
+                                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-2 col-form-label">Name:</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="textr" id="name">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-2 col-form-label">Card Number:</label>
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-search-input" class="col-2 col-form-label">Expiration:</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="date" format="mm/yy">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-2 col-form-label">Authorized Signature:</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="number" id="secretnumber">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-2 col-form-label"> </label>
+
+                                <div ALIGN=center>
+                                    <a class="btn btn-success" role="button"><span class="glyphicon glyphicon-usd"></span> Buy</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                            Paypal <img src="img/paypalLogo.jpg" WIDTH="40" HEIGHT="40" ></a>
+                                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div ALIGN=center>
+                                <a href="https://www.paypal.com/" target="_blank" class="btn btn-success" role="button"><span class="fa fa-paypal" aria-hidden="true"></span> Go Paypal</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div id="CarritoBtts">
-                <p class="col-md-8 col-sm-7"></p>
-                <a class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Delete Purchase Order</a>
-                <a href="/buy" class="btn btn-success" role="button" id="buyButton"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a>
-            </div>
+
+
 
         </section>
         <!--FIN CONTENIDO AQUÍ!-->
         <br>
         <div class="container"> </div>
     </div>
-    <div class="modal"><!-- Place at bottom of page --></div>
     <footer>
         <!--footer start from here-->
         <footer>

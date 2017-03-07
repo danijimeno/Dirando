@@ -128,6 +128,12 @@
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
+						{{#usuario}}
+						<!-- IF -->
+						<li><a href="/usuario"><span
+								class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{name}}
+								,{{apellidos}}</a></li> {{/usuario}} {{^usuario}}
+						<!-- else -->
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
 								class="color-blue"><span class="glyphicon glyphicon-user"></span>Login/register</b>
@@ -142,15 +148,15 @@
 									<div class="clearfix"></div>
 									<div>
 										<form id="loginform" class="form-horizontal" role="form"
-											autocomplete="off">
+											autocomplete="off" action="/login" method="post">
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user color-blue"></i></span>
 												<!-- USERNAME OR EMAIL ADDRESS -->
 												<input id="login-username" type="text" class="form-control"
 													name="username" value="" placeholder="username or email"
-													pattern="[a-zA-Z0-9]{5,}"
-													title="Minimum 5 letters or numbers." required>
+													pattern="[a-zA-Z0-9]{3,}"
+													title="Minimum 3 letters or numbers." required>
 											</div>
 											<div class="input-group">
 												<span class="input-group-addon"><i
@@ -158,7 +164,7 @@
 												<!--  PASSWORD  -->
 												<input id="login-password" type="password"
 													class="form-control" name="password" placeholder="password"
-													pattern=".{5,}" title="Minmimum 5 letters or numbers."
+													pattern=".{3,}" title="Minmimum 3 letters or numbers."
 													required>
 											</div>
 											<div class="center-text">
@@ -172,24 +178,26 @@
 													password don't match!</span>
 											</div>
 											<div class="form-group">
+
 												<!-- Button -->
 												<div class="col-sm-12 controls center-text">
-													<a id="btn-login" href="#"
-														class="btn btn-block btn-success">Login</a>
+													<input id="btn-login" type="submit"
+														class="btn btn-block btn-success" value="Login">
 													<!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
 													<br>
 												</div>
 												<div class="col-sm-12 controls center-text">
-													<a id="btn-login2" href="paginaRegistro.html"
+													<a id="btn-login2" href="/register"
 														class="btn btn-block btn-success2">Register</a>
 													<!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
 												</div>
 											</div>
+
 										</form>
 									</div>
 								</li>
 								<!--<li class="divider"></li>-->
-							</ul></li>
+							</ul></li> {{/usuario}}
 						<li><a href="/shoppingCart"> <span
 								class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
 								<span class="badge" id="countItems">{{countItems}}</span>

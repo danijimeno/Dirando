@@ -28,8 +28,8 @@ public class DatabaseUsersLoader {
     @PostConstruct
     private void initDatabase() {
     	
-    	userRepository.save(new Usuario("user","Gominguez pruiz","julianL@gmail.com","img/usuario1.jpg","pass", "ROLE_USER"));
-		userRepository.save(new Usuario("admin","Con honor","adminser@gmail.com","img/user.jpg", "adminpass", "ROLE_USER", "ROLE_ADMIN"));
+    	userRepository.save(new Usuario("user","Gominguez pruiz","julianL@gmail.com","img/usuario1.jpg","pass","Thomas Nolan Kaszas II,5322 Otter Lane,Middleberge FL 32068", "ROLE_USER"));
+		userRepository.save(new Usuario("admin","Con honor","adminser@gmail.com","img/user.jpg", "adminpass","Thomas Nolan Kaszas II,5322 Otter Lane,Middleberge FL 32068", "ROLE_USER", "ROLE_ADMIN"));
 		
 		productoRepository.save(new Producto("Specialized Epic HT 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
 				3500,5,"img/ejemplo1.jpg",30,"Sport"));

@@ -54,11 +54,36 @@ public class WebController {
 	        return "index";
 	    }
 	    
-	    /* shoppingCart Query */
-	    @RequestMapping("/shoppingCart")
-	    public String shoppingCart(Model model) {
+	    /*Buy process*/
+	    @RequestMapping("/buy")
+	    public String buyButton(Model model,Authentication http) {
+	    	if(http != null){
+	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    		int countItems = pedido.getPedidos().size();
+		    	model.addAttribute("countItems", countItems );
+	    		return "paginaPago";
+	    	}else{
+	    		return "/";
+	    	}
+	    }
+	    
+	    /* register Query */
+	    @RequestMapping("/register")
+	    public String register(Model model) {
+	    	System.out.println("entra");
 	    	int countItems = pedido.getPedidos().size();
 	    	model.addAttribute("countItems", countItems );
+	    	return "paginaRegistro";
+	    }
+	    
+	    /* shoppingCart Query */
+	    @RequestMapping("/shoppingCart")
+	    public String shoppingCart(Model model,Authentication http) {
+	    	int countItems = pedido.getPedidos().size();
+	    	model.addAttribute("countItems", countItems );
+	    	if(http != null){
+	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    	}
 	    	return "paginaCarrito";
 	    }
 	   
@@ -77,10 +102,13 @@ public class WebController {
 	    
 	    /* product List Query */
 	    @RequestMapping("/ListadoProducto")
-	    public String listadoProductos(Model model){
+	    public String listadoProductos(Model model,Authentication http){
 	    	model.addAttribute("productos",productoRepository.findAll());
 	    	int countItems = pedido.getPedidos().size();
 	    	model.addAttribute("countItems", countItems );
+	    	if(http != null){
+	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    	}
 	    	return "paginaListadoProductos";
 	    }
 	    
@@ -94,6 +122,8 @@ public class WebController {
 	    	}else{
 	    		model.addAttribute("usuario", request.getAttribute("USER"));
 	    		model.addAttribute("usuario",usuarioRepository.findUserByName(auth.getName()));
+	    		int countItems = pedido.getPedidos().size();
+		    	model.addAttribute("countItems", countItems );
 	    		return "paginaUsuario";
 	    	}
 	    }    
@@ -155,5 +185,15 @@ public class WebController {
 	    	int countItems = pedido.getPedidos().size();
 	    	model.addAttribute("countItems", countItems );
 	    	return pedido.getPedidos().size();
+	    }
+	    
+	    /*It's a user logged?*/
+	    @RequestMapping("/buy2")
+	    public @ResponseBody String isLogged(Authentication http) {
+	    	if(http != null){
+	    		return "0";
+	    	}else{
+	    		return "1";
+	    	}
 	    }
 }

@@ -54,7 +54,7 @@
 								<li><a href="#">Protections</a></li>
 								<li><a href="#">Clothing</a></li>
 								<li role="separator" class="divider"></li>
-								<li><a href="paginaListadoProductos.html">Bikes</a></li>
+								<li><a href="/ListadoProducto">Bikes</a></li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -63,7 +63,7 @@
 								<li><a href="#">Protections</a></li>
 								<li><a href="#">Clothing</a></li>
 								<li role="separator" class="divider"></li>
-								<li><a href="paginaListadoProductos.html">Bikes</a></li>
+								<li><a href="/ListadoProducto">Bikes</a></li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -72,7 +72,7 @@
 								<li><a href="#">Protections</a></li>
 								<li><a href="#">Clothing</a></li>
 								<li role="separator" class="divider"></li>
-								<li><a href="paginaListadoProductos.html">Bikes</a></li>
+								<li><a href="/ListadoProducto">Bikes</a></li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -81,7 +81,7 @@
 								<li><a href="#">Protections</a></li>
 								<li><a href="#">Clothing</a></li>
 								<li role="separator" class="divider"></li>
-								<li><a href="#">Bikes</a></li>
+								<li><a href="/ListadoProducto">Bikes</a></li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -90,7 +90,7 @@
 								<li><a href="#">Protections</a></li>
 								<li><a href="#">Clothing</a></li>
 								<li role="separator" class="divider"></li>
-								<li><a href="paginaListadoProductos.html">Bikes</a></li>
+								<li><a href="/ListadoProducto">Bikes</a></li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -126,14 +126,14 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						{{#usuario}}
-						<li><a href="paginaUsuario.html"><span
+						<li><a href="#"><span
 								class="glyphicon glyphicon-user"></span> {{apellidos}},{{name}}</a>
 						</li>
 						<li><a class="glyphicon glyphicon-off" href="/logout"></a></li>
 						{{/usuario}}
-						<li><a href="paginaCarrito.html"> <span
+						<li><a href="/shoppingCart"> <span
 								class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
-								<span class="badge">0</span>
+								<span class="badge">{{countItems}}</span>
 						</a></li>
 					</ul>
 				</div>
@@ -162,55 +162,32 @@
 								<div class="panel-heading">
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordion"
-											href="#collapse1"> Personal Details </a>
+											href="#collapse1"><strong>Personal Details</strong> </a>
 									</h4>
 								</div>
 								<div id="collapse1" class="panel-collapse collapse in">
 									<div class="panel-body">
 										<ul>
-											<li>Name: {{name}}</li>
-											<li>E-mail:: {{email}}</li>
-											<li>Data Details
-												<ul>
-													<li>Card Number: ****************</li>
-													<li>Expiration: **/**</li>
-												</ul>
-											</li>
+											<li><strong>Name: </strong>{{name}}</li>
+											<li><strong>E-mail: </strong>{{email}}</li>
+											<li><strong>Address: </strong>{{address}}</li>
+											<li><strong>Card Number: </strong>****************</li>
 										</ul>
 									</div>
 								</div>
 							</div>
+							
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordion"
-											href="#collapse2"> Favourites List</a>
-									</h4>
-								</div>
-								<div id="collapse2" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li>item 1</li>
-											<li>item 2</li>
-											<li>item 3</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion"
-											href="#collapse3"> My Personal List</a>
+											href="#collapse3"><strong>My Orders</strong>  </a>
 									</h4>
 								</div>
 								<div id="collapse3" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
 											<li>item1 purchased **/**/****</li>
-											<li>item2 purchased **/**/****</li>
-											<li>item3 purchased **/**/****</li>
-											<li>item4 purchased **/**/****</li>
 										</ul>
 									</div>
 								</div>
