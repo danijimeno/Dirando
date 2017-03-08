@@ -55,11 +55,23 @@ public class WebController {
 	    }
 	    
 	    /*Buy process*/
-	    @RequestMapping("/buy")
-	    public String buyButton(Model model,Authentication http) {
+	    @RequestMapping("/payMethods")
+	    public String payMethods(Model model,Authentication http) {
+	    	int countItems = pedido.getPedidos().size();
+	    	model.addAttribute("countItems", countItems );
 	    	if(http != null){
 	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
-	    		int countItems = pedido.getPedidos().size();
+	    		
+	    	}
+	    	return "paginaPaymentsMethods";
+	    }
+	    
+	    /*Buy process*/
+	    @RequestMapping("/buy")
+	    public String buyButton(Model model,Authentication http) {
+	    	int countItems = pedido.getPedidos().size();
+	    	if(http != null && countItems>0){
+	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
 		    	model.addAttribute("countItems", countItems );
 	    		return "paginaPago";
 	    	}else{
@@ -161,7 +173,7 @@ public class WebController {
 	    @RequestMapping(value = "/ListadoProductoAjax/")
 	    public @ResponseBody Page<Producto> listadoProductosAjax(Model model, Pageable page){
 	    	try {
-	    	    Thread.sleep(1000);
+	    	    Thread.sleep(800);
 	    	} catch(InterruptedException ex) {
 	    	    Thread.currentThread().interrupt();
 	    	}
@@ -171,7 +183,7 @@ public class WebController {
 	    @RequestMapping("/shoppingCartAjax")
 	    public @ResponseBody List<Producto> shoppingCartAjax() {
 	    	try {
-	    	    Thread.sleep(1000);
+	    	    Thread.sleep(800);
 	    	} catch(InterruptedException ex) {
 	    	    Thread.currentThread().interrupt();
 	    	}
@@ -190,10 +202,18 @@ public class WebController {
 	    /*It's a user logged?*/
 	    @RequestMapping("/buy2")
 	    public @ResponseBody String isLogged(Authentication http) {
-	    	if(http != null){
+	    	if(http != null && pedido.getPedidos().size()>0){
 	    		return "0";
+	    	}else if(pedido.getPedidos().size()<1){
+	    		return "2";
 	    	}else{
 	    		return "1";
 	    	}
+	    }
+	    
+	    @RequestMapping("/deleteCart")
+	    public @ResponseBody String deleteCart() {
+    		pedido.getPedidos().clear();
+    		return "200OK";
 	    }
 }
