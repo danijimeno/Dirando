@@ -22,11 +22,12 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@Column(name="Nombre")
+	/*User id Unique*/
+	@Column(name="Name")
 	private String name;
 	
-	@Column(name="Apellidos")
-	private String apellidos;
+	@Column(name="full_name")
+	private String full_name;
 	
 	@Column(name="Email")
 	private String email;
@@ -50,9 +51,9 @@ public class Usuario {
 
 	public Usuario(){}
 	
-	public Usuario(String nombre,String apellidos,String email,String imgRuta ,String pass,String address, String... role){
+	public Usuario(String nombre,String full_name,String email,String imgRuta ,String pass,String address, String... role){
 		this.name = nombre;
-		this.apellidos = apellidos;
+		this.full_name = full_name;
 		this.email = email;
 		this.imgRuta = imgRuta;
 		this.password = new BCryptPasswordEncoder().encode(pass);
@@ -80,12 +81,12 @@ public class Usuario {
 		this.name = name;
 	}
 
-	public String getApellidos() {
-		return apellidos;
+	public String getFullName() {
+		return full_name;
 	}
 
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+	public void setFullName(String full_name) {
+		this.full_name = full_name;
 	}
 
 	public String getEmail() {

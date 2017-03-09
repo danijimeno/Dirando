@@ -11,30 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../js/ajax-query-paginaCarrito.js"></script>
-    <script>
-    $(document).ready(function () {
-    	//When I pulse "buy" I check if I am logged
-    	$('#buyButton').click(function(){
-    		$.ajax({
-        		url: '/buy2'
-            }).done ( function(data){
-            	if (data==1){
-            		alert("¡You need to be Logged In!");
-            	}else if (data==2){
-            		alert("¡No items in the cart!");
-            	}
-            });
-    	});
-    	$('#deleteButton').click(function(){
-    		$.ajax({
-        		url: '/deleteCart'
-            }).done ( function(data){
-            });
-    	});
-    });
-    
-    </script>
-    
 </head>
 
 <body>
@@ -126,78 +102,53 @@
                             </form>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        {{#usuario}}
-						<!-- IF -->
-						<li><a href="/usuario"><span
+                    <ul class="nav navbar-nav navbar-right"> {{#usuario}}
+                        <!-- IF -->
+                        <li><a href="/usuario"><span
 								class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{name}}
-								,{{apellidos}}</a></li> {{/usuario}} {{^usuario}}
-						<!-- else -->
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
+								,{{full_name}}</a></li> {{/usuario}} {{^usuario}}
+                        <!-- else -->
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
 								class="color-blue"><span class="glyphicon glyphicon-user"></span>Login/register</b>
 								<span class="caret"></span></a>
-							<ul class="dropdown-menu login-panel">
-								<li>
-									<div class="dropdown-header">
-										<span class="login-header color-blue">Sign In</span> <span
-											class="forgot-password color-blue"><a
-											href="paginaForgotPassword.html">Forgot password?</a></span>
-									</div>
-									<div class="clearfix"></div>
-									<div>
-										<form id="loginform" class="form-horizontal" role="form"
-											autocomplete="off" action="/login" method="post">
-											<div class="input-group">
-												<span class="input-group-addon"><i
+                            <ul class="dropdown-menu login-panel">
+                                <li>
+                                    <div class="dropdown-header"> <span class="login-header color-blue">Sign In</span> <span class="forgot-password color-blue"><a
+											href="paginaForgotPassword.html">Forgot password?</a></span> </div>
+                                    <div class="clearfix"></div>
+                                    <div>
+                                        <form id="loginform" class="form-horizontal" role="form" autocomplete="off" action="/login" method="post">
+                                            <div class="input-group"> <span class="input-group-addon"><i
 													class="glyphicon glyphicon-user color-blue"></i></span>
-												<!-- USERNAME OR EMAIL ADDRESS -->
-												<input id="login-username" type="text" class="form-control"
-													name="username" value="" placeholder="username or email"
-													pattern="[a-zA-Z0-9]{3,}"
-													title="Minimum 3 letters or numbers." required>
-											</div>
-											<div class="input-group">
-												<span class="input-group-addon"><i
+                                                <!-- USERNAME OR EMAIL ADDRESS -->
+                                                <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email" pattern="[a-zA-Z0-9]{3,}" title="Minimum 3 letters or numbers." required> </div>
+                                            <div class="input-group"> <span class="input-group-addon"><i
 													class="glyphicon glyphicon-lock color-blue"></i></span>
-												<!--  PASSWORD  -->
-												<input id="login-password" type="password"
-													class="form-control" name="password" placeholder="password"
-													pattern=".{3,}" title="Minmimum 3 letters or numbers."
-													required>
-											</div>
-											<div class="center-text">
-												<label> <input id="login-remember" type="checkbox"
-													name="remember" value="1"> Remember me
-												</label>
-											</div>
-											<div class="center-text">
-												<span class="error-message color-red"><i
+                                                <!--  PASSWORD  -->
+                                                <input id="login-password" type="password" class="form-control" name="password" placeholder="password" pattern=".{3,}" title="Minmimum 3 letters or numbers." required> </div>
+                                            <div class="center-text">
+                                                <label>
+                                                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me </label>
+                                            </div>
+                                            <div class="center-text"> <span class="error-message color-red"><i
 													class="glyphicon glyphicon-warning-sign"></i> Username &
-													password don't match!</span>
-											</div>
-											<div class="form-group">
-
-												<!-- Button -->
-												<div class="col-sm-12 controls center-text">
-													<input id="btn-login" type="submit"
-														class="btn btn-block btn-success" value="Login">
-													<!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
-													<br>
-												</div>
-												<div class="col-sm-12 controls center-text">
-													<a id="btn-login2" href="/register"
-														class="btn btn-block btn-success2">Register</a>
-													<!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
-												</div>
-											</div>
-
-										</form>
-									</div>
-								</li>
-								<!--<li class="divider"></li>-->
-							</ul></li> {{/usuario}}
-						<!--FIN Else -->
+													password don't match!</span> </div>
+                                            <div class="form-group">
+                                                <!-- Button -->
+                                                <div class="col-sm-12 controls center-text">
+                                                    <input id="btn-login" type="submit" class="btn btn-block btn-success" value="Login">
+                                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
+                                                    <br> </div>
+                                                <div class="col-sm-12 controls center-text"> <a id="btn-login2" href="/register" class="btn btn-block btn-success2">Register</a>
+                                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>--></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                                <!--<li class="divider"></li>-->
+                            </ul>
+                        </li> {{/usuario}}
+                        <!--FIN Else -->
                         <li>
                             <a> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge">{{countItems}}</span> </a>
                         </li>
@@ -213,7 +164,6 @@
         <section class="container">
             <h3 class="panel-heading">Purchase Order</h3>
             <div class="table-responsive">
-            
                 <table class="table table-striped" id="productList">
                     <thead>
                         <tr>
@@ -223,13 +173,13 @@
                             <th>
                                 <p>Product Name</p>
                             </th>
-                            <th >
+                            <th>
                                 <p>Price</p>
                             </th>
-                            <th  WIDTH="100" HEIGHT="40">
+                            <th WIDTH="100" HEIGHT="40">
                                 <p>Units</p>
                             </th>
-                            <th  WIDTH="200" HEIGHT="40">
+                            <th WIDTH="200" HEIGHT="40">
                                 <p>Total Price</p>
                             </th>
                             <th>
@@ -238,23 +188,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                    	<!-- HERE GOES  PRODUCT'S LIST CONTENT -->
+                        <!-- HERE GOES  PRODUCT'S LIST CONTENT -->
                     </tbody>
                 </table>
-
             </div>
             <div id="CarritoBtts">
-                <p class="col-md-8 col-sm-7"></p>
-                <a href="/shoppingCart" class="btn btn-danger" role="button" id="deleteButton"><span class="glyphicon glyphicon-remove"></span>Delete Purchase Order</a>
-                <a href="/buy" class="btn btn-success" role="button" id="buyButton"><span class="glyphicon glyphicon-shopping-cart"></span>Buy</a>
-            </div>
-
+                <p class="col-md-8 col-sm-7"></p> <a href="/shoppingCart" class="btn btn-danger" role="button" id="deleteButton"><span class="glyphicon glyphicon-remove"></span>Delete Purchase Order</a> <a href="/buy" class="btn btn-success" role="button" id="buyButton"><span class="glyphicon glyphicon-shopping-cart"></span>Buy</a> </div>
         </section>
         <!--FIN CONTENIDO AQUÍ!-->
         <br>
         <div class="container"> </div>
     </div>
-    <div class="modal"><!-- Place at bottom of page --></div>
+    <div class="modal">
+        <!-- Place at bottom of page -->
+    </div>
     <footer>
         <!--footer start from here-->
         <footer>

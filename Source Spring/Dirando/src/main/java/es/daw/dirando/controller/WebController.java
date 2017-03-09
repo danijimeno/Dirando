@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,7 @@ import es.daw.dirando.repository.PublicidadRepository;
 import es.daw.dirando.repository.UsuarioRepository;
 import es.daw.dirando.model.Pedido;
 import es.daw.dirando.model.Producto;
+import es.daw.dirando.model.Usuario;
 
 @Controller
 public class WebController {
@@ -82,10 +84,18 @@ public class WebController {
 	    /* register Query */
 	    @RequestMapping("/register")
 	    public String register(Model model) {
-	    	System.out.println("entra");
 	    	int countItems = pedido.getPedidos().size();
 	    	model.addAttribute("countItems", countItems );
 	    	return "paginaRegistro";
+	    }
+	    
+	    /*****************WORKING...WITH SOME VARS But its succesful ******************/
+	    /* add user Query */
+	    @RequestMapping("/addUser")
+	    public String addUser(Model model, @RequestParam(value = "name") String name, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
+	    	Usuario usuario = new Usuario (name,fullName,email,"",pass,address,"ROLE_USER");
+	    	usuarioRepository.save(usuario);
+	    	return "/";
 	    }
 	    
 	    /* shoppingCart Query */
@@ -93,12 +103,12 @@ public class WebController {
 	    public String shoppingCart(Model model,Authentication http) {
 	    	int countItems = pedido.getPedidos().size();
 	    	model.addAttribute("countItems", countItems );
-	    	if(http != null){
+	    	if(http != null){	    		
 	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
 	    	}
 	    	return "paginaCarrito";
 	    }
-	   
+	    
 	    /* login Query */
 	    @RequestMapping("/login")
 	    public String login() {
@@ -140,7 +150,7 @@ public class WebController {
 	    	}
 	    }    
 	    
-	    /* register Query */
+	    /* register Query previous error log */
 	    @RequestMapping("/registro")
 	    public String loginerror() {
 	    	return "paginaRegistro";

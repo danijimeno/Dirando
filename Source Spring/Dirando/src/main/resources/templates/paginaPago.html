@@ -101,81 +101,55 @@
                             </form>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        {{#usuario}}
-						<!-- IF -->
-						<li><a href="/usuario"><span
+                    <ul class="nav navbar-nav navbar-right"> {{#usuario}}
+                        <!-- IF -->
+                        <li><a href="/usuario"><span
 								class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{name}}
-								,{{apellidos}}</a></li> {{/usuario}} {{^usuario}}
-						<!-- else -->
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
+								,{{full_name}}</a></li> {{/usuario}} {{^usuario}}
+                        <!-- else -->
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
 								class="color-blue"><span class="glyphicon glyphicon-user"></span>Login/register</b>
 								<span class="caret"></span></a>
-							<ul class="dropdown-menu login-panel">
-								<li>
-									<div class="dropdown-header">
-										<span class="login-header color-blue">Sign In</span> <span
-											class="forgot-password color-blue"><a
-											href="paginaForgotPassword.html">Forgot password?</a></span>
-									</div>
-									<div class="clearfix"></div>
-									<div>
-										<form id="loginform" class="form-horizontal" role="form"
-											autocomplete="off" action="/login" method="post">
-											<div class="input-group">
-												<span class="input-group-addon"><i
+                            <ul class="dropdown-menu login-panel">
+                                <li>
+                                    <div class="dropdown-header"> <span class="login-header color-blue">Sign In</span> <span class="forgot-password color-blue"><a
+											href="paginaForgotPassword.html">Forgot password?</a></span> </div>
+                                    <div class="clearfix"></div>
+                                    <div>
+                                        <form id="loginform" class="form-horizontal" role="form" autocomplete="off" action="/login" method="post">
+                                            <div class="input-group"> <span class="input-group-addon"><i
 													class="glyphicon glyphicon-user color-blue"></i></span>
-												<!-- USERNAME OR EMAIL ADDRESS -->
-												<input id="login-username" type="text" class="form-control"
-													name="username" value="" placeholder="username or email"
-													pattern="[a-zA-Z0-9]{3,}"
-													title="Minimum 3 letters or numbers." required>
-											</div>
-											<div class="input-group">
-												<span class="input-group-addon"><i
+                                                <!-- USERNAME OR EMAIL ADDRESS -->
+                                                <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email" pattern="[a-zA-Z0-9]{3,}" title="Minimum 3 letters or numbers." required> </div>
+                                            <div class="input-group"> <span class="input-group-addon"><i
 													class="glyphicon glyphicon-lock color-blue"></i></span>
-												<!--  PASSWORD  -->
-												<input id="login-password" type="password"
-													class="form-control" name="password" placeholder="password"
-													pattern=".{3,}" title="Minmimum 3 letters or numbers."
-													required>
-											</div>
-											<div class="center-text">
-												<label> <input id="login-remember" type="checkbox"
-													name="remember" value="1"> Remember me
-												</label>
-											</div>
-											<div class="center-text">
-												<span class="error-message color-red"><i
+                                                <!--  PASSWORD  -->
+                                                <input id="login-password" type="password" class="form-control" name="password" placeholder="password" pattern=".{3,}" title="Minmimum 3 letters or numbers." required> </div>
+                                            <div class="center-text">
+                                                <label>
+                                                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me </label>
+                                            </div>
+                                            <div class="center-text"> <span class="error-message color-red"><i
 													class="glyphicon glyphicon-warning-sign"></i> Username &
-													password don't match!</span>
-											</div>
-											<div class="form-group">
-
-												<!-- Button -->
-												<div class="col-sm-12 controls center-text">
-													<input id="btn-login" type="submit"
-														class="btn btn-block btn-success" value="Login">
-													<!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
-													<br>
-												</div>
-												<div class="col-sm-12 controls center-text">
-													<a id="btn-login2" href="/register"
-														class="btn btn-block btn-success2">Register</a>
-													<!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
-												</div>
-											</div>
-
-										</form>
-									</div>
-								</li>
-								<!--<li class="divider"></li>-->
-							</ul></li> {{/usuario}}
-                        <li><a href="/shoppingCart"> <span
-								class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
-								<span class="badge" id="countItems">{{countItems}}</span>
-						</a></li>
+													password don't match!</span> </div>
+                                            <div class="form-group">
+                                                <!-- Button -->
+                                                <div class="col-sm-12 controls center-text">
+                                                    <input id="btn-login" type="submit" class="btn btn-block btn-success" value="Login">
+                                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
+                                                    <br> </div>
+                                                <div class="col-sm-12 controls center-text"> <a id="btn-login2" href="/register" class="btn btn-block btn-success2">Register</a>
+                                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>--></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                                <!--<li class="divider"></li>-->
+                            </ul>
+                        </li> {{/usuario}}
+                        <li>
+                            <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{countItems}}</span> </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -186,86 +160,63 @@
     <div>
         <!--CONTENIDO AQUÍ!-->
         <section class="container">
-
             <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
                                         Card Payment <img src="img/euro6000Logo.jpg" WIDTH="40" HEIGHT="40" ><img src="img/maestroLogo.jpg" WIDTH="40" HEIGHT="40" > </a>
-                                        </h4>
-                    </div>
+                                        </h4> </div>
                     <div id="collapse1" class="panel-collapse collapse in">
                         <div class="panel-body">
-
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-2 col-form-label">Name:</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="textr" id="name">
-                                </div>
+                                    <input class="form-control" type="textr" id="name"> </div>
                             </div>
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-2 col-form-label">Card Number:</label>
                                 <form class="form-inline">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****">
-                                    </div>
+                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****"> </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****">
-                                    </div>
+                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****"> </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****">
-                                    </div>
+                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****"> </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****">
-                                    </div>
+                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="****"> </div>
                                 </form>
                             </div>
                             <div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Expiration:</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="date" format="mm/yy">
-                                </div>
+                                    <input class="form-control" type="date" format="mm/yy"> </div>
                             </div>
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-2 col-form-label">Authorized Signature:</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="number" id="secretnumber">
-                                </div>
+                                    <input class="form-control" type="number" id="secretnumber"> </div>
                             </div>
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-2 col-form-label"> </label>
-
-                                <div ALIGN=center>
-                                    <a class="btn btn-success" role="button"><span class="glyphicon glyphicon-usd"></span> Buy</a>
-                                </div>
+                                <div ALIGN=center> <a class="btn btn-success" role="button"><span class="glyphicon glyphicon-usd"></span> Buy</a> </div>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
                                             Paypal <img src="img/paypalLogo.jpg" WIDTH="40" HEIGHT="40" ></a>
-                                        </h4>
-                    </div>
+                                        </h4> </div>
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <div ALIGN=center>
-                                <a href="https://www.paypal.com/" target="_blank" class="btn btn-success" role="button"><span class="fa fa-paypal" aria-hidden="true"></span> Go Paypal</a>
-                            </div>
+                            <div ALIGN=center> <a href="https://www.paypal.com/" target="_blank" class="btn btn-success" role="button"><span class="fa fa-paypal" aria-hidden="true"></span> Go Paypal</a> </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
-
         </section>
         <!--FIN CONTENIDO AQUÍ!-->
         <br>
