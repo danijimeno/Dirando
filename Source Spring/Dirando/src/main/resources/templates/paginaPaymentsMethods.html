@@ -10,7 +10,6 @@
     <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../js/ajax-query-paginaCarrito.js"></script>
 </head>
 
 <body>
@@ -148,9 +147,8 @@
                                 <!--<li class="divider"></li>-->
                             </ul>
                         </li> {{/usuario}}
-                        <!--FIN Else -->
                         <li>
-                            <a> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge">{{countItems}}</span> </a>
+                            <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge">{{countItems}}</span> </a>
                         </li>
                     </ul>
                 </div>
@@ -161,46 +159,13 @@
     </div>
     <div>
         <!--CONTENIDO AQUÍ!-->
-        <section class="container">
-            <h3 class="panel-heading">Purchase Order</h3>
-            <div class="table-responsive">
-                <table class="table table-striped" id="productList">
-                    <thead>
-                        <tr>
-                            <th WIDTH="100" HEIGHT="40">
-                                <p>Code Product</p>
-                            </th>
-                            <th>
-                                <p>Product Name</p>
-                            </th>
-                            <th>
-                                <p>Price</p>
-                            </th>
-                            <th WIDTH="100" HEIGHT="40">
-                                <p>Units</p>
-                            </th>
-                            <th WIDTH="200" HEIGHT="40">
-                                <p>Total Price</p>
-                            </th>
-                            <th>
-                                <p>Options</p>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- HERE GOES  PRODUCT'S LIST CONTENT -->
-                    </tbody>
-                </table>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Payment Methods</h3> </div>
+                <div class="panel-body"> <img src="img/paypalLogo.jpg"> <img src="img/visaLogo.jpg"> <img src="img/euro6000Logo.jpg"> <img src="img/maestroLogo.jpg"> </div>
             </div>
-            <div id="CarritoBtts">
-                <p class="col-md-8 col-sm-7"></p> <a href="/shoppingCart" class="btn btn-danger" role="button" id="deleteButton"><span class="glyphicon glyphicon-remove"></span>Delete Purchase Order</a> <a href="/buy" class="btn btn-success" role="button" id="buyButton"><span class="glyphicon glyphicon-shopping-cart"></span>Buy</a> </div>
-        </section>
-        <!--FIN CONTENIDO AQUÍ!-->
-        <br>
-        <div class="container"> </div>
-    </div>
-    <div class="modal">
-        <!-- Place at bottom of page -->
+        </div>
     </div>
     <footer>
         <!--footer start from here-->
@@ -217,7 +182,7 @@
                     <div class="col-md-2 col-sm-6 paddingtop-bottom">
                         <h6 class="heading7">HIGH INTEREST</h6>
                         <ul class="footer-ul">
-                            <li><a href="paginaPaymentsMethods.html">Payment Methods</a></li>
+                            <li><a href="#">Payment Methods</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 col-sm-6 paddingtop-bottom">

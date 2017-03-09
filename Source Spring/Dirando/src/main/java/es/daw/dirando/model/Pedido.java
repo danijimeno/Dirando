@@ -26,16 +26,16 @@ public class Pedido {
 	@Column(name="COD_Pedido")
 	private long id;
 	
-	@Column(name="Pedidos")
+	@Column(name="shoppingCart")
 	@OneToMany
-	private List<Producto> pedidos;
+	private List<Producto> sCart;
 	
 	public Pedido (){
-		pedidos= new ArrayList<>();
+		sCart= new ArrayList<>();
 	}
 	
 	public List<Producto> getPedidos (){
-		return this.pedidos;
+		return this.sCart;
 	}
 	
 	public long getId() {
@@ -47,7 +47,7 @@ public class Pedido {
 	}
 	
 	public void setPedido (Producto p){
-		pedidos.add(p);
+		sCart.add(p);
 	}
 	
 }
