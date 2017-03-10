@@ -1,5 +1,6 @@
 package es.daw.dirando.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,7 +21,7 @@ public class Categoria {
 	private long id;
 	
 	@Column(name="Nom_Categoria")
-	private String nombre;
+	private String name;
 	
 	@Column(name="Publicidad")
 	@OneToMany(mappedBy="")
@@ -29,7 +30,15 @@ public class Categoria {
 	@OneToMany(mappedBy="categoria")
 	private List<Producto> productos; 
 	
-
+	
+	public Categoria() {
+		
+	}
+	
+	public Categoria(String name) {
+		this.name=name;
+		this.productos=new ArrayList<>();
+	}
 	
 	
 	//GETTERs AND SETTERs
@@ -42,11 +51,11 @@ public class Categoria {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return name;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.name = nombre;
 	}
 
 	public List<Publicidad> getPublicidad() {
@@ -55,6 +64,14 @@ public class Categoria {
 
 	public void setPublicidad(List<Publicidad> publicidad) {
 		this.publicidad = publicidad;
+	}
+	
+	public List<Producto> getProductos() {
+		return productos;
+	}
+	
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
 	}
 
 }
