@@ -55,17 +55,6 @@ public class Producto {
 		this.id=id;
 	}
 	
-	public Producto(String nombre, String imagen, String desProducto,float precio,int stock ,Categoria categoria){
-		this.nombre = nombre;
-		this.image = imagen;
-		this.desProducto = desProducto; 
-		this.categoria = categoria;
-		this.precio= precio;
-		this.stock = stock;
-		
-		setReferencia(this.id, 0);
-	}
-	
 	public Producto(String nombre,String desProducto,float precio,int valoracion,String imagen,int stock ,String... categoria){
 		this.nombre = nombre;
 		this.desProducto = desProducto; 
@@ -73,6 +62,18 @@ public class Producto {
 		this.valoracion = valoracion;
 		this.image = imagen;
 		this.stock = stock;
+		
+		setReferencia(this.id, 0);
+	}
+	
+	public Producto(String nombre,String desProducto,float precio,int valoracion,String imagen,int stock ,Categoria categoria){
+		this.nombre = nombre;
+		this.desProducto = desProducto; 
+		this.precio= precio;
+		this.valoracion = valoracion;
+		this.image = imagen;
+		this.stock = stock;
+		this.categoria=categoria;
 		
 		setReferencia(this.id, 0);
 	}
@@ -142,6 +143,14 @@ public class Producto {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}	
+	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	
 	@Override
 	public String toString() {

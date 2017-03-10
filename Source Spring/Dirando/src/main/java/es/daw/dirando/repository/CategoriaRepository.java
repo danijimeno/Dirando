@@ -7,4 +7,5 @@ import es.daw.dirando.model.Categoria;
 
 public interface CategoriaRepository extends CrudRepository<Categoria, Long>{
 	
+	Categoria findByName(String name);
 }

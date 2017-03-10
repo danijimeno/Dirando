@@ -89,7 +89,7 @@
                             <a href="adminUsers.html"><i class="fa fa-users fa-fw"></i> Usuarios</a>
                         </li>
                         <li>
-                            <a href="adminCategories.html"><i class="fa fa-tags fa-fw"></i> Categorias</a>
+                            <a href="/admin/categories"><i class="fa fa-tags fa-fw"></i> Categorias</a>
                         </li>
                         <li>
                             <a href="adminOrders.html"><i class="fa fa-shopping-cart fa-fw"></i> Pedidos</a>
@@ -135,16 +135,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Descripción</label>
-                                            <textarea class="form-control" rows="3" name="desProducto"></textarea>
+                                            <textarea class="form-control" rows="3" name="desProducto" required="required"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Categoría</label>
-                                            <select class="form-control" name="categoria">
-                                                <option>Bicicleta</option>
-                                                <option>Ropa, Complementos</option>
-                                                <option>Accesorios</option>
-                                                <option>Componentes</option>
-                                                <option>Mantenimiento</option>
+                                            <select class="form-control" name="categoria" required="required">
+                                                {{#categorias}}
+                                                <option>{{nombre}}</option>
+                                                {{/categorias}}
                                             </select>
                                         </div>
                                         <div class="form-group">
