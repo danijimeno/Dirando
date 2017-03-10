@@ -9,7 +9,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +37,9 @@ public class WebController {
 	
 	@Autowired
 	private Producto producto;
+	
+	@Autowired
+	private Usuario usuario;
 	
 	/*************************************************/
 	/* Simple Queries */
@@ -75,6 +77,7 @@ public class WebController {
 	    	if(http != null && countItems>0){
 	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
 		    	model.addAttribute("countItems", countItems );
+		    	//usuario.setPedidos(pedido);
 	    		return "paginaPago";
 	    	}else{
 	    		return "/";
@@ -89,11 +92,11 @@ public class WebController {
 	    	return "paginaRegistro";
 	    }
 	    
-	    /*****************WORKING...WITH SOME VARS But its succesful ******************/
+	    /*****************WORKING...Provisional******************/
 	    /* add user Query */
 	    @RequestMapping("/addUser")
 	    public String addUser(Model model, @RequestParam(value = "name") String name, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
-	    	Usuario usuario = new Usuario (name,fullName,email,"",pass,address,"ROLE_USER");
+	    	usuario = new Usuario (name,fullName,email,"img/usuario1.jpg",pass,address,"ROLE_USER");
 	    	usuarioRepository.save(usuario);
 	    	return "/";
 	    }
