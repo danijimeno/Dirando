@@ -56,12 +56,20 @@ public class Usuario {
 	@Column(name="phone_number")
 	private long phone;
 	
+	
+	@Column(name="Comments")
+	@OneToMany (cascade=CascadeType.ALL)
+	private List<Comment> comments;
+	
+	
 	@Column(name="Pedidos")
 	@OneToMany (cascade=CascadeType.ALL)
 	private List<Pedido> pedidos;
 
+	
 	public Usuario(){
 		this.pedidos = new ArrayList<Pedido>();
+		this.comments = new ArrayList<Comment>();
 	}
 	
 	/*To init a new User*/
@@ -78,11 +86,16 @@ public class Usuario {
 	}
 	
 	
-	
-	
-
-
 	//GETTERs & SETTERs
+	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Comment comments) {
+		this.comments.add(comments);
+	}
+	
 	public long getId() {
 		return id;
 	}

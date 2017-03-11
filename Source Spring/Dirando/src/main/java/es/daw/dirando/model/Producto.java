@@ -2,12 +2,17 @@ package es.daw.dirando.model;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -48,28 +53,31 @@ public class Producto {
 	@Column(name="Stock")
 	private int stock;
 	
+	@Column(name="Comments")
+	@OneToMany (cascade=CascadeType.ALL)
+	private List<Comment> comments;
 	
 	@ManyToOne
 	private Categoria categoria;
 
-
+	
+	/*Constructors*/
 	public Producto(){}
 	
 	public Producto(long id){
 		this.id=id;
 	}
-	
-	public Producto(String nombre,String desProducto,float precio,int valoracion,String imagen,int stock ,String... categoria){
+	public Producto(String nombre,String desProducto,float precio,int valoracion,String imagen,int stock, Comment comment,String... categoria){
 		this.nombre = nombre;
 		this.desProducto = desProducto; 
 		this.precio= precio;
 		this.valoracion = valoracion;
 		this.image = imagen;
 		this.stock = stock;
-		
+		comments = new ArrayList<>();
+		this.comments.add(comment);
 		setReferencia(this.id, 0);
 	}
-	
 	public Producto(String nombre,String desProducto,float precio,int valoracion,String imagen,int stock ,Categoria categoria){
 		this.nombre = nombre;
 		this.desProducto = desProducto; 
@@ -81,8 +89,6 @@ public class Producto {
 		
 		setReferencia(this.id, 0);
 	}
-	
-	
 	
 	
 	//GETTERs AND SETTERs
@@ -157,6 +163,14 @@ public class Producto {
 	
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+	
+	public List<Comment> getComments (){
+		return this.comments;
+	}
+	
+	public void setComments (Comment comment){
+		this.comments.add(comment);
 	}
 	
 	@Override

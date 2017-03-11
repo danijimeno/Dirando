@@ -48,8 +48,7 @@ $(document).ready(function () {
         }
     });
     //Add to Card
-    $("#productosLista").on("click","a[id^='AddCard-button']", function(event) { 
-    	console.log('entra en boton' + event.target.getAttribute('data-id'));
+    $("#productosLista").on("click","a[id^='AddCard-button']", function(event) {
     	$.ajax({
     		url: '/ListadoProductoAjaxCarrito',
             data: {'info': event.target.getAttribute('data-id')}

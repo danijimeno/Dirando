@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import es.daw.dirando.repository.CommentRepository;
 import es.daw.dirando.repository.ProductoRepository;
 import es.daw.dirando.repository.PublicidadRepository;
 import es.daw.dirando.repository.UsuarioRepository;
+import es.daw.dirando.model.Comment;
 import es.daw.dirando.model.Pedido;
 import es.daw.dirando.model.Producto;
 import es.daw.dirando.model.Usuario;
@@ -120,8 +122,13 @@ public class WebController {
 	    
 	    /* product Query */
 	    @RequestMapping("/Producto/{id}")
-	    public String productoInfo(Model model,@PathVariable long id){
+	    public String productoInfo(Model model,@PathVariable long id, Authentication http){
+	    	int countItems = pedido.getPedidos().size();
+	    	model.addAttribute("countItems", countItems );
 	    	model.addAttribute("producto",productoRepository.findOne(id));
+	    	if(http != null){
+	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    	}
 	    	return "paginaDetalleProducto";
 	    }
 	    
@@ -212,9 +219,9 @@ public class WebController {
 	    	return pedido.getPedidos().size();
 	    }
 	    
-	    /*It's a user logged?*/
+	    /*It's a user logged? for shopping cart (SC)*/
 	    @RequestMapping("/buy2")
-	    public @ResponseBody String isLogged(Authentication http) {
+	    public @ResponseBody String isLoggedSC(Authentication http) {
 	    	if(http != null && pedido.getPedidos().size()>0){
 	    		return "0";
 	    	}else if(pedido.getPedidos().size()<1){
@@ -228,5 +235,11 @@ public class WebController {
 	    public @ResponseBody String deleteCart() {
     		pedido.getPedidos().clear();
     		return "200OK";
+	    }
+	    
+	    /*Get the comments about the product --> id...*/
+	    @RequestMapping("/loadComments")
+	    public @ResponseBody List<Comment> loadComments(Model model, @RequestParam String idProduct) {
+    		return productoRepository.findProductoById(Long.parseLong(idProduct)).getComments();
 	    }
 }
