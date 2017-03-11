@@ -46,6 +46,15 @@ public class Producto {
 	
 	@Column(name="Valoracion")
 	private int valoracion;
+	
+	@Column(name="Val_RatingPositive")
+	private int theBest;
+	
+	@Column(name="Val_RatingNeutral")
+	private int mustImprove;
+	
+	@Column(name="Val_RatingNegative")
+	private int Bad;
 
 	@Column(name="Rut_Imagen")
 	private String image;
@@ -67,17 +76,22 @@ public class Producto {
 	public Producto(long id){
 		this.id=id;
 	}
-	public Producto(String nombre,String desProducto,float precio,int valoracion,String imagen,int stock, Comment comment,String... categoria){
+	public Producto(String nombre,String desProducto,float precio,int theBest,int mustImprove ,int Bad,String imagen,int stock, Comment comment,String... categoria){
 		this.nombre = nombre;
 		this.desProducto = desProducto; 
 		this.precio= precio;
-		this.valoracion = valoracion;
+		
+		this.theBest = theBest;
+		this.mustImprove = mustImprove;
+		this.Bad = Bad;
+		
 		this.image = imagen;
 		this.stock = stock;
 		comments = new ArrayList<>();
 		this.comments.add(comment);
 		setReferencia(this.id, 0);
 	}
+	
 	public Producto(String nombre,String desProducto,float precio,int valoracion,String imagen,int stock ,Categoria categoria){
 		this.nombre = nombre;
 		this.desProducto = desProducto; 
@@ -92,6 +106,30 @@ public class Producto {
 	
 	
 	//GETTERs AND SETTERs
+	
+	public int getTheBest() {
+		return theBest;
+	}
+
+	public void incrementTheBest() {
+		this.theBest++;
+	}
+
+	public int getMustImprove() {
+		return mustImprove;
+	}
+
+	public void incrementMustImprove() {
+		this.mustImprove++;
+	}
+	
+	public int getBad() {
+		return Bad;
+	}
+
+	public void incrementBad() {
+		Bad++;
+	}
 	
 	public int getReferencia(){
 		return this.ref;

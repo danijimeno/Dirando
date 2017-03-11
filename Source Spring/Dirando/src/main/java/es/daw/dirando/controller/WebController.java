@@ -1,7 +1,7 @@
 package es.daw.dirando.controller;
 
 import java.util.List;
-
+import java.text.DecimalFormat;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,7 @@ import es.daw.dirando.model.Comment;
 import es.daw.dirando.model.Pedido;
 import es.daw.dirando.model.Producto;
 import es.daw.dirando.model.Usuario;
+
 
 @Controller
 public class WebController {
@@ -97,7 +98,6 @@ public class WebController {
 	    /* add user Query */
 	    @RequestMapping("/addUser")
 	    public String addUser(Model model, @RequestParam(value = "phone") String phone, @RequestParam(value = "name") String name, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
-	    	
 	    	usuarioRepository.save(new Usuario (name,fullName,email,"img/usuario1.jpg",pass,phone,address,"ROLE_USER"));
 	    	return "/";
 	    }
@@ -128,6 +128,18 @@ public class WebController {
 	    	if(http != null){
 	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
 	    	}
+	    	
+	    	float total = productoRepository.findProductoById(id).getTheBest() + productoRepository.findProductoById(id).getMustImprove() + productoRepository.findProductoById(id).getBad();
+	    	float best = productoRepository.findProductoById(id).getTheBest() / total * 100;
+	    	float improve = productoRepository.findProductoById(id).getMustImprove() / total * 100;
+	    	float bad = productoRepository.findProductoById(id).getBad() / total * 100;
+	    	
+	    	model.addAttribute("countItems", countItems );
+	    	model.addAttribute("producto",productoRepository.findOne(id));
+	    	DecimalFormat decimals = new DecimalFormat("0");
+	    	model.addAttribute("best", decimals.format(best));
+	    	model.addAttribute("improve", decimals.format(improve));
+	    	model.addAttribute("worst", decimals.format(bad));
 	    	return "paginaDetalleProducto";
 	    }
 	    
@@ -186,19 +198,42 @@ public class WebController {
 	    
 	    /* addComment Query */
 	    @RequestMapping("/addComment")
-	    public String addComment (Model model, @RequestParam(value = "comment")String comment, @RequestParam(value = "id")String id, Authentication http) {
-	    	System.out.println(comment+" "+id);
-	    	Comment co = new Comment (usuarioRepository.findUserByName(http.getName()).getName(), comment, "XX");
-	    	/*Add comment into the User profile*/
-	    	productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
+	    public String addComment (Model model, @RequestParam(value = "comment")String comment, @RequestParam(value = "id")String id, Authentication http, @RequestParam(value = "rating")String rating) {
+	    	if (Integer.parseInt(rating)==3){
+	    		Comment co = new Comment (usuarioRepository.findUserByName(http.getName()).getName(), comment, "The Best!");
+	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
+	    		productoRepository.findProductoById(Long.parseLong(id)).incrementTheBest();
+	    	}else if(Integer.parseInt(rating)==2){
+	    		Comment co = new Comment (usuarioRepository.findUserByName(http.getName()).getName(), comment, "Must Improve!");
+	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
+	    		productoRepository.findProductoById(Long.parseLong(id)).incrementMustImprove();
+	    	}else if(Integer.parseInt(rating)==1){
+	    		Comment co = new Comment (usuarioRepository.findUserByName(http.getName()).getName(), comment, "Bad!");
+	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
+	    		productoRepository.findProductoById(Long.parseLong(id)).incrementBad();
+	    	}else{
+	    		Comment co = new Comment (usuarioRepository.findUserByName(http.getName()).getName(), comment, null);
+	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
+	    	}
+
 	    	/*Update the new data user*/
 	    	productoRepository.saveAndFlush(productoRepository.findProductoById(Long.parseLong(id)));
+	    	
 	    	int countItems = pedido.getPedidos().size();
-	    	model.addAttribute("countItems", countItems );
-	    	model.addAttribute("producto",productoRepository.findOne(Long.parseLong(id)));
+	    	float total = productoRepository.findProductoById(Long.parseLong(id)).getTheBest() + productoRepository.findProductoById(Long.parseLong(id)).getMustImprove() + productoRepository.findProductoById(Long.parseLong(id)).getBad();
+	    	float best = productoRepository.findProductoById(Long.parseLong(id)).getTheBest() / total * 100;
+	    	float improve = productoRepository.findProductoById(Long.parseLong(id)).getMustImprove() / total * 100;
+	    	float bad = productoRepository.findProductoById(Long.parseLong(id)).getBad() / total * 100;
 	    	if(http != null){
 	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
 	    	}
+	    	model.addAttribute("countItems", countItems );
+	    	model.addAttribute("producto",productoRepository.findOne(Long.parseLong(id)));
+	    	DecimalFormat decimals = new DecimalFormat("0");
+	    	model.addAttribute("best", decimals.format(best));
+	    	model.addAttribute("improve", decimals.format(improve));
+	    	model.addAttribute("worst", decimals.format(bad));
+	    	
 	    	return "paginaDetalleProducto";
 	    }
 	    
