@@ -16,7 +16,7 @@ $(document).ready(function () {
         , dataType: 'json'
     }).done(function (items) {
         $.each(items, function (key, value) {
-            $('#productList tbody').append('<tr><td><p>' + value['id'] + '</p></td><td><a>' + value['nombre'] + '</a></td><td><p>' + value['precio'] + '</p></td><td><input class="form-control" type="number" min="0"></td><td><p>' + value['precio'] + ' * number of items</p></td><td><a role="button"><p>Delete</p></a></td></tr>');
+            $('#productList tbody').append('<tr><td><p>' + value['id'] + '</p></td><td>' + value['nombre'] + '</td><td><p>' + value['precio'] + '</p></td><td><a href="/Producto/'+value['id']+'" role="button"><p>View</p></a></td></tr>');
         })
     })
     

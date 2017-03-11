@@ -105,8 +105,14 @@ public class WebController {
 	    /* shoppingCart Query */
 	    @RequestMapping("/shoppingCart")
 	    public String shoppingCart(Model model,Authentication http) {
+	    	float subtotal=0;
+	    	for (int i = 0; i< pedido.getPedidos().size(); i++){
+	    		 subtotal+= pedido.getPedidos().get(i).getPrecio();
+	    	}
+	    	
 	    	int countItems = pedido.getPedidos().size();
 	    	model.addAttribute("countItems", countItems );
+	    	model.addAttribute("subtotal",subtotal);
 	    	if(http != null){	    		
 	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
 	    	}
@@ -242,7 +248,7 @@ public class WebController {
 	/* Ajax Queries */
 	/*************************************************/
     
-	    /*@Uso de @ResponseBody para evitar el fallo "Circular view path (...)" Excepción "javax.servlet.ServletException"*/
+	  
 	    @RequestMapping(value = "/ListadoProductoAjax/")
 	    public @ResponseBody Page<Producto> listadoProductosAjax(Model model, Pageable page){
 	    	try {
@@ -264,11 +270,11 @@ public class WebController {
 	    }
 	    
 	    @RequestMapping(value = "/ListadoProductoAjaxCarrito")
-	    public @ResponseBody Integer addCardQuery(Model model, @RequestParam String info){
-	    	producto =new Producto (Long.valueOf(info));
+	    public @ResponseBody Integer addCardQuery(Model model, @RequestParam(value = "info") String info, @RequestParam(value = "name")String name, @RequestParam(value = "price")String price){
+	    	producto = new Producto ( Long.valueOf(info),name, Float.valueOf(price) );
 	    	pedido.setPedido(producto);
 	    	int countItems = pedido.getPedidos().size();
-	    	model.addAttribute("countItems", countItems );
+	    	model.addAttribute("countItems", countItems);
 	    	return pedido.getPedidos().size();
 	    }
 	    
