@@ -1,6 +1,7 @@
 package es.daw.dirando.controller;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,6 @@ public class WebController {
 	@Autowired
 	private Producto producto;
 	
-	@Autowired
-	private Usuario usuario;
-	
 	/*************************************************/
 	/* Simple Queries */
 	/*************************************************/
@@ -75,9 +73,12 @@ public class WebController {
 	    public String buyButton(Model model,Authentication http) {
 	    	int countItems = pedido.getPedidos().size();
 	    	if(http != null && countItems>0){
-	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    		/*Add the current Pedido into the User logged*/
+		    	usuarioRepository.findUserByName(http.getName()).setPedidos(pedido);
+		    	/*Update the new data user*/
+		    	usuarioRepository.saveAndFlush(usuarioRepository.findUserByName(http.getName()));
+		    	model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
 		    	model.addAttribute("countItems", countItems );
-		    	//usuario.setPedidos(pedido);
 	    		return "paginaPago";
 	    	}else{
 	    		return "/";
@@ -92,12 +93,11 @@ public class WebController {
 	    	return "paginaRegistro";
 	    }
 	    
-	    /*****************WORKING...Provisional******************/
 	    /* add user Query */
 	    @RequestMapping("/addUser")
-	    public String addUser(Model model, @RequestParam(value = "name") String name, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
-	    	usuario = new Usuario (name,fullName,email,"img/usuario1.jpg",pass,address,"ROLE_USER");
-	    	usuarioRepository.save(usuario);
+	    public String addUser(Model model, @RequestParam(value = "phone") String phone, @RequestParam(value = "name") String name, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
+	    	
+	    	usuarioRepository.save(new Usuario (name,fullName,email,"img/usuario1.jpg",pass,phone,address,"ROLE_USER"));
 	    	return "/";
 	    }
 	    

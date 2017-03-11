@@ -29,11 +29,14 @@ public class Pedido {
 	@Column(name="shoppingCart")
 	@OneToMany
 	private List<Producto> sCart;
-	
+
 	public Pedido (){
 		sCart= new ArrayList<>();
 	}
 	
+	
+	
+	/*Getter & Setters*/
 	public List<Producto> getPedidos (){
 		return this.sCart;
 	}

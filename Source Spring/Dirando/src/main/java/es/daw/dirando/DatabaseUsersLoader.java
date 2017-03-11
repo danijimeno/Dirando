@@ -33,8 +33,9 @@ public class DatabaseUsersLoader {
     @PostConstruct
     private void initDatabase() {
     	
-    	userRepository.save(new Usuario("user","Gominguez pruiz","julianL@gmail.com","img/usuario1.jpg","pass","Thomas Nolan Kaszas II,5322 Otter Lane,Middleberge FL 32068", "ROLE_USER"));
-		userRepository.save(new Usuario("admin","Con honor","adminser@gmail.com","img/user.jpg", "adminpass","Thomas Nolan Kaszas II,5322 Otter Lane,Middleberge FL 32068", "ROLE_USER", "ROLE_ADMIN"));
+    	userRepository.save(new Usuario("user","Gominguez pruiz","julianL@gmail.com","img/usuario1.jpg","pass","695698365","Thomas Nolan Kaszas II,5322 Otter Lane,Middleberge FL 32068", "ROLE_USER"));
+    	userRepository.save(new Usuario("user2","Gominguez pruiz","julianL@gmail.com","img/usuario1.jpg","pass2","695698365","Thomas Nolan Kaszas II,5322 Otter Lane,Middleberge FL 32068", "ROLE_USER"));
+		userRepository.save(new Usuario("admin","Con honor","adminser@gmail.com","img/user.jpg", "adminpass","695698365","Thomas Nolan Kaszas II,5322 Otter Lane,Middleberge FL 32068", "ROLE_USER", "ROLE_ADMIN"));
 		/*
 		Categoria category1 = new Categoria("BikeRoad");
 		Categoria category2 = new Categoria("BikeMtb");

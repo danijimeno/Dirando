@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -52,22 +53,32 @@ public class Usuario {
 	@Column(name="address")
 	private String address;
 	
+	@Column(name="phone_number")
+	private long phone;
+	
 	@Column(name="Pedidos")
-	@OneToMany
+	@OneToMany (cascade=CascadeType.ALL)
 	private List<Pedido> pedidos;
 
-	public Usuario(){}
+	public Usuario(){
+		this.pedidos = new ArrayList<Pedido>();
+	}
 	
-	public Usuario(String nombre,String full_name,String email,String imgRuta ,String pass,String address, String... role){
+	/*To init a new User*/
+	public Usuario(String nombre,String full_name,String email,String imgRuta ,String pass, String phone, String address, String... role){
 		this.name = nombre;
 		this.full_name = full_name;
 		this.email = email;
 		this.imgRuta = imgRuta;
 		this.password = new BCryptPasswordEncoder().encode(pass);
 		this.address=address;
+		this.phone=Long.parseLong(phone);
 		this.role = new ArrayList<>(Arrays.asList(role));
-		this.pedidos = new ArrayList<Pedido>();
+		
 	}
+	
+	
+	
 	
 
 
@@ -130,6 +141,10 @@ public class Usuario {
 
 	public void setPedidos(Pedido pedido) {
 		this.pedidos.add(pedido);
+	}
+	
+	public String getAddress (){
+		return this.address;
 	}
 
 	

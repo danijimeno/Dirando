@@ -82,6 +82,9 @@ public class Producto {
 		setReferencia(this.id, 0);
 	}
 	
+	
+	
+	
 	//GETTERs AND SETTERs
 	
 	public int getReferencia(){

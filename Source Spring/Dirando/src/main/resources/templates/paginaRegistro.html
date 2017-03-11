@@ -180,16 +180,16 @@
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input type="text" placeholder="Enter Phone Number Here.." class="form-control"> </div>
+                                <input pattern="[0-9]{9}" name="phone" type="tel" placeholder="Enter Phone Number Here.." class="form-control"> </div>
                             <div class="form-group">
                                 <label>Email Address*</label>
-                                <input name="email" required="required" type="text" placeholder="Enter Email Address Here.." class="form-control"> </div>
+                                <input name="email" required="required" type="email" placeholder="Enter Email Address Here.." class="form-control"> </div>
                             <div class="form-group">
                                 <label>Password*</label>
-                                <input name="pass" required="required" type="text" placeholder="Enter a Password Here.." class="form-control"> </div>
+                                <input name="pass" required="required" type="password" placeholder="Enter a Password Here.." class="form-control"> </div>
                             <div class="form-group">
                                 <label>Confirm Password*</label>
-                                <input required="required" type="text" placeholder="Repeat Password Here.." class="form-control"> </div>
+                                <input required="required" type="password" placeholder="Repeat Password Here.." class="form-control"> </div>
                             <button type="submit" class="btn btn-lg btn-info">Submit</button>
                         </div>
                     </form>
