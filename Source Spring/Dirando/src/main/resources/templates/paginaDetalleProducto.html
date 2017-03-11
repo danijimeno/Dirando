@@ -259,37 +259,41 @@
                             </ul>
                         </div>
                         <div class="row" id="addComment">
-                        {{#usuario}}
-							<div class="form-group">
-								<br>
-								<label for="comment">Comment:</label>
-								<textarea class="form-control" rows="5" id="comment"></textarea>
-							</div>
-							<label for="comment">Rating:</label>
-							<div class="btn-group btn-group-justified" role="group"
-								aria-label="...">
-								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-default">
-										<span class="glyphicon glyphicon-heart"></span> The Best!
-									</button>
-								</div>
-								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-default">
-										<span class="glyphicon glyphicon-minus"></span> Must improve!
-									</button>
-								</div>
-								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-default">
-										<span class="glyphicon glyphicon-remove"></span> Bad!
-									</button>
-								</div>
-							</div>
-							<br>
-							<button type="button" class="btn btn-primary btn-md">Submit</button>
-						{{/usuario}} {{^usuario}}
-							<h3>You need to be logged in order to add comments.</h3>
-                        {{/usuario}}
-                            <!-- HERE ADD COMMENT -->
+	                        {{#usuario}}
+								<form action="/addComment">
+									<div class="form-group">
+										<br>
+										<label for="comment">Comment:</label>
+										<textarea name="comment" class="form-control" rows="5" id="comment"></textarea>
+									</div>
+									<label for="comment">Rating:</label>
+									<div class="btn-group btn-group-justified" role="group"
+										aria-label="...">
+										<div class="btn-group" role="group">
+											<button type="button" class="btn btn-default">
+												<span class="glyphicon glyphicon-heart"></span> The Best!
+											</button>
+										</div>
+										<div class="btn-group" role="group">
+											<button type="button" class="btn btn-default">
+												<span class="glyphicon glyphicon-minus"></span> Must improve!
+											</button>
+										</div>
+										<div class="btn-group" role="group">
+											<button type="button" class="btn btn-default">
+												<span class="glyphicon glyphicon-remove"></span> Bad!
+											</button>
+										</div>
+									</div>
+									<br>
+									{{#producto}}
+									<input type="hidden" name="id" value="{{id}}"/>
+									<button type="submit" class="btn btn-primary btn-md">Submit</button>
+									{{/producto}}
+								</form>
+							{{/usuario}} {{^usuario}}
+								<h3>You need to be logged in order to add comments.</h3>
+	                        {{/usuario}}
                         </div>
                     </div>
                 </div>

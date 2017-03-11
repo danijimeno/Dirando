@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import es.daw.dirando.repository.CommentRepository;
 import es.daw.dirando.repository.ProductoRepository;
 import es.daw.dirando.repository.PublicidadRepository;
 import es.daw.dirando.repository.UsuarioRepository;
@@ -146,7 +145,7 @@ public class WebController {
 	    
 	    /* user Query */
 	    @RequestMapping("/usuario")
-	    public String usuarioreg(Model model, HttpServletRequest request,Authentication auth) {
+	    public String usuarioreg(Model model, HttpServletRequest request, Authentication auth) {
 	    	System.out.println(request.isUserInRole("ADMIN")+"---------------------here");
 	    	if(request.isUserInRole("ADMIN")){
 	    		model.addAttribute("admin", request.isUserInRole("ADMIN"));
@@ -184,6 +183,25 @@ public class WebController {
 	    public String admin() {
 	    	return "paginaUsuario";
 	    }
+	    
+	    /* addComment Query */
+	    @RequestMapping("/addComment")
+	    public String addComment (Model model, @RequestParam(value = "comment")String comment, @RequestParam(value = "id")String id, Authentication http) {
+	    	System.out.println(comment+" "+id);
+	    	Comment co = new Comment (usuarioRepository.findUserByName(http.getName()).getName(), comment, "XX");
+	    	/*Add comment into the User profile*/
+	    	productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
+	    	/*Update the new data user*/
+	    	productoRepository.saveAndFlush(productoRepository.findProductoById(Long.parseLong(id)));
+	    	int countItems = pedido.getPedidos().size();
+	    	model.addAttribute("countItems", countItems );
+	    	model.addAttribute("producto",productoRepository.findOne(Long.parseLong(id)));
+	    	if(http != null){
+	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    	}
+	    	return "paginaDetalleProducto";
+	    }
+	    
     
     /*************************************************/
 	/* Ajax Queries */
@@ -242,4 +260,5 @@ public class WebController {
 	    public @ResponseBody List<Comment> loadComments(Model model, @RequestParam String idProduct) {
     		return productoRepository.findProductoById(Long.parseLong(idProduct)).getComments();
 	    }
+	    
 }
