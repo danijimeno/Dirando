@@ -36,7 +36,7 @@ public class AdminController {
 		model.addAttribute("new", true);
 		model.addAttribute("categorias",categoryRepository.findAll());
 		Categoria category = categoryRepository.findByName(categoria);
-		Producto product = new Producto(nombre, desProducto, precio, theBest, mustImprove, bad, imagen, stock,category);
+		Producto product = new Producto(nombre, desProducto, precio, theBest, mustImprove, bad, imagen, stock, categoria);
 		//product.setCategoria(category);
 		productoRepository.save(product);
 		category.getProductos().add(product);

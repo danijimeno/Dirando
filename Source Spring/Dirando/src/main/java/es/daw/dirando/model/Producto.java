@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.context.annotation.Scope;
@@ -17,7 +16,6 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
-import es.daw.dirando.model.Categoria;
 
 
 @Component
@@ -64,8 +62,8 @@ public class Producto {
 	@OneToMany (cascade=CascadeType.ALL)
 	private List<Comment> comments;
 	
-	@ManyToOne (cascade=CascadeType.ALL)
-	private Categoria categoria;
+	//@ManyToOne (cascade=CascadeType.ALL)
+	private String categoria;
 
 	
 	/*Constructors*/
@@ -76,7 +74,7 @@ public class Producto {
 		this.nombre=name;
 		this.precio=price;
 	}
-	public Producto(String nombre,String desProducto,float precio,int theBest,int mustImprove ,int Bad,String imagen,int stock, Categoria categoria){
+	public Producto(String nombre,String desProducto,float precio,int theBest,int mustImprove ,int Bad,String imagen,int stock, String categoria){
 		this.nombre = nombre;
 		this.desProducto = desProducto; 
 		this.precio= precio;
@@ -185,14 +183,13 @@ public class Producto {
 		this.stock = stock;
 	}	
 	
-	public Categoria getCategoria() {
+	public String getCategoria() {
 		return categoria;
 	}
 	
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	
 	public List<Comment> getComments (){
 		return this.comments;
 	}

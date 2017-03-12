@@ -71,33 +71,33 @@ public class DatabaseUsersLoader {
 		
 		/****EXAMPLES ITEMS****/
 		Producto p = new Producto("Specialized Epic HT 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				3500,5,3,1,"img/ejemplo1.jpg",30,category1);
+				3500,5,3,1,"img/ejemplo1.jpg",30,category1.getNombre());
 		
 		Producto p1 = new Producto("Specialized shit WC 2028","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				4600,5,3,1,"img/ejemplo2.jpg",21,category1);
+				4600,5,3,1,"img/ejemplo2.jpg",21,category1.getNombre());
 		Producto p2 = new Producto("Specialized Warning 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				2500,5,3,1,"img/ejemplo3.jpg",2,category1);
+				2500,5,3,1,"img/ejemplo3.jpg",2,category1.getNombre());
 		Producto p3 = new Producto("Orbea Alma 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				3500,5,3,1,"img/ejemplo1.jpg",30,category1);
+				3500,5,3,1,"img/ejemplo1.jpg",30,category1.getNombre());
 		Producto p4 = new Producto("Orbea Alma 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				4600,5,3,1,"img/ejemplo2.jpg",21,category1);
+				4600,5,3,1,"img/ejemplo2.jpg",21,category1.getNombre());
 		Producto p5 = new Producto("Orbea Alma 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				2500,5,3,1,"img/ejemplo3.jpg",2,category1);
+				2500,5,3,1,"img/ejemplo3.jpg",2,category1.getNombre());
 		Producto p6 = new Producto("Merida no se que 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				3500,5,3,1,"img/ejemplo1.jpg",30,category1);
+				3500,5,3,1,"img/ejemplo1.jpg",30,category1.getNombre());
 		Producto p7 = new Producto("Merida no se que 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				4600,5,3,1,"img/ejemplo2.jpg",21,category1);
+				4600,5,3,1,"img/ejemplo2.jpg",21,category1.getNombre());
 		Producto p8 = new Producto("Merida no se que 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				2500,5,3,1,"img/ejemplo3.jpg",2,category1);
+				2500,5,3,1,"img/ejemplo3.jpg",2,category1.getNombre());
 		Producto p9 = new Producto("bmc dopada 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				3500,5,3,1,"img/ejemplo1.jpg",30,category1);
+				3500,5,3,1,"img/ejemplo1.jpg",30,category1.getNombre());
 		Producto p10 = new Producto("bmc dopada 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				4600,5,3,1,"img/ejemplo2.jpg",21,category1);
+				4600,5,3,1,"img/ejemplo2.jpg",21,category1.getNombre());
 		Producto p11 = new Producto("bmc dopada 2017","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
-				2500,5,3,1,"img/ejemplo3.jpg",2,category1);
+				2500,5,3,1,"img/ejemplo3.jpg",2,category1.getNombre());
 		
 		p.setComments(co0_1);
-		
+
 		category1.getProductos().add(p);
 		category1.getProductos().add(p1);
 		category1.getProductos().add(p2);
