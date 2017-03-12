@@ -70,20 +70,15 @@ public class Producto {
 	private Categoria categoria;
 
 	
-	/**************/
 	/*Constructors*/
-	/**************/
-	
 	public Producto(){}
 	
-	/*Create a cart with a simple product datas*/
 	public Producto(long id, String name, float price){
 		this.id=id;
 		this.nombre=name;
 		this.precio=price;
 	}
-	/*Create complete products*/
-	public Producto(String nombre,String desProducto,float precio,int theBest,int mustImprove ,int Bad,String imagen,int stock, Comment comment,String... categoria){
+	public Producto(String nombre,String desProducto,float precio,int theBest,int mustImprove ,int Bad,String imagen,int stock,String... categoria){
 		this.nombre = nombre;
 		this.desProducto = desProducto; 
 		this.precio= precio;
@@ -95,18 +90,19 @@ public class Producto {
 		this.image = imagen;
 		this.stock = stock;
 		comments = new ArrayList<>();
-		this.comments.add(comment);
 		setReferencia(this.id, 0);
 	}
 	
-	public Producto(String nombre,String desProducto,float precio,int valoracion,String imagen,int stock ,Categoria categoria){
+	public Producto(String nombre,String desProducto,float precio,int theBest,int mustImprove ,int Bad,String imagen,int stock){
 		this.nombre = nombre;
 		this.desProducto = desProducto; 
 		this.precio= precio;
-		this.valoracion = valoracion;
+		this.theBest = theBest;
+		this.mustImprove = mustImprove;
+		this.Bad = Bad;
 		this.image = imagen;
 		this.stock = stock;
-		this.categoria=categoria;
+		comments = new ArrayList<>();
 		
 		setReferencia(this.id, 0);
 	}
