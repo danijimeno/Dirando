@@ -27,7 +27,7 @@ public class Categoria {
 	@OneToMany(mappedBy="")
 	private List<Publicidad> publicidad;
 	
-	@OneToMany(mappedBy="categoria")
+	@OneToMany(mappedBy="")
 	private List<Producto> productos; 
 	
 	

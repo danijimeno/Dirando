@@ -1,7 +1,5 @@
 package es.daw.dirando.controller;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,10 +31,11 @@ public class AdminController {
 	@RequestMapping("/admin/newProduct")
 	public String newProduct(Model model, @RequestParam String nombre ,@RequestParam String imagen,
 			@RequestParam String desProducto, @RequestParam String categoria, @RequestParam float precio,
-			@RequestParam int stock) {
+			@RequestParam int stock, @RequestParam int theBest, @RequestParam int mustImprove, @RequestParam int bad) {
 		model.addAttribute("categorias",categoryRepository.findAll());
 		Categoria category = categoryRepository.findByName(categoria);
-		Producto product = new Producto(nombre, desProducto, precio, 0, imagen, stock, category);
+		Producto product = new Producto(nombre, desProducto, precio, theBest, mustImprove, bad, imagen, stock);
+		product.setCategoria(category);
 		productoRepository.save(product);
 		category.getProductos().add(product);
 		categoryRepository.save(category);
