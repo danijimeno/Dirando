@@ -169,8 +169,13 @@ public class WebController {
 	    		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 	    		return "adminIndex";
 	    	}else{
+	    		int sizeOrders = 0;
 	    		model.addAttribute("usuario", request.getAttribute("USER"));
 	    		model.addAttribute("usuario",usuarioRepository.findUserByName(auth.getName()));
+	    		if (usuarioRepository.findUserByName(auth.getName()).getPedidos().size()>0){
+	    			sizeOrders=usuarioRepository.findUserByName(auth.getName()).getPedidos().size();
+	    		}
+	    		model.addAttribute("sizeOrders", sizeOrders);
 	    		int countItems = pedido.getPedidos().size();
 		    	model.addAttribute("countItems", countItems );
 	    		return "paginaUsuario";

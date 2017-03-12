@@ -70,14 +70,19 @@ public class Producto {
 	private Categoria categoria;
 
 	
+	/**************/
 	/*Constructors*/
+	/**************/
+	
 	public Producto(){}
 	
+	/*Create a cart with a simple product datas*/
 	public Producto(long id, String name, float price){
 		this.id=id;
 		this.nombre=name;
 		this.precio=price;
 	}
+	/*Create complete products*/
 	public Producto(String nombre,String desProducto,float precio,int theBest,int mustImprove ,int Bad,String imagen,int stock, Comment comment,String... categoria){
 		this.nombre = nombre;
 		this.desProducto = desProducto; 
