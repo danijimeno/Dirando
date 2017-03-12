@@ -48,6 +48,12 @@ public class AdminController {
 		return "adminListProduct";
 	}
 	
+	@RequestMapping("/admin/product/{id}")
+	public String productDetail(Model model, @PathVariable long id) {
+		model.addAttribute("product",productoRepository.findOne(id));
+		return "adminProductDetail";
+	}
+	
 	@RequestMapping("/admin/addCategory")
     public String addCategory(Model model, @RequestParam String category) {
 		model.addAttribute("categorias",categoryRepository.findAll());
