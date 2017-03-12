@@ -1,16 +1,15 @@
 $(document).ready(function () {
     $("#ratingContent").on("click", "button", function (event) {
-        console.log('entra en boton' + event.target.getAttribute('data-id'));
-        /**/
         $("#ratingEvent").val(event.target.getAttribute('data-value'));
     });
     /*Add to cart button*/
     $('#addCartButton').click(function () {
         $.ajax({
-            url: '/ListadoProductoAjaxCarrito'
-            , data: {
-                'info': event.target.getAttribute('data-id')
-            }
+            url: '/ListadoProductoAjaxCarrito', 
+            data: {'info': event.target.getAttribute('data-id'),
+        		   'name': event.target.getAttribute('data-name'),
+        		   'price': event.target.getAttribute('data-price')
+        	       }
         }).done(function (data) {
             $('#countItems').text(data);
         })
