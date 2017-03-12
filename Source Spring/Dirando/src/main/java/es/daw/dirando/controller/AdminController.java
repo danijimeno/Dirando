@@ -24,6 +24,7 @@ public class AdminController {
 
 	@RequestMapping("/admin/addProduct")
 	public String addProduct(Model model) {
+		model.addAttribute("new", true);
 		model.addAttribute("categorias",categoryRepository.findAll());
 		return "adminAddProduct";
 	}
@@ -32,10 +33,11 @@ public class AdminController {
 	public String newProduct(Model model, @RequestParam String nombre ,@RequestParam String imagen,
 			@RequestParam String desProducto, @RequestParam String categoria, @RequestParam float precio,
 			@RequestParam int stock, @RequestParam int theBest, @RequestParam int mustImprove, @RequestParam int bad) {
+		model.addAttribute("new", true);
 		model.addAttribute("categorias",categoryRepository.findAll());
 		Categoria category = categoryRepository.findByName(categoria);
-		Producto product = new Producto(nombre, desProducto, precio, theBest, mustImprove, bad, imagen, stock);
-		product.setCategoria(category);
+		Producto product = new Producto(nombre, desProducto, precio, theBest, mustImprove, bad, imagen, stock,category);
+		//product.setCategoria(category);
 		productoRepository.save(product);
 		category.getProductos().add(product);
 		categoryRepository.save(category);
@@ -53,6 +55,13 @@ public class AdminController {
 		model.addAttribute("product",productoRepository.findOne(id));
 		return "adminProductDetail";
 	}
+		
+	@RequestMapping("/admin/deleteProduct/{id}")
+	public String deleteProduct(Model model, @PathVariable long id) {
+		productoRepository.delete(productoRepository.findOne(id));
+		model.addAttribute("products",productoRepository.findAll());
+		return "adminListProduct";
+	}
 	
 	@RequestMapping("/admin/addCategory")
     public String addCategory(Model model, @RequestParam String category) {
@@ -67,13 +76,18 @@ public class AdminController {
     	model.addAttribute("categorias",categoryRepository.findAll());
     	return "adminCategories";
     }
-    /*
+    
     @RequestMapping("/admin/deleteCategory/{id}")
     public String deleteCategory(Model model, @PathVariable long id) {
-    	categoryRepository.delete(categoryRepository.findOne(id));
+    	Categoria cat = categoryRepository.findOne(id);
+    	for(Producto p :cat.getProductos()){
+    		p.setCategoria(null);
+    	}
+    	categoryRepository.delete(cat);
+    	
 		model.addAttribute("categorias",categoryRepository.findAll());
     	return "adminCategories";
     }
-   	*/
+   	
 	
 }

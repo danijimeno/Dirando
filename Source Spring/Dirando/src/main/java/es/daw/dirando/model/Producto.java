@@ -1,7 +1,5 @@
 package es.daw.dirando.model;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +64,7 @@ public class Producto {
 	@OneToMany (cascade=CascadeType.ALL)
 	private List<Comment> comments;
 	
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.ALL)
 	private Categoria categoria;
 
 	
@@ -78,7 +76,7 @@ public class Producto {
 		this.nombre=name;
 		this.precio=price;
 	}
-	public Producto(String nombre,String desProducto,float precio,int theBest,int mustImprove ,int Bad,String imagen,int stock,String... categoria){
+	public Producto(String nombre,String desProducto,float precio,int theBest,int mustImprove ,int Bad,String imagen,int stock, Categoria categoria){
 		this.nombre = nombre;
 		this.desProducto = desProducto; 
 		this.precio= precio;
@@ -89,23 +87,12 @@ public class Producto {
 		
 		this.image = imagen;
 		this.stock = stock;
+		this.categoria = categoria;
 		comments = new ArrayList<>();
 		setReferencia(this.id, 0);
 	}
 	
-	public Producto(String nombre,String desProducto,float precio,int theBest,int mustImprove ,int Bad,String imagen,int stock){
-		this.nombre = nombre;
-		this.desProducto = desProducto; 
-		this.precio= precio;
-		this.theBest = theBest;
-		this.mustImprove = mustImprove;
-		this.Bad = Bad;
-		this.image = imagen;
-		this.stock = stock;
-		comments = new ArrayList<>();
-		
-		setReferencia(this.id, 0);
-	}
+
 	
 	
 	//GETTERs AND SETTERs
