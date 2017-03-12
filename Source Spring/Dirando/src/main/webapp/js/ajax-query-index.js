@@ -16,7 +16,8 @@ $(document).ready(function () {
         url: '/ListadoProductoAjax/'
         , data: {
             'page': 0
-            , 'size': 3
+            , 'size': 3,
+            'result': 'index'
         }
         , dataType: "json"
     }).done(function (items) {

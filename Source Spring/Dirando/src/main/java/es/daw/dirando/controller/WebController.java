@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import es.daw.dirando.repository.CategoriaRepository;
 import es.daw.dirando.repository.ProductoRepository;
 import es.daw.dirando.repository.PublicidadRepository;
 import es.daw.dirando.repository.UsuarioRepository;
@@ -34,6 +35,9 @@ public class WebController {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 	
 	@Autowired
 	private Pedido pedido;
@@ -58,7 +62,7 @@ public class WebController {
 	        return "index";
 	    }
 	    
-	    /*Buy process*/
+	    /*payMethods query*/
 	    @RequestMapping("/payMethods")
 	    public String payMethods(Model model,Authentication http) {
 	    	int countItems = pedido.getPedidos().size();
@@ -150,8 +154,22 @@ public class WebController {
 	    }
 	    
 	    /* product List Query */
-	    @RequestMapping("/ListadoProducto")
-	    public String listadoProductos(Model model,Authentication http){
+	    @RequestMapping("/ListadoProductoSearch")
+	    public String listadoProductos(Model model,Authentication http, @RequestParam(value = "inp-search")String search){
+	    	model.addAttribute("resultSearch",search);
+	    	model.addAttribute("productos",productoRepository.findAll());
+	    	int countItems = pedido.getPedidos().size();
+	    	model.addAttribute("countItems", countItems );
+	    	if(http != null){
+	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    	}
+	    	return "paginaListadoProductos";
+	    }
+	    
+	    /* product category List Query */
+	    @RequestMapping("/ProductoCategoria")
+	    public @ResponseBody String listadoProductoCategoria (Model model, Authentication http, @RequestParam(value = "cat")String cat){
+	    	model.addAttribute("resultSearch",cat);
 	    	model.addAttribute("productos",productoRepository.findAll());
 	    	int countItems = pedido.getPedidos().size();
 	    	model.addAttribute("countItems", countItems );
@@ -164,7 +182,6 @@ public class WebController {
 	    /* user Query */
 	    @RequestMapping("/usuario")
 	    public String usuarioreg(Model model, HttpServletRequest request, Authentication auth) {
-	    	System.out.println(request.isUserInRole("ADMIN")+"---------------------here");
 	    	if(request.isUserInRole("ADMIN")){
 	    		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 	    		return "adminIndex";
@@ -255,14 +272,23 @@ public class WebController {
     
 	  
 	    @RequestMapping(value = "/ListadoProductoAjax/")
-	    public @ResponseBody Page<Producto> listadoProductosAjax(Model model, Pageable page){
+	    public @ResponseBody Page<Producto> listadoProductosAjax(Model model, Pageable page, @RequestParam(value = "result") String result){
 	    	try {
 	    	    Thread.sleep(800);
 	    	} catch(InterruptedException ex) {
 	    	    Thread.currentThread().interrupt();
 	    	}
-	    	return productoRepository.findAll(page);
+	    	
+	    	if ( categoriaRepository.findByName(result)!=null ){
+	    		return productoRepository.findByCategoria(result, page);
+	    	}else if ( result.equals("index") ){
+	    		return productoRepository.findAll(page);
+	    	}else{
+	    		return productoRepository.findByNombre(result, page);
+	    	}
 	    }
+	    
+	    
 	    
 	    @RequestMapping("/shoppingCartAjax")
 	    public @ResponseBody List<Producto> shoppingCartAjax() {

@@ -24,7 +24,7 @@ $(document).ready(function () {
     }).done(function (items) {
         var cadena = '';
         $.each(items, function (key, value) {
-            cadena += '<li><div class="comment-main-level"><div class="comment-avatar"> <img src="img/logoNEW.png" alt=""> </div><div class="comment-box"><div class="comment-head"> <span class="glyphicon glyphicon-heart"></span><h6 class="comment-name">' + value['user'] + '</h6> </div><div class="comment-content">' + value['content'] + '</div></div></div></li>';
+            cadena += '<li><div class="comment-main-level"><div class="comment-avatar"> <img src="img/logoNEW.jpg" alt=""> </div><div class="comment-box"><div class="comment-head"> <span class="glyphicon glyphicon-heart"></span><h6 class="comment-name">' + value['user'] + '</h6> </div><div class="comment-content">' + value['content'] + '</div></div></div></li>';
         });
         $('#comments-list').html(cadena);
     }).fail(function (error) {

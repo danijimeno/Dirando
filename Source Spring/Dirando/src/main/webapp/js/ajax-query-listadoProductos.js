@@ -17,6 +17,7 @@ $(document).ready(function () {
         , data: {
             'page': page
             , 'size': 6
+            , 'result': $('#resultSearch').attr('data-search')
         }
         , dataType: "json"
     }).done(function (items) {
@@ -35,7 +36,8 @@ $(document).ready(function () {
                 url: '/ListadoProductoAjax/'
                 , data: {
                     'page': page
-                    , 'size': 6
+                    , 'size': 6,
+                    'result': $('#resultSearch').attr('data-search')
                 }
                 , dataType: "json"
             }).done(function (items) {

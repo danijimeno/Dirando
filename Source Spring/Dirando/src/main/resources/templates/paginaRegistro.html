@@ -10,6 +10,7 @@
     <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/event-navbar-category.js"></script>
 </head>
 
 <body>
@@ -38,7 +39,7 @@
                                 <li><a href="#">Protections</a></li>
                                 <li><a href="#">Clothing</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="/ListadoProducto">Bikes</a></li>
+                                <li><a id="xco">Bikes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downhill</a>
@@ -46,7 +47,7 @@
                                 <li><a href="#">Protections</a></li>
                                 <li><a href="#">Clothing</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="/ListadoProducto">Bikes</a></li>
+                                <li><a id="downhill">Bikes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Road</a>
@@ -54,7 +55,7 @@
                                 <li><a href="#">Protections</a></li>
                                 <li><a href="#">Clothing</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="/ListadoProducto">Bikes</a></li>
+                                <li><a id="road">Bikes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cyclocross</a>
@@ -62,41 +63,15 @@
                                 <li><a href="#">Protections</a></li>
                                 <li><a href="#">Clothing</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="/ListadoProducto">Bikes</a></li>
+                                <li><a id="cyclocross">Bikes</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Triathlon</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Protections</a></li>
-                                <li><a href="#">Clothing</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="/ListadoProducto">Bikes</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accessories</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">hydration</a></li>
-                                <li><a href="#">gloves</a></li>
-                                <li><a href="#">glasses</a></li>
-                                <li><a href="#">Watches</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">food</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clothing</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Protections</a></li>
-                                <li><a href="#">winter</a></li>
-                                <li><a href="#">summer</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">kids</a></li>
-                            </ul>
-                        </li>
+                        
                         <li>
-                            <form class="navbar-form search navbar-form-2">
+                            <form action="/ListadoProductoSearch" class="navbar-form search navbar-form-2">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                    <input required="required" name="inp-search" type="text" class="form-control" placeholder="Search">
+                                    <button type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-search"></span> </button>
                                 </div>
                             </form>
                         </li>
@@ -197,6 +172,9 @@
             </div>
         </div>
     </div>
+    <form id="searchByCat" action="/ListadoProductoSearch" >
+      <input type="hidden" name="inp-search" id='searchCat' value="cat">
+ 	</form>
     <footer>
         <!--footer start from here-->
         <footer>
