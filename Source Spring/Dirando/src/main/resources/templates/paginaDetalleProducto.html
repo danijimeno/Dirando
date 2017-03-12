@@ -10,6 +10,7 @@
     <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/ajax-query-detalleProducto.js"> </script>
 </head>
 
 <body>
@@ -38,7 +39,7 @@
                                 <li><a href="#">Protections</a></li>
                                 <li><a href="#">Clothing</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="paginaListadoProductos.html">Bikes</a></li>
+                                <li><a href="/ListadoProducto">Bikes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downhill</a>
@@ -46,7 +47,7 @@
                                 <li><a href="#">Protections</a></li>
                                 <li><a href="#">Clothing</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="paginaListadoProductos.html">Bikes</a></li>
+                                <li><a href="/ListadoProducto">Bikes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Road</a>
@@ -54,7 +55,7 @@
                                 <li><a href="#">Protections</a></li>
                                 <li><a href="#">Clothing</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="paginaListadoProductos.html">Bikes</a></li>
+                                <li><a href="/ListadoProducto">Bikes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cyclocross</a>
@@ -62,7 +63,7 @@
                                 <li><a href="#">Protections</a></li>
                                 <li><a href="#">Clothing</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Bikes</a></li>
+                                <li><a href="/ListadoProducto">Bikes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Triathlon</a>
@@ -70,7 +71,7 @@
                                 <li><a href="#">Protections</a></li>
                                 <li><a href="#">Clothing</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="paginaListadoProductos.html">Bikes</a></li>
+                                <li><a href="/ListadoProducto">Bikes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accessories</a>
@@ -104,8 +105,12 @@
                     <ul class="nav navbar-nav navbar-right"> {{#usuario}}
                         <!-- IF -->
                         <li><a href="/usuario"><span
-								class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{name}}
-								,{{full_name}}</a></li> {{/usuario}} {{^usuario}}
+								class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{name}},{{full_name}}</a></li> 
+						<li>
+                        	<a class="glyphicon glyphicon-off" href="/logout"></a>
+                        </li> 
+							
+						{{/usuario}} {{^usuario}}
                         <!-- else -->
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
 								class="color-blue"><span class="glyphicon glyphicon-user"></span>Login/register</b>
@@ -149,7 +154,7 @@
                         </li> {{/usuario}}
                         <!--FIN Else -->
                         <li>
-                            <a href="paginaCarrito.html"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge">0</span> </a>
+                            <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{countItems}}</span> </a>
                         </li>
                     </ul>
                 </div>
@@ -186,19 +191,19 @@
 									<em>The best!</em>
 								</h6>
                                 <div class="progress">
-                                    <div class="progress-bar success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"> <span class="glyphicon glyphicon-heart"></span> </div>
+                                    <div class="progress-bar success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{best}}%;">{{best}}%<span class="glyphicon glyphicon-heart"></span> </div>
                                 </div>
                                 <h6 class="price">
 									<em>Must improve!</em>
 								</h6>
                                 <div class="progress">
-                                    <div class="progress-bar warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"> <span class="glyphicon glyphicon-minus"></span> </div>
+                                    <div class="progress-bar warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{improve}}%;">{{improve}}%<span class="glyphicon glyphicon-minus"></span> </div>
                                 </div>
                                 <h6 class="price">
 									<em>Bad!</em>
 								</h6>
                                 <div class="progress">
-                                    <div class="progress-bar danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;"> <span class="glyphicon glyphicon-remove"></span> </div>
+                                    <div class="progress-bar danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{worst}}%;">{{worst}}%<span class="glyphicon glyphicon-remove"></span> </div>
                                 </div>
                                 <p class="product-description">{{desProducto}}</p>
                                 <h4 class="price">
@@ -208,19 +213,9 @@
                                 <div class="progress">
                                     <div class="progress-bar progress-bar- progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 70%" data-toggle="tooltip" data-placement="bottom" title="Disponibilidad">{{stock}} UD.</div>
                                 </div>
-                                <h5 class="sizes">
-									sizes: <span class="size" data-toggle="tooltip" title="small">s</span>
-									<span class="size" data-toggle="tooltip" title="medium">m</span>
-									<span class="size" data-toggle="tooltip" title="large"><strong>l</strong></span>
-									<span class="size" data-toggle="tooltip" title="xtra large">xl</span>
-								</h5>
-                                <h5 class="colors">
-									colors: <span class="color orange not-available"
-										data-toggle="tooltip" title="Not In store"></span> <span
-										class="color green"></span> <span class="color blue"></span>
-								</h5>
-                                <div class="action"> <a href="paginaCarrito.html" class="add-to-cart btn btn-default" type="button">Add to
-										card</a> </div>
+         
+                            
+                                <div class="action"> <a data-id="{{id}}" id="addCartButton" class="add-to-cart btn btn-default" type="button">Add to card</a> </div>
                             </div>
                         </div> {{/producto}} </div>
                 </div>
@@ -234,52 +229,47 @@
                         <div class="row">
                             <h1>Comments</h1>
                             <ul id="comments-list" class="comments-list">
-                                <li>
-                                    <div class="comment-main-level">
-                                        <!-- Avatar -->
-                                        <div class="comment-avatar"> <img src="img/logoNEW.png" alt=""> </div>
-                                        <!-- Contenedor del Comentario -->
-                                        <div class="comment-box">
-                                            <div class="comment-head"> <span class="glyphicon glyphicon-heart"></span>
-                                                <h6 class="comment-name">Arya Stark</h6> </div>
-                                            <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="comment-main-level">
-                                        <!-- Avatar -->
-                                        <div class="comment-avatar"> <img src="img/logoNEW.png" alt=""> </div>
-                                        <!-- Contenedor del Comentario -->
-                                        <div class="comment-box">
-                                            <div class="comment-head"> <span class="glyphicon glyphicon-remove"></span>
-                                                <h6 class="comment-name">John Snow</h6> </div>
-                                            <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?</div>
-                                        </div>
-                                    </div>
-                                </li>
+                                <!-- HERE COMMENTS -->
+                                
                             </ul>
                         </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <br>
-                                <label for="comment">Comment:</label>
-                                <textarea class="form-control" rows="5" id="comment"></textarea>
-                            </div>
-                            <label for="comment">Rating:</label>
-                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-heart"></span> The Best! </button>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-minus"></span> Must improve! </button>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-remove"></span> Bad! </button>
-                                </div>
-                            </div>
-                            <br>
-                            <button type="button" class="btn btn-primary btn-md">Submit</button>
+                        <div class="row" id="addComment">
+	                        {{#usuario}}
+								<form action="/addComment">
+									<div class="form-group">
+										<br>
+										<label for="comment">Comment:</label>
+										<textarea required="required" name="comment" class="form-control" rows="5" id="comment"></textarea>
+									</div>
+									<label for="comment">Rating:</label>
+									<div id="ratingContent" class="btn-group btn-group-justified" role="group"
+										aria-label="...">
+										<div class="btn-group" role="group">
+											<button data-value="3" type="button" class="btn btn-default">
+												<span class="glyphicon glyphicon-heart"></span> The Best!
+											</button>
+										</div>
+										<div class="btn-group" role="group">
+											<button data-value="2" type="button" class="btn btn-default">
+												<span class="glyphicon glyphicon-minus"></span> Must improve!
+											</button>
+										</div>
+										<div class="btn-group" role="group">
+											<button data-value="1" type="button" class="btn btn-default">
+												<span class="glyphicon glyphicon-remove"></span> Bad!
+											</button>
+										</div>
+									</div>
+									<br>
+									{{#producto}}
+									<input type="hidden" name="id" value="{{id}}"/>
+									<input type="hidden" id="ratingEvent" name="rating" value="0"/>
+									<button type="submit" class="btn btn-primary btn-md">Submit</button>
+									{{/producto}}
+								</form>
+							{{/usuario}} {{^usuario}}
+								<h3>You need to be logged in order to add comments.</h3>
+	                        {{/usuario}}
                         </div>
                     </div>
                 </div>
@@ -330,9 +320,7 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="bottom_ul">
-                        <li><a href="adminIndex.html"><span
-								class="glyphicon glyphicon-wrench"></span> Administration</a></li>
-                        <li><a href="index.html">dirando.com</a></li>
+                        <li><a href="#">dirando.com</a></li>
                         <li>info@dirando.com</li>
                     </ul>
                 </div>

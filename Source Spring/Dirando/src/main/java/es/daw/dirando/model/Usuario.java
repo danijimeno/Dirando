@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -13,8 +14,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
+
+@Component
+@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Entity
 public class Usuario {
 
@@ -45,26 +53,49 @@ public class Usuario {
 	@Column(name="address")
 	private String address;
 	
+	@Column(name="phone_number")
+	private long phone;
+	
+	
+	@Column(name="Comments")
+	@OneToMany (cascade=CascadeType.ALL)
+	private List<Comment> comments;
+	
+	
 	@Column(name="Pedidos")
-	@OneToMany
+	@OneToMany (cascade=CascadeType.ALL)
 	private List<Pedido> pedidos;
 
-	public Usuario(){}
 	
-	public Usuario(String nombre,String full_name,String email,String imgRuta ,String pass,String address, String... role){
+	public Usuario(){
+		this.pedidos = new ArrayList<Pedido>();
+		this.comments = new ArrayList<Comment>();
+	}
+	
+	/*To init a new User*/
+	public Usuario(String nombre,String full_name,String email,String imgRuta ,String pass, String phone, String address, String... role){
 		this.name = nombre;
 		this.full_name = full_name;
 		this.email = email;
 		this.imgRuta = imgRuta;
 		this.password = new BCryptPasswordEncoder().encode(pass);
 		this.address=address;
+		this.phone=Long.parseLong(phone);
 		this.role = new ArrayList<>(Arrays.asList(role));
-		this.pedidos = new ArrayList<Pedido>();
+		
 	}
 	
-
-
+	
 	//GETTERs & SETTERs
+	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Comment comments) {
+		this.comments.add(comments);
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -121,8 +152,12 @@ public class Usuario {
 		return pedidos;
 	}
 
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
+	public void setPedidos(Pedido pedido) {
+		this.pedidos.add(pedido);
+	}
+	
+	public String getAddress (){
+		return this.address;
 	}
 
 	

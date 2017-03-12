@@ -106,7 +106,11 @@
                         <!-- IF -->
                         <li><a href="/usuario"><span
 								class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{name}}
-								,{{full_name}}</a></li> {{/usuario}} {{^usuario}}
+								,{{full_name}}</a></li> 
+						<li>
+                            <a class="glyphicon glyphicon-off" href="/logout"></a>
+                        </li>
+						{{/usuario}} {{^usuario}}
                         <!-- else -->
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
 								class="color-blue"><span class="glyphicon glyphicon-user"></span>Login/register</b>
@@ -177,12 +181,6 @@
                                 <p>Price</p>
                             </th>
                             <th WIDTH="100" HEIGHT="40">
-                                <p>Units</p>
-                            </th>
-                            <th WIDTH="200" HEIGHT="40">
-                                <p>Total Price</p>
-                            </th>
-                            <th>
                                 <p>Options</p>
                             </th>
                         </tr>
@@ -190,6 +188,22 @@
                     <tbody>
                         <!-- HERE GOES  PRODUCT'S LIST CONTENT -->
                     </tbody>
+                    <thead>
+                        <tr>
+                            <th WIDTH="100" HEIGHT="40">
+                                <p></p>
+                            </th>
+                            <th>
+                                <p></p>
+                            </th>
+                            <th>
+                                <p></p>
+                            </th>
+                            <th WIDTH="200" HEIGHT="40">
+                                <p>SUBTOTAL: {{subtotal}}€</p>
+                            </th>
+                        </tr>
+                    </thead>
                 </table>
             </div>
             <div id="CarritoBtts">
@@ -243,8 +257,7 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="bottom_ul">
-                        <li><a href="adminIndex.html"><span class="glyphicon glyphicon-wrench"></span> Administration</a></li>
-                        <li><a href="index.html">dirando.com</a></li>
+                        <li><a href="#">dirando.com</a></li>
                         <li>info@dirando.com</li>
                     </ul>
                 </div>
