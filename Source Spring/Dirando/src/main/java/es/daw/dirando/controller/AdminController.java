@@ -1,6 +1,8 @@
 package es.daw.dirando.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,6 +63,12 @@ public class AdminController {
 		
 	@RequestMapping("/admin/deleteProduct/{id}")
 	public String deleteProduct(Model model, @PathVariable long id) {
+		Producto p = productoRepository.findOne(id);
+		Categoria cat = categoryRepository.findByName(p.getCategoria());
+		List<Producto> list = cat.getProductos();
+		list.remove(p);
+		cat.setProductos(list);
+		categoryRepository.save(cat);
 		productoRepository.delete(productoRepository.findOne(id));
 		model.addAttribute("products",productoRepository.findAll());
 		return "adminListProduct";
