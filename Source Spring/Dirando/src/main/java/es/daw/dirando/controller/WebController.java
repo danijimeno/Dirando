@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import es.daw.dirando.repository.CategoriaRepository;
+import es.daw.dirando.repository.CommentRepository;
+import es.daw.dirando.repository.PedidoRepository;
 import es.daw.dirando.repository.ProductoRepository;
 import es.daw.dirando.repository.PublicidadRepository;
 import es.daw.dirando.repository.UsuarioRepository;
@@ -38,6 +40,12 @@ public class WebController {
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private CommentRepository comentarioRepository;
 	
 	@Autowired
 	private Pedido pedido;
@@ -181,6 +189,12 @@ public class WebController {
 	    public String usuarioreg(Model model, HttpServletRequest request, Authentication auth) {
 	    	if(request.isUserInRole("ADMIN")){
 	    		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+	    		model.addAttribute("numProd",productoRepository.count());
+		    	model.addAttribute("numUsers",usuarioRepository.count());
+		    	model.addAttribute("numPed", pedidoRepository.count());
+		    	model.addAttribute("numCom", comentarioRepository.count());
+		    	model.addAttribute("numPunt",productoRepository.count());
+		    	model.addAttribute("numCat", categoriaRepository.count());
 	    		return "adminIndex";
 	    	}else{
 	    		int sizeOrders = 0;
@@ -217,7 +231,13 @@ public class WebController {
 	
 	    /* admin Query */
 	    @RequestMapping("/admin")
-	    public String admin() {
+	    public String admin(Model model) {
+	    	model.addAttribute("numProd",productoRepository.count());
+	    	model.addAttribute("numUsers",usuarioRepository.count());
+	    	model.addAttribute("numPed", pedidoRepository.count());
+	    	model.addAttribute("numCom", comentarioRepository.count());
+	    	model.addAttribute("numPunt",productoRepository.count());
+	    	model.addAttribute("numCat", categoriaRepository.count());
 	    	return "adminIndex";
 	    }
 	    
