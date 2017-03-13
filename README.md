@@ -25,6 +25,9 @@ Por otro lado, la parte privada de la aplicación poseerá el control sobre la l
 ## Diagrama navegación fase 2: ##
 ![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama/DiagramaNavegacion.PNG)
 
+## Diagrama navegación fase 3: ##
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama/diagramaNav3.png)
+
 ## Diagrama Entidades fase 3: ##
 ![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama/diagramaEntidades.jpg)
 
