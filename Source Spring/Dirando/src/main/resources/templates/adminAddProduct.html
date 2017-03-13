@@ -123,15 +123,15 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-8 col-lg-offset-2">
-                                    <form role="form" method="post" action="/admin/newProduct">
+                                    <form role="form" method="post" action="/admin/newProduct" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Nombre del producto</label>
                                             <input class="form-control" name="nombre" required="required">
                                         </div>
                                         <div class="form-group">
                                             <label>Imagen</label>
-                                            <input class="form-control" placeholder="" name="imagen">
-                                            <input type="file">
+                                            <!-- <input class="form-control" placeholder="" name="imagen"> -->
+                                            <input type="file" name="imagen">
                                         </div>
                                         <div class="form-group">
                                             <label>Descripción</label>

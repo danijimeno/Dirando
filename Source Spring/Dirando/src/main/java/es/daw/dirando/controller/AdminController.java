@@ -25,6 +25,7 @@ public class AdminController {
 	
 	private static final String FILES_FOLDER = "src\\main\\webapp\\img";
 	private int i;
+	private int j;
 
 	@Autowired
 	private ProductoRepository productoRepository;
@@ -46,17 +47,53 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/newProduct")
-	public String newProduct(Model model, @RequestParam String nombre ,@RequestParam String imagen,
+	public String newProduct(Model model, @RequestParam String nombre ,@RequestParam("imagen") MultipartFile imagen,
 			@RequestParam String desProducto, @RequestParam String categoria, @RequestParam float precio,
 			@RequestParam int stock, @RequestParam int theBest, @RequestParam int mustImprove, @RequestParam int bad) {
+		
 		model.addAttribute("categorias",categoryRepository.findAll());
-		Categoria category = categoryRepository.findByName(categoria);
-		Producto product = new Producto(nombre, desProducto, precio, theBest, mustImprove, bad, imagen, stock, categoria);
-		//product.setCategoria(category);
-		productoRepository.save(product);
-		category.getProductos().add(product);
-		categoryRepository.save(category);
-		return "adminAddProduct";
+
+		String fileName = "p" + j + ".jpg";
+		j++;
+		
+		if (!imagen.isEmpty()) {
+			try {
+
+				File filesFolder = new File(FILES_FOLDER);
+				if (!filesFolder.exists()) {
+					filesFolder.mkdirs();
+				}
+
+				File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
+				imagen.transferTo(uploadedFile);
+				
+				fileName="img/"+fileName;
+				Producto product = new Producto(nombre, desProducto, precio, theBest, mustImprove, bad, fileName, stock, categoria);
+				Categoria category = categoryRepository.findByName(categoria);
+				
+				productoRepository.save(product);
+				category.getProductos().add(product);
+				categoryRepository.save(category);
+				
+				//model.addAttribute("imageTitles", imageTitles);
+				
+				return "adminAddProduct";
+
+			} catch (Exception e) {
+				
+				model.addAttribute("fileName",fileName);
+				model.addAttribute("error",
+						e.getClass().getName() + ":" + e.getMessage());
+				
+				return "adminAddProduct";
+			}
+		} else {
+			
+			model.addAttribute("error",	"The file is empty");
+			
+			return "adminAddProduct";
+		}
+		
 	}
 	
 	@RequestMapping("/admin/listProduct")
@@ -136,7 +173,7 @@ public class AdminController {
 
 				File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
 				imagen.transferTo(uploadedFile);
-				System.out.println(filesFolder.getAbsolutePath());
+				
 				fileName="img/"+fileName;
 				Publicidad p = new Publicidad("",fileName);
 				publicidadRepository.save(p);
