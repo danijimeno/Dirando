@@ -58,7 +58,7 @@
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -110,115 +110,43 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Categorias</h1>
+                        <h1 class="page-header">Usuarios</h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <div class="row">
                     <div class="col-lg-12">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                Alta de una nueva categoría
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                   <div class="col-lg-8 col-lg-offset-2">
-                                        <form class="form-inline" method="post" action="/admin/addCategory">
-                                            <div class="form-group">
-                                                <label for="">Categoría:</label>
-                                                <input type="text" class="form-control" name="category" required="required">
-                                            </div>
-                                            <button type="submit" class="btn btn-success">Añadir categoría</button>
-                                        </form>
-                                    </div>
-                                    <!-- col-lg-8 -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                Lista de categorias
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                   <div class="col-lg-6 col-lg-offset-3">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                	<th>Id</th>
-                                                    <th>Categoría</th>
-                                                    <th>Eliminar</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            {{#categorias}}
-                                            <tr>
-                                            	<td>{{id}}</td>
-                                                <td>{{nombre}}</td>
-                                                <td><a class="btn btn-danger" href="/admin/deleteCategory/{{id}}" aria-label="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                                            </tr>
-                                            {{/categorias}}
-                                        </tbody>
-                                        </table>
-                                        <!-- table -->
-                                    </div>
-                                    <!-- col-lg-8 -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                Productos por categorias
+                                Datos de los usuarios
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <div class="table-responsive table-striped">
+                                <div class="table-responsive table-bordered">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Bicicletas</th>
-                                                <th>Complementos</th>
-                                                <th>Accesorios</th>
-                                                <th>Componentes</th>
+                                                <th>Nombre</th>
+                                                <th>Apellidos</th>
+                                                <th>E-mail</th>
+                                                <th>Teléfono</th>
+                                                <th>Ciudad</th>
+                                                <th>Rol</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                           {{#users}}
                                             <tr>
-                                                <td><strong>1</strong></td>
-                                                <td>Specialized Epic HT 2017</td>
-                                                <td>Casco Bell 300</td>
-                                                <td>Bidón ciclismo</td>
-                                                <td>Calas Shimano BTT</td>
+                                                <td><strong>{{id}}</strong></td>
+                                                <td>{{name}}</td>
+                                                <td>{{full_name}}</td>
+                                                <td>{{email}}</td>
+                                                <td>{{phone}}</td>
+                                                <td>{{address}}</td>
+                                                {{#role}}
+                                                <td>{{.}}</td>
+                                                {{/role}}
                                             </tr>
-                                            <tr>
-                                                <td><strong>2</strong></td>
-                                                <td>BMC TE 01 XTR Di2 2017</td>
-                                                <td>Zapatillas Shimano</td>
-                                                <td>Rodillo entrenamiento</td>
-                                                <td>Cámara de aire 26''</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>3</strong></td>
-                                                <td>PODIUM CARBON RR SL 29er</td>
-                                                <td>Camiseta térmica</td>
-                                                <td>Bomba de mano</td>
-                                                <td>Neumático BTT Michelin</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>4</strong></td>
-                                                <td></td>
-                                                <td>Culotte corto tirantes</td>
-                                                <td>Bomba de pie</td>
-                                                <td>Cable freno</td>
-                                            </tr>
+                                            {{/users}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -226,9 +154,8 @@
                             </div>
                             <!-- /.panel-body -->
                         </div>
-                        <!-- /.panel -->
+                    <!-- /.panel -->
                     </div>
-                    <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
             </div>
