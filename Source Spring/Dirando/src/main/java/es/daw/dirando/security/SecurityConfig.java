@@ -26,8 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/Producto/{id}").permitAll();
         http.authorizeRequests().antMatchers("/ListadoProducto").permitAll();
         http.authorizeRequests().antMatchers("/ListadoProductoAjax").permitAll();
-        //http.authorizeRequests().antMatchers("/buy").permitAll();
-       
         
 
 
