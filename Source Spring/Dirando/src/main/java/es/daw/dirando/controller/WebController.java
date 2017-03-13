@@ -125,11 +125,6 @@ public class WebController {
 	    	return "paginaCarrito";
 	    }
 	    
-	    /* login Query */
-	    @RequestMapping("/login")
-	    public String login() {
-	    	return "login";
-	    }
 	    
 	    /* product Query */
 	    @RequestMapping("/Producto/{id}")
@@ -223,7 +218,7 @@ public class WebController {
 	    /* admin Query */
 	    @RequestMapping("/admin")
 	    public String admin() {
-	    	return "paginaUsuario";
+	    	return "adminIndex";
 	    }
 	    
 	    /* addComment Query */
