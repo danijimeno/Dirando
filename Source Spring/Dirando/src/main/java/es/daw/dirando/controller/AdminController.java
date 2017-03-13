@@ -1,5 +1,6 @@
 package es.daw.dirando.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.daw.dirando.repository.CategoriaRepository;
 import es.daw.dirando.repository.ProductoRepository;
+import es.daw.dirando.repository.UsuarioRepository;
 import es.daw.dirando.model.Categoria;
 import es.daw.dirando.model.Producto;
 
@@ -20,11 +22,13 @@ public class AdminController {
 	
 	@Autowired
 	private CategoriaRepository categoryRepository;
+	
+	@Autowired
+	private UsuarioRepository userRepository;
 
 
 	@RequestMapping("/admin/addProduct")
 	public String addProduct(Model model) {
-		model.addAttribute("new", true);
 		model.addAttribute("categorias",categoryRepository.findAll());
 		return "adminAddProduct";
 	}
@@ -33,7 +37,6 @@ public class AdminController {
 	public String newProduct(Model model, @RequestParam String nombre ,@RequestParam String imagen,
 			@RequestParam String desProducto, @RequestParam String categoria, @RequestParam float precio,
 			@RequestParam int stock, @RequestParam int theBest, @RequestParam int mustImprove, @RequestParam int bad) {
-		model.addAttribute("new", true);
 		model.addAttribute("categorias",categoryRepository.findAll());
 		Categoria category = categoryRepository.findByName(categoria);
 		Producto product = new Producto(nombre, desProducto, precio, theBest, mustImprove, bad, imagen, stock, categoria);
@@ -88,6 +91,12 @@ public class AdminController {
 		model.addAttribute("categorias",categoryRepository.findAll());
     	return "adminCategories";
     }
+    
+    @RequestMapping("/admin/users")
+	public String listUsers(Model model) {
+		model.addAttribute("users",userRepository.findAll());
+		return "adminUsers";
+	}
    	
 	
 }
