@@ -7,7 +7,7 @@ Por otro lado, la parte privada de la aplicación poseerá el control sobre la l
 
 ## Entidades
  1. Producto: Cada producto tendrá un nombre e identificador, además de una fotografía, descripción, precio y demás características.
- 2. Pedido: El usuario podrá añadir los productos a una lista que conformará el/la pedido/compra.
+ 2. Pedido: El usuario tendrá pedidos acumulados, registrando los productos de dichos pedidos.
  3. Usuarios: Perfil de cada usuario y funciones diferenciadas entre Usuario no logueado, Usuario logueado y Administrador.
  4. Categoría Productos: Además, se podrán identificar los productos mediante una categoría asignada.
  5. Valoración y comentarios: Pequeña descripción más una valoración del producto.
@@ -23,7 +23,13 @@ Por otro lado, la parte privada de la aplicación poseerá el control sobre la l
 - Daniel Jimeno Sáez       :arrow_right:   d.jimeno@alumnos.urjc.es   :arrow_right:   https://github.com/danijimeno
 
 ## Diagrama navegación fase 2: ##
-![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama%20de%20navegaci%C3%B3n/Daw.PNG)
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama/DiagramaNavegacion.PNG)
+
+## Diagrama Entidades fase 3: ##
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama/diagramaEntidades.jpg)
+
+## Diagrama Clases y templates fase 3: ##
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama/diagramaClases.jpg)
 
 ## Template bootstrap ##
 El template de bootstrap que hemos usado ha sido en la zona de administración, hemos cambiado los cuerpos de las páginas y modificado alguna parte del menu.
