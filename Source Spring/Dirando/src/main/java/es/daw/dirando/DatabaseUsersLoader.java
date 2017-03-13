@@ -51,6 +51,7 @@ public class DatabaseUsersLoader {
 		Categoria category2 = new Categoria("downhill");
 		Categoria category3 = new Categoria("road");
 		Categoria category4 = new Categoria("cyclocross");
+		Categoria category5 = new Categoria("helmet");
 		
 		/****EXAMPLES COMMENTS****/
 		Comment co0_1 = new Comment ("user", "0_1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?", "XX");
@@ -153,6 +154,31 @@ public class DatabaseUsersLoader {
 		Producto p31 = new Producto("Orbea Orca 2016","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
 				3500,5,3,1,"img/ejemplo1.jpg",30,category4.getNombre());
 		
+		Producto p32 = new Producto("Giro ProSeries","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				35,5,3,1,"img/ejemplo5.jpg",30,category5.getNombre());
+		Producto p33 = new Producto("FOX Endura","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				46,5,3,1,"img/ejemplo6.jpg",80,category5.getNombre());
+		Producto p34 = new Producto("Giro XL","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				86,5,3,1,"img/ejemplo7.jpg",52,category5.getNombre());
+		Producto p35 = new Producto("Specialed XC GAMMA","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				205,5,3,1,"img/ejemplo8.jpg",30,category5.getNombre());
+		Producto p36 = new Producto("FOX Endura","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				300,5,3,1,"img/ejemplo5.jpg",80,category5.getNombre());
+		Producto p37 = new Producto("Giro ProSeries","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				105,5,3,1,"img/ejemplo6.jpg",52,category5.getNombre());
+		Producto p38 = new Producto("Giro XL","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				95,5,3,1,"img/ejemplo7.jpg",30,category5.getNombre());
+		Producto p39 = new Producto("Specialed XC GAMMA","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				62,5,3,1,"img/ejemplo8.jpg",80,category5.getNombre());
+		Producto p40= new Producto("Specialized GarminProTeam","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				90,5,3,1,"img/ejemplo5.jpg",52,category5.getNombre());
+		Producto p41 = new Producto("Giro ProSeries","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				200,5,3,1,"img/ejemplo6.jpg",30,category5.getNombre());
+		Producto p42 = new Producto("Specialed XC GAMMA","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				100,5,3,1,"img/ejemplo7.jpg",80,category5.getNombre());
+		Producto p43 = new Producto("Specialized GarminProTeam","If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight",
+				150,5,3,1,"img/ejemplo8.jpg",52,category5.getNombre());
+		
 		p.setComments(co0_1);
 		
 		category1.getProductos().add(p);
@@ -209,6 +235,19 @@ public class DatabaseUsersLoader {
 		category2.getProductos().add(p30);
 		category2.getProductos().add(p31);
 		
+		category5.getProductos().add(p32);
+		category5.getProductos().add(p33);
+		category5.getProductos().add(p34);
+		category5.getProductos().add(p35);
+		category5.getProductos().add(p36);
+		category5.getProductos().add(p37);
+		category5.getProductos().add(p38);
+		category5.getProductos().add(p39);
+		category5.getProductos().add(p40);
+		category5.getProductos().add(p41);
+		category5.getProductos().add(p42);
+		category5.getProductos().add(p43);
+		
 		
 		
 		productoRepository.saveAndFlush(p);
@@ -263,11 +302,27 @@ public class DatabaseUsersLoader {
 		productoRepository.saveAndFlush(p30);
 		productoRepository.saveAndFlush(p31);
 		
+		productoRepository.saveAndFlush(p31);
+		productoRepository.saveAndFlush(p32);
+		productoRepository.saveAndFlush(p33);
+		productoRepository.saveAndFlush(p34);
+		productoRepository.saveAndFlush(p35);
+		productoRepository.saveAndFlush(p36);
+		productoRepository.saveAndFlush(p37);
+		productoRepository.saveAndFlush(p38);
+		productoRepository.saveAndFlush(p39);
+		productoRepository.saveAndFlush(p40);
+		productoRepository.saveAndFlush(p41);
+		productoRepository.saveAndFlush(p42);
+		productoRepository.saveAndFlush(p43);
+		
+		
 		
 		categoriaRepository.saveAndFlush(category1);
 		categoriaRepository.saveAndFlush(category2);
 		categoriaRepository.saveAndFlush(category3);
 		categoriaRepository.saveAndFlush(category4);
+		categoriaRepository.saveAndFlush(category5);
 		
 		
 		/*Publi. init*/
