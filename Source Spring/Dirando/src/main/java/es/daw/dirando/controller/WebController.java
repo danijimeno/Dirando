@@ -82,6 +82,8 @@ public class WebController {
 	    		/*Add the current Pedido into the User logged*/
 		    	usuarioRepository.findUserByName(http.getName()).setPedidos(pedido);
 		    	/*Update the new data user*/
+		    	countItems = pedido.getPedidos().size();
+		    	pedido.getPedidos().clear();
 		    	usuarioRepository.saveAndFlush(usuarioRepository.findUserByName(http.getName()));
 		    	model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
 		    	model.addAttribute("countItems", countItems );
