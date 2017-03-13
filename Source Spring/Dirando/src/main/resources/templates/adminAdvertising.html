@@ -58,8 +58,7 @@
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i>Logout</a></li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -107,80 +106,26 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Nuevo Producto</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            Alta de un nuevo producto
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-8 col-lg-offset-2">
-                                    <form role="form" method="post" action="/admin/newProduct">
-                                        <div class="form-group">
-                                            <label>Nombre del producto</label>
-                                            <input class="form-control" name="nombre" required="required">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Imagen</label>
-                                            <input class="form-control" placeholder="" name="imagen">
-                                            <input type="file">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Descripción</label>
-                                            <textarea class="form-control" rows="3" name="desProducto" required="required"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Categoría</label>
-                                            <select class="form-control" name="categoria" required="required">
-                                                {{#categorias}}
-                                                <option>{{nombre}}</option>
-                                                {{/categorias}}
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Precio</label>
-                                            <input type="number" class="form-control" name="precio" min="1" required="required">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Cantidad</label>
-                                            <input type="number" class="form-control" name="stock" min="1" max="999" required="required">
-                                        </div>
-                                        <label>Valoraciones</label>
-                                        <div class="form-group">
-                                            <label>theBest</label>
-                                            <input type="number" class="form-control" name="theBest" min="0" max="999" required="required">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>mustImprove</label>
-                                            <input type="number" class="form-control" name="mustImprove" min="0" max="999" required="required">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Bad</label>
-                                            <input type="number" class="form-control" name="bad" min="0" max="999" required="required">
-                                        </div>
-                                        <button type="submit" class="btn btn-success">Guardar articulo</button>
-                                        <button type="reset" class="btn btn-default">Reset articulo</button>
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-12 -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Advertising</h1>
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.row -->
+                <div class="row">
+                    <form action="/adming/advertising/upload" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Image file:</label>
+                            <input type="file" name="imagen" />
+                        </div>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </form>
+                </div>
+                <!-- /.row -->
             </div>
-            <!-- /.row -->
+            <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
 
