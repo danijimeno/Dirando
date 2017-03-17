@@ -14,48 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import es.daw.dirando.repository.CategoriaRepository;
-import es.daw.dirando.repository.CommentRepository;
-import es.daw.dirando.repository.PedidoRepository;
-import es.daw.dirando.repository.ProductoRepository;
-import es.daw.dirando.repository.PublicidadRepository;
-import es.daw.dirando.repository.UsuarioRepository;
-import es.daw.dirando.service.FrontServices;
+import es.daw.dirando.service.ToolsServices;
 import es.daw.dirando.model.Comment;
-import es.daw.dirando.model.Pedido;
 import es.daw.dirando.model.Producto;
-import es.daw.dirando.model.Usuario;
 
 
 @Controller
 public class WebController {
-	
+
 	@Autowired
-	private ProductoRepository productoRepository;
-	
-	@Autowired
-	private PublicidadRepository publicidadRepository;
-	
-	@Autowired
-	private UsuarioRepository usuarioRepository;
-	
-	@Autowired
-	private CategoriaRepository categoriaRepository;
-	
-	@Autowired
-	private PedidoRepository pedidoRepository;
-	
-	@Autowired
-	private CommentRepository comentarioRepository;
-	
-	@Autowired
-	private Pedido pedido;
-	
-	@Autowired
-	private FrontServices fs;
-	
-	@Autowired
-	private Producto producto;
+	private ToolsServices fs;
 	
 	/*************************************************/
 	/* Simple Queries */
@@ -65,7 +33,7 @@ public class WebController {
 	    @RequestMapping("/")
 	    public String index(Model model,Authentication http) {
 	    	model.addAttribute("productos",fs.findAllProducts());
-	    	model.addAttribute("carrusel",publicidadRepository.findAll());
+	    	model.addAttribute("carrusel",fs.findAllPublicity());
 	    	model.addAttribute("countItems", fs.cartSize() );
 	    	if(http != null){
 	    		model.addAttribute("usuario",fs.getUser(http.getName()));
@@ -75,7 +43,7 @@ public class WebController {
 	    
 	    /*payMethods query*/
 	    @RequestMapping("/payMethods")
-	    public String payMethods(Model model,Authentication http) {
+	    public String payMethods(Model model, Authentication http) {
 	    	model.addAttribute("countItems", fs.cartSize() );
 	    	if(http != null){
 	    		model.addAttribute("usuario",fs.getUser(http.getName()));
@@ -124,27 +92,18 @@ public class WebController {
 	    	return "paginaCarrito";
 	    }
 	    
-	    
 	    /* product Query */
 	    @RequestMapping("/Producto/{id}")
 	    public String productoInfo(Model model,@PathVariable long id, Authentication http){
 	    	if(http != null){
 	    		model.addAttribute("usuario",fs.getUser(http.getName()));
 	    	}
-	    	/*IN WORK...*/
-	    	float total = productoRepository.findProductoById(id).getTheBest() + productoRepository.findProductoById(id).getMustImprove() + productoRepository.findProductoById(id).getBad();
-	    	float best = productoRepository.findProductoById(id).getTheBest() / total * 100;
-	    	float improve = productoRepository.findProductoById(id).getMustImprove() / total * 100;
-	    	float bad = productoRepository.findProductoById(id).getBad() / total * 100;
-	
 	    	model.addAttribute("countItems", fs.cartSize() );
 	    	model.addAttribute("producto",fs.getSpecificProduct(id));
-	    	
 	    	DecimalFormat decimals = new DecimalFormat("0");
-	    	model.addAttribute("best", decimals.format(best));
-	    	model.addAttribute("improve", decimals.format(improve));
-	    	model.addAttribute("worst", decimals.format(bad));
-	    	
+	    	model.addAttribute("best", decimals.format(fs.dataRating(id)[0]));
+	    	model.addAttribute("improve", decimals.format(fs.dataRating(id)[1]));
+	    	model.addAttribute("worst", decimals.format(fs.dataRating(id)[2]));
 	    	return "paginaDetalleProducto";
 	    }
 	    
@@ -165,7 +124,6 @@ public class WebController {
 	    public @ResponseBody String listadoProductoCategoria (Model model, Authentication http, @RequestParam(value = "cat")String cat){
 	    	model.addAttribute("resultSearch",cat);
 	    	model.addAttribute("productos",fs.findAllProducts());
-	    	//int countItems = pedido.getPedidos().size();
 	    	model.addAttribute("countItems", fs.cartSize() );
 	    	if(http != null){
 	    		model.addAttribute("usuario",fs.getUser(http.getName()));
@@ -230,22 +188,16 @@ public class WebController {
 	    /* addComment Query */
 	    @RequestMapping("/addComment")
 	    public String addComment (Model model, @RequestParam(value = "comment")String comment, @RequestParam(value = "id")String id, Authentication http, @RequestParam(value = "rating")String rating) {
-	    	fs.addCommentIntoProduct(http.getName(), id, comment, rating);
-	    	/*IN WORK...*****************************/
-	    	float total = productoRepository.findProductoById(Long.parseLong(id)).getTheBest() + productoRepository.findProductoById(Long.parseLong(id)).getMustImprove() + productoRepository.findProductoById(Long.parseLong(id)).getBad();
-	    	float best = productoRepository.findProductoById(Long.parseLong(id)).getTheBest() / total * 100;
-	    	float improve = productoRepository.findProductoById(Long.parseLong(id)).getMustImprove() / total * 100;
-	    	float bad = productoRepository.findProductoById(Long.parseLong(id)).getBad() / total * 100;
 	    	if(http != null){
 	    		model.addAttribute("usuario",fs.getUser(http.getName()));
 	    	}
+	    	fs.addCommentIntoProduct(http.getName(), id, comment, rating);
 	    	model.addAttribute("countItems", fs.cartSize() );
 	    	model.addAttribute("producto",fs.getSpecificProduct(Long.parseLong(id)));
 	    	DecimalFormat decimals = new DecimalFormat("0");
-	    	model.addAttribute("best", decimals.format(best));
-	    	model.addAttribute("improve", decimals.format(improve));
-	    	model.addAttribute("worst", decimals.format(bad));
-	    	
+	    	model.addAttribute("best", decimals.format(fs.dataRating(Long.parseLong(id))[0]));
+	    	model.addAttribute("improve", decimals.format(fs.dataRating(Long.parseLong(id))[1]));
+	    	model.addAttribute("worst", decimals.format(fs.dataRating(Long.parseLong(id))[2]));
 	    	return "paginaDetalleProducto";
 	    }
 	    
@@ -254,7 +206,6 @@ public class WebController {
 	/* Ajax Queries */
 	/*************************************************/
     
-	  
 	    @RequestMapping(value = "/ListadoProductoAjax/")
 	    public @ResponseBody Page<Producto> listadoProductosAjax(Model model, Pageable page, @RequestParam(value = "result") String result){
 	    	try {
@@ -262,8 +213,7 @@ public class WebController {
 	    	} catch(InterruptedException ex) {
 	    	    Thread.currentThread().interrupt();
 	    	}
-	    	
-	    	if ( categoriaRepository.findByName(result)!=null ){
+	    	if ( fs.getSpecificCategory(result)!=null ){
 	    		return fs.getProductsByCategory(result, page);
 	    	}else if ( result.equals("index") ){
 	    		return fs.getAllProducts(page);
@@ -271,8 +221,6 @@ public class WebController {
 	    		return fs.getProductsByName(result,page);
 	    	}
 	    }
-	    
-	    
 	    
 	    @RequestMapping("/shoppingCartAjax")
 	    public @ResponseBody List<Producto> shoppingCartAjax() {

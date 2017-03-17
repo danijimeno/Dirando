@@ -1,6 +1,5 @@
 package es.daw.dirando.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +13,18 @@ import es.daw.dirando.model.Pedido;
 import es.daw.dirando.model.Producto;
 import es.daw.dirando.model.Usuario;
 import es.daw.dirando.model.Categoria;
+import es.daw.dirando.model.Publicidad;
+
 import es.daw.dirando.repository.CategoriaRepository;
 import es.daw.dirando.repository.CommentRepository;
 import es.daw.dirando.repository.PedidoRepository;
 import es.daw.dirando.repository.ProductoRepository;
+import es.daw.dirando.repository.PublicidadRepository;
 import es.daw.dirando.repository.UsuarioRepository;
 
 @Service
-public class FrontServices {
+public class ToolsServices {
 
-	
 	@Autowired
 	private Pedido pedido; //For the cart session...
 	
@@ -41,7 +42,10 @@ public class FrontServices {
 	
 	@Autowired
 	private CommentRepository commentRepository;
-
+	
+	@Autowired
+	private PublicidadRepository publicityRepository;
+	
 		/****************************/
 		/*Tools for the session cart*/
 		/****************************/
@@ -63,6 +67,7 @@ public class FrontServices {
 			}
 		/****************************/
 		
+		//Return the cart size
 		public int sizeOrderUser(String name){
 			return usuarioRepository.findUserByName(name).getPedidos().size();
 		}
@@ -109,6 +114,7 @@ public class FrontServices {
 			return usuarioRepository.findUserByName(nameHttp);
 		}
 		
+		//Save new user into database
 		public void saveUser(String httpName){
 			usuarioRepository.saveAndFlush(getUser(httpName));
 		}
@@ -117,6 +123,8 @@ public class FrontServices {
 		public long getUserNumber(){
 			return usuarioRepository.count();	
 		}
+		
+		/*Count items numbers about product, order, category and comment*/
 		public long getProductsNumber(){
 			return productoRepository.count();	
 		}		
@@ -161,14 +169,13 @@ public class FrontServices {
 		}
 		
 		//IN WORK...
-		public ArrayList<Float> dataRating (long id){
-			ArrayList<Float> rating = new ArrayList<>();
+		public float[] dataRating (long id){
+			float [] data= new float [3];
 			float total = productoRepository.findProductoById(id).getTheBest() + productoRepository.findProductoById(id).getMustImprove() + productoRepository.findProductoById(id).getBad();
-	    	float best = productoRepository.findProductoById(id).getTheBest() / total * 100;
-	    	float improve = productoRepository.findProductoById(id).getMustImprove() / total * 100;
-	    	float bad = productoRepository.findProductoById(id).getBad() / total * 100;
-	    	rating.add(best);rating.add(improve);rating.add(bad);
-	    	return rating;
+	    	data[0] = productoRepository.findProductoById(id).getTheBest() / total * 100;
+	    	data[1] = productoRepository.findProductoById(id).getMustImprove() / total * 100;
+	    	data[2] = productoRepository.findProductoById(id).getBad() / total * 100;
+	    	return data;
 		}
 		
 		//Search TOOLS 
@@ -182,19 +189,18 @@ public class FrontServices {
 			return productoRepository.findAll(page);
 		}
 		
+		//Get specific items and full contents about entities
 		public Producto getSpecificProduct(long id){
 			return productoRepository.findOne(id);
 		}
-		
 		public List<Producto> findAllProducts(){
 			return productoRepository.findAll();
 		}
-		public List<Producto> findAllPublicity(){
-			return productoRepository.findAll();
+		public Iterable<Publicidad> findAllPublicity(){
+			return publicityRepository.findAll();
 		}
 		public Categoria getSpecificCategory(String category){
 			return categoriaRepository.findByName(category);
 		}
-		
 		
 }
