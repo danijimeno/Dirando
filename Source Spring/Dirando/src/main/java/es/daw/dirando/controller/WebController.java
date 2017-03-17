@@ -20,6 +20,7 @@ import es.daw.dirando.repository.PedidoRepository;
 import es.daw.dirando.repository.ProductoRepository;
 import es.daw.dirando.repository.PublicidadRepository;
 import es.daw.dirando.repository.UsuarioRepository;
+import es.daw.dirando.service.FrontServices;
 import es.daw.dirando.model.Comment;
 import es.daw.dirando.model.Pedido;
 import es.daw.dirando.model.Producto;
@@ -51,6 +52,9 @@ public class WebController {
 	private Pedido pedido;
 	
 	@Autowired
+	private FrontServices fs;
+	
+	@Autowired
 	private Producto producto;
 	
 	/*************************************************/
@@ -60,12 +64,11 @@ public class WebController {
 		/* index Query */
 	    @RequestMapping("/")
 	    public String index(Model model,Authentication http) {
-	    	model.addAttribute("productos",productoRepository.findAll());
+	    	model.addAttribute("productos",fs.findAllProducts());
 	    	model.addAttribute("carrusel",publicidadRepository.findAll());
-	    	int countItems = pedido.getPedidos().size();
-	    	model.addAttribute("countItems", countItems );
+	    	model.addAttribute("countItems", fs.cartSize() );
 	    	if(http != null){
-	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    		model.addAttribute("usuario",fs.getUser(http.getName()));
 	    	}
 	        return "index";
 	    }
@@ -73,11 +76,9 @@ public class WebController {
 	    /*payMethods query*/
 	    @RequestMapping("/payMethods")
 	    public String payMethods(Model model,Authentication http) {
-	    	int countItems = pedido.getPedidos().size();
-	    	model.addAttribute("countItems", countItems );
+	    	model.addAttribute("countItems", fs.cartSize() );
 	    	if(http != null){
-	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
-	    		
+	    		model.addAttribute("usuario",fs.getUser(http.getName()));
 	    	}
 	    	return "paginaPaymentsMethods";
 	    }
@@ -85,16 +86,13 @@ public class WebController {
 	    /*Buy process*/
 	    @RequestMapping("/buy")
 	    public String buyButton(Model model,Authentication http) {
-	    	int countItems = pedido.getPedidos().size();
-	    	if(http != null && countItems>0){
-	    		/*Add the current Pedido into the User logged*/
-		    	usuarioRepository.findUserByName(http.getName()).setPedidos(pedido);
-		    	/*Update the new data user*/
-		    	countItems = pedido.getPedidos().size();
-		    	pedido.getPedidos().clear();
-		    	usuarioRepository.saveAndFlush(usuarioRepository.findUserByName(http.getName()));
-		    	model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
-		    	model.addAttribute("countItems", countItems );
+	    	if(http != null && fs.cartSize()>0){
+	    		/*Add the current Order into the User logged*/
+	    		fs.makeOrderfromSessionCart(http);
+	    		fs.clearCart();
+	    		fs.saveUser(http.getName());
+		    	model.addAttribute("usuario",fs.getUser(http.getName()));
+		    	model.addAttribute("countItems", fs.cartSize() );
 	    		return "paginaPago";
 	    	}else{
 	    		return "/";
@@ -104,31 +102,24 @@ public class WebController {
 	    /* register Query */
 	    @RequestMapping("/register")
 	    public String register(Model model) {
-	    	int countItems = pedido.getPedidos().size();
-	    	model.addAttribute("countItems", countItems );
+	    	model.addAttribute("countItems", fs.cartSize() );
 	    	return "paginaRegistro";
 	    }
 	    
 	    /* add user Query */
 	    @RequestMapping("/addUser")
 	    public String addUser(Model model, @RequestParam(value = "phone") String phone, @RequestParam(value = "name") String name, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
-	    	usuarioRepository.save(new Usuario (name,fullName,email,"img/usuario1.jpg",pass,phone,address,"ROLE_USER"));
+	    	fs.addUser(phone, name, pass, fullName, address, email);
 	    	return "/";
 	    }
 	    
 	    /* shoppingCart Query */
 	    @RequestMapping("/shoppingCart")
 	    public String shoppingCart(Model model,Authentication http) {
-	    	float subtotal=0;
-	    	for (int i = 0; i< pedido.getPedidos().size(); i++){
-	    		 subtotal+= pedido.getPedidos().get(i).getPrecio();
-	    	}
-	    	
-	    	int countItems = pedido.getPedidos().size();
-	    	model.addAttribute("countItems", countItems );
-	    	model.addAttribute("subtotal",subtotal);
+	    	model.addAttribute("countItems", fs.cartSize() );
+	    	model.addAttribute("subtotal",fs.calculateTotalPrice());
 	    	if(http != null){	    		
-	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    		model.addAttribute("usuario",fs.getUser(http.getName()));
 	    	}
 	    	return "paginaCarrito";
 	    }
@@ -137,24 +128,23 @@ public class WebController {
 	    /* product Query */
 	    @RequestMapping("/Producto/{id}")
 	    public String productoInfo(Model model,@PathVariable long id, Authentication http){
-	    	int countItems = pedido.getPedidos().size();
-	    	model.addAttribute("countItems", countItems );
-	    	model.addAttribute("producto",productoRepository.findOne(id));
 	    	if(http != null){
-	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    		model.addAttribute("usuario",fs.getUser(http.getName()));
 	    	}
-	    	
+	    	/*IN WORK...*/
 	    	float total = productoRepository.findProductoById(id).getTheBest() + productoRepository.findProductoById(id).getMustImprove() + productoRepository.findProductoById(id).getBad();
 	    	float best = productoRepository.findProductoById(id).getTheBest() / total * 100;
 	    	float improve = productoRepository.findProductoById(id).getMustImprove() / total * 100;
 	    	float bad = productoRepository.findProductoById(id).getBad() / total * 100;
+	
+	    	model.addAttribute("countItems", fs.cartSize() );
+	    	model.addAttribute("producto",fs.getSpecificProduct(id));
 	    	
-	    	model.addAttribute("countItems", countItems );
-	    	model.addAttribute("producto",productoRepository.findOne(id));
 	    	DecimalFormat decimals = new DecimalFormat("0");
 	    	model.addAttribute("best", decimals.format(best));
 	    	model.addAttribute("improve", decimals.format(improve));
 	    	model.addAttribute("worst", decimals.format(bad));
+	    	
 	    	return "paginaDetalleProducto";
 	    }
 	    
@@ -162,11 +152,10 @@ public class WebController {
 	    @RequestMapping("/ListadoProductoSearch")
 	    public String listadoProductos(Model model,Authentication http, @RequestParam(value = "inp-search")String search){
 	    	model.addAttribute("resultSearch",search);
-	    	model.addAttribute("productos",productoRepository.findAll());
-	    	int countItems = pedido.getPedidos().size();
-	    	model.addAttribute("countItems", countItems );
+	    	model.addAttribute("productos",fs.findAllProducts());
+	    	model.addAttribute("countItems", fs.cartSize() );
 	    	if(http != null){
-	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    		model.addAttribute("usuario",fs.getUser(http.getName()));
 	    	}
 	    	return "paginaListadoProductos";
 	    }
@@ -175,11 +164,11 @@ public class WebController {
 	    @RequestMapping("/ProductoCategoria")
 	    public @ResponseBody String listadoProductoCategoria (Model model, Authentication http, @RequestParam(value = "cat")String cat){
 	    	model.addAttribute("resultSearch",cat);
-	    	model.addAttribute("productos",productoRepository.findAll());
-	    	int countItems = pedido.getPedidos().size();
-	    	model.addAttribute("countItems", countItems );
+	    	model.addAttribute("productos",fs.findAllProducts());
+	    	//int countItems = pedido.getPedidos().size();
+	    	model.addAttribute("countItems", fs.cartSize() );
 	    	if(http != null){
-	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    		model.addAttribute("usuario",fs.getUser(http.getName()));
 	    	}
 	    	return "paginaListadoProductos";
 	    }
@@ -188,24 +177,20 @@ public class WebController {
 	    @RequestMapping("/usuario")
 	    public String usuarioreg(Model model, HttpServletRequest request, Authentication auth) {
 	    	if(request.isUserInRole("ADMIN")){
+	    		long numProducts = fs.getProductsNumber();
 	    		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-	    		model.addAttribute("numProd",productoRepository.count());
-		    	model.addAttribute("numUsers",usuarioRepository.count());
-		    	model.addAttribute("numPed", pedidoRepository.count());
-		    	model.addAttribute("numCom", comentarioRepository.count());
-		    	model.addAttribute("numPunt",productoRepository.count());
-		    	model.addAttribute("numCat", categoriaRepository.count());
+	    		model.addAttribute("numProd",numProducts);
+		    	model.addAttribute("numUsers",fs.getUserNumber());
+		    	model.addAttribute("numPed", fs.getPedidoNumber());
+		    	model.addAttribute("numCom", fs.getCommentsNumber());
+		    	model.addAttribute("numPunt",numProducts);
+		    	model.addAttribute("numCat", fs.getCategoryNumber());
 	    		return "adminIndex";
 	    	}else{
-	    		int sizeOrders = 0;
 	    		model.addAttribute("usuario", request.getAttribute("USER"));
-	    		model.addAttribute("usuario",usuarioRepository.findUserByName(auth.getName()));
-	    		if (usuarioRepository.findUserByName(auth.getName()).getPedidos().size()>0){
-	    			sizeOrders=usuarioRepository.findUserByName(auth.getName()).getPedidos().size();
-	    		}
-	    		model.addAttribute("sizeOrders", sizeOrders);
-	    		int countItems = pedido.getPedidos().size();
-		    	model.addAttribute("countItems", countItems );
+	    		model.addAttribute("usuario",fs.getUser(auth.getName()));
+	    		model.addAttribute("sizeOrders", fs.sizeOrderUser(auth.getName()));
+		    	model.addAttribute("countItems", fs.cartSize() );
 	    		return "paginaUsuario";
 	    	}
 	    }    
@@ -232,48 +217,30 @@ public class WebController {
 	    /* admin Query */
 	    @RequestMapping("/admin")
 	    public String admin(Model model) {
-	    	model.addAttribute("numProd",productoRepository.count());
-	    	model.addAttribute("numUsers",usuarioRepository.count());
-	    	model.addAttribute("numPed", pedidoRepository.count());
-	    	model.addAttribute("numCom", comentarioRepository.count());
-	    	model.addAttribute("numPunt",productoRepository.count());
-	    	model.addAttribute("numCat", categoriaRepository.count());
+	    	long numProducts = fs.getProductsNumber();
+    		model.addAttribute("numProd",numProducts);
+	    	model.addAttribute("numUsers",fs.getUserNumber());
+	    	model.addAttribute("numPed", fs.getPedidoNumber());
+	    	model.addAttribute("numCom", fs.getCommentsNumber());
+	    	model.addAttribute("numPunt",numProducts);
+	    	model.addAttribute("numCat", fs.getCategoryNumber());
 	    	return "adminIndex";
 	    }
 	    
 	    /* addComment Query */
 	    @RequestMapping("/addComment")
 	    public String addComment (Model model, @RequestParam(value = "comment")String comment, @RequestParam(value = "id")String id, Authentication http, @RequestParam(value = "rating")String rating) {
-	    	if (Integer.parseInt(rating)==3){
-	    		Comment co = new Comment (usuarioRepository.findUserByName(http.getName()).getName(), comment, "The Best!");
-	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
-	    		productoRepository.findProductoById(Long.parseLong(id)).incrementTheBest();
-	    	}else if(Integer.parseInt(rating)==2){
-	    		Comment co = new Comment (usuarioRepository.findUserByName(http.getName()).getName(), comment, "Must Improve!");
-	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
-	    		productoRepository.findProductoById(Long.parseLong(id)).incrementMustImprove();
-	    	}else if(Integer.parseInt(rating)==1){
-	    		Comment co = new Comment (usuarioRepository.findUserByName(http.getName()).getName(), comment, "Bad!");
-	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
-	    		productoRepository.findProductoById(Long.parseLong(id)).incrementBad();
-	    	}else{
-	    		Comment co = new Comment (usuarioRepository.findUserByName(http.getName()).getName(), comment, null);
-	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
-	    	}
-
-	    	/*Update the new data user*/
-	    	productoRepository.saveAndFlush(productoRepository.findProductoById(Long.parseLong(id)));
-	    	
-	    	int countItems = pedido.getPedidos().size();
+	    	fs.addCommentIntoProduct(http.getName(), id, comment, rating);
+	    	/*IN WORK...*****************************/
 	    	float total = productoRepository.findProductoById(Long.parseLong(id)).getTheBest() + productoRepository.findProductoById(Long.parseLong(id)).getMustImprove() + productoRepository.findProductoById(Long.parseLong(id)).getBad();
 	    	float best = productoRepository.findProductoById(Long.parseLong(id)).getTheBest() / total * 100;
 	    	float improve = productoRepository.findProductoById(Long.parseLong(id)).getMustImprove() / total * 100;
 	    	float bad = productoRepository.findProductoById(Long.parseLong(id)).getBad() / total * 100;
 	    	if(http != null){
-	    		model.addAttribute("usuario",usuarioRepository.findUserByName(http.getName()));
+	    		model.addAttribute("usuario",fs.getUser(http.getName()));
 	    	}
-	    	model.addAttribute("countItems", countItems );
-	    	model.addAttribute("producto",productoRepository.findOne(Long.parseLong(id)));
+	    	model.addAttribute("countItems", fs.cartSize() );
+	    	model.addAttribute("producto",fs.getSpecificProduct(Long.parseLong(id)));
 	    	DecimalFormat decimals = new DecimalFormat("0");
 	    	model.addAttribute("best", decimals.format(best));
 	    	model.addAttribute("improve", decimals.format(improve));
@@ -297,11 +264,11 @@ public class WebController {
 	    	}
 	    	
 	    	if ( categoriaRepository.findByName(result)!=null ){
-	    		return productoRepository.findByCategoria(result, page);
+	    		return fs.getProductsByCategory(result, page);
 	    	}else if ( result.equals("index") ){
-	    		return productoRepository.findAll(page);
+	    		return fs.getAllProducts(page);
 	    	}else{
-	    		return productoRepository.findByNombre(result, page);
+	    		return fs.getProductsByName(result,page);
 	    	}
 	    }
 	    
@@ -314,40 +281,32 @@ public class WebController {
 	    	} catch(InterruptedException ex) {
 	    	    Thread.currentThread().interrupt();
 	    	}
-	    	return pedido.getPedidos();
+	    	return fs.getShoppingCart();
 	    }
 	    
 	    @RequestMapping(value = "/ListadoProductoAjaxCarrito")
 	    public @ResponseBody Integer addCardQuery(Model model, @RequestParam(value = "info") String info, @RequestParam(value = "name")String name, @RequestParam(value = "price")String price){
-	    	producto = new Producto ( Long.valueOf(info),name, Float.valueOf(price) );
-	    	pedido.setPedido(producto);
-	    	int countItems = pedido.getPedidos().size();
-	    	model.addAttribute("countItems", countItems);
-	    	return pedido.getPedidos().size();
+	    	fs.addCartSession(info, name, price);
+	    	model.addAttribute("countItems", fs.cartSize());
+	    	return fs.cartSize();
 	    }
 	    
 	    /*It's a user logged? for shopping cart (SC)*/
 	    @RequestMapping("/buy2")
 	    public @ResponseBody String isLoggedSC(Authentication http) {
-	    	if(http != null && pedido.getPedidos().size()>0){
-	    		return "0";
-	    	}else if(pedido.getPedidos().size()<1){
-	    		return "2";
-	    	}else{
-	    		return "1";
-	    	}
+	    	return fs.isLoggedANDThereAreProducts(http);
 	    }
 	    
 	    @RequestMapping("/deleteCart")
 	    public @ResponseBody String deleteCart() {
-    		pedido.getPedidos().clear();
+    		fs.clearCart();
     		return "200OK";
 	    }
 	    
 	    /*Get the comments about the product --> id...*/
 	    @RequestMapping("/loadComments")
 	    public @ResponseBody List<Comment> loadComments(Model model, @RequestParam String idProduct) {
-    		return productoRepository.findProductoById(Long.parseLong(idProduct)).getComments();
+	    	return fs.getComments(idProduct);
 	    }
 	    
 }
