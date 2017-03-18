@@ -153,11 +153,6 @@ public class WebController {
 	    	}
 	    }    
 	    
-	    /* register Query previous error log */
-	    @RequestMapping("/registro")
-	    public String loginerror() {
-	    	return "paginaRegistro";
-	    }
 	    
 	    /* logout Query */
 	    @RequestMapping("/logout")
@@ -171,7 +166,7 @@ public class WebController {
 	    	Model model = null;
 	    	return index(model,auth);
 	    }
-	
+	    
 	    /* admin Query */
 	    @RequestMapping("/admin")
 	    public String admin(Model model) {

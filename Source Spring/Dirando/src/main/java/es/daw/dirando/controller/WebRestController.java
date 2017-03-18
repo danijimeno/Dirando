@@ -56,7 +56,7 @@ public class WebRestController {
 	}
 	
 	@RequestMapping(value = "/getItems", method = RequestMethod.GET)
-	public Page<Producto> getItemsBySearch(@RequestBody String result, Pageable page) {
+	public Page<Producto> getItemsBySearch(String result, Pageable page) {
 		if ( fs.getSpecificCategory(result)!=null ){
     		return fs.getProductsByCategory(result, page);
     	}else{
@@ -91,15 +91,15 @@ public class WebRestController {
 	}
 	
 	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
-	public Producto productDetail(@RequestBody long id) {
-		return fs.getSpecificProduct(id);
+	public Producto productDetail(String id) {
+		return fs.getSpecificProduct(Long.parseLong(id));
 	}
 	@RequestMapping(value = "/getRating", method = RequestMethod.GET)
-	public float[] getRating(@RequestBody long id) {
-		return fs.dataRating(id);
+	public float[] getRating(String id) {
+		return fs.dataRating(Long.parseLong(id));
 	}
 		
-	@RequestMapping(value = "/addComment", method = RequestMethod.POST)
+	@RequestMapping(value = "/addComment", method = RequestMethod.PUT)
 	public void addComment(Authentication http, String id, String comment, String rating) {
 		fs.addCommentIntoProduct(http.getName(), id, comment, rating);
 	}
