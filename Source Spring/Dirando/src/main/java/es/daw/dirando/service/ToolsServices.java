@@ -102,7 +102,6 @@ public class ToolsServices {
 	    	}
 			/*Update the new data product*/
 			saveProduct(productoRepository.findProductoById(Long.parseLong(id)));
-	    	//productoRepository.saveAndFlush(productoRepository.findProductoById(Long.parseLong(id)));
 		}
 		
 		public void saveProduct(Producto pro){
