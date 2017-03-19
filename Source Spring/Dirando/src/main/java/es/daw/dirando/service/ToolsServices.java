@@ -1,5 +1,6 @@
 package es.daw.dirando.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -192,8 +193,8 @@ public class ToolsServices {
 		public Producto getSpecificProduct(long id){
 			return productoRepository.findOne(id);
 		}
-		public List<Producto> findAllProducts(){
-			return productoRepository.findAll();
+		public Page<Producto> get3Items(Pageable page){
+			return productoRepository.findAll(page);
 		}
 		public Iterable<Publicidad> findAllPublicity(){
 			return publicityRepository.findAll();

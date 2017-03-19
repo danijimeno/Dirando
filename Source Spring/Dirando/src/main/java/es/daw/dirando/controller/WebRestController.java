@@ -31,10 +31,8 @@ public class WebRestController {
 	/**************************************/
 	
 		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public List<Producto> getIndexItems() {
-			//How can i return just 3 items??
-			List<Producto> product = fs.findAllProducts();
-	        return product;
+		public Page<Producto> getIndexItems(Pageable page) {
+	        return fs.get3Items(page);
 		}
 		
 		@RequestMapping(value = "/isLogged", method = RequestMethod.GET)

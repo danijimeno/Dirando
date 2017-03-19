@@ -32,7 +32,6 @@ public class WebController {
 		/* index Query */
 	    @RequestMapping("/")
 	    public String index(Model model,Authentication http) {
-	    	model.addAttribute("productos",fs.findAllProducts());
 	    	model.addAttribute("carrusel",fs.findAllPublicity());
 	    	model.addAttribute("countItems", fs.cartSize() );
 	    	if(http != null){
@@ -111,7 +110,6 @@ public class WebController {
 	    @RequestMapping("/ListadoProductoSearch")
 	    public String listadoProductos(Model model,Authentication http, @RequestParam(value = "inp-search")String search){
 	    	model.addAttribute("resultSearch",search);
-	    	model.addAttribute("productos",fs.findAllProducts());
 	    	model.addAttribute("countItems", fs.cartSize() );
 	    	if(http != null){
 	    		model.addAttribute("usuario",fs.getUser(http.getName()));
@@ -123,7 +121,6 @@ public class WebController {
 	    @RequestMapping("/ProductoCategoria")
 	    public @ResponseBody String listadoProductoCategoria (Model model, Authentication http, @RequestParam(value = "cat")String cat){
 	    	model.addAttribute("resultSearch",cat);
-	    	model.addAttribute("productos",fs.findAllProducts());
 	    	model.addAttribute("countItems", fs.cartSize() );
 	    	if(http != null){
 	    		model.addAttribute("usuario",fs.getUser(http.getName()));
