@@ -35,6 +35,13 @@ public class WebRestController {
 	        return fs.get3Items(page);
 		}
 		
+		@RequestMapping(value = "/updateAccount", method = RequestMethod.PUT)
+		public void updateAccount(Authentication http, String phone, String pass, String fullName, String address, String email) {
+			if(http != null){
+				fs.updateUser(http.getName(), phone, pass, fullName, address, email);
+			}
+		}
+		
 		@RequestMapping(value = "/isLogged", method = RequestMethod.GET)
 		public Usuario isLogged(Authentication http) {
 			Usuario user = new Usuario();
