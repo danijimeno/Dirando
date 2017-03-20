@@ -75,8 +75,18 @@ public class ToolsServices {
 		
 		//Add new User in to the System (Generic User)
 		public void addUser(String phone, String name, String pass, String fullName, String address, String email) {
-	    	usuarioRepository.save(new Usuario (name,fullName,email,"img/usuario1.jpg",pass,phone,address,"ROLE_USER"));
+	    	usuarioRepository.save(new Usuario (name,fullName,email,"img/logoNEW.jpg",pass,phone,address,"ROLE_USER"));
 	    }
+		
+		//Update user data
+		public void updateUser(String name, String phone, String pass, String fullName, String address, String email) {
+	    	usuarioRepository.findUserByName(name).setPhone(Long.valueOf(phone));
+	    	usuarioRepository.findUserByName(name).setPassword(pass);
+	    	usuarioRepository.findUserByName(name).setFullName(fullName);
+	    	usuarioRepository.findUserByName(name).setAddress(address);
+	    	usuarioRepository.findUserByName(name).setEmail(email);
+	    	saveUser(name);
+		}
 		
 		//Add the cart into the user account
 		public void makeOrderfromSessionCart (Authentication http){

@@ -73,6 +73,24 @@ public class WebController {
 	    	return "paginaRegistro";
 	    }
 	    
+	    /* modify account Query */
+	    @RequestMapping("/modifyAccount")
+	    public String modifyAccount(Model model,Authentication http) {
+	    	if(http != null){
+	    		model.addAttribute("usuario",fs.getUser(http.getName()));
+	    	}
+	    	model.addAttribute("countItems", fs.cartSize() );
+	    	return "paginaModifyAccount";
+	    }
+	    
+	    /* add user Query */
+	    @RequestMapping("/updateUser")
+	    public String updateUser(Model model,  Authentication http, @RequestParam(value = "phone") String phone, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
+	    	fs.updateUser(http.getName(), phone, pass, fullName, address, email);
+	    	return "/";
+	    }
+	    
+	    
 	    /* add user Query */
 	    @RequestMapping("/addUser")
 	    public String addUser(Model model, @RequestParam(value = "phone") String phone, @RequestParam(value = "name") String name, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {

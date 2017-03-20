@@ -32,13 +32,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         //Private pages (all other pages)
         http.authorizeRequests().antMatchers("/usuario").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/updateUser").hasAnyRole("USER");
 
         //Login form 
         http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("username");
         http.formLogin().passwordParameter("password");
         http.formLogin().defaultSuccessUrl("/usuario");
-        http.formLogin().failureUrl("/registro");
+        http.formLogin().failureUrl("/");
 
         //Logout
         http.logout().logoutUrl("/logout");

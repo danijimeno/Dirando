@@ -99,6 +99,14 @@ public class Usuario {
 	public long getId() {
 		return id;
 	}
+	
+	public long getPhone() {
+		return phone;
+	}
+
+	public void setPhone(long phone) {
+		this.phone = phone;
+	}
 
 	public void setId(long id) {
 		this.id = id;
@@ -159,6 +167,9 @@ public class Usuario {
 	public String getAddress (){
 		return this.address;
 	}
-
+	
+	public void setAddress (String address){
+		this.address=address;
+	}
 	
 }

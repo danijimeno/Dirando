@@ -34,7 +34,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">XCO</a>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">XCO</a>
                             <ul class="dropdown-menu">
                                 <li><a id="protections">Protections</a></li>
                                 <li><a id="clothing">Clothing</a></li>
@@ -77,10 +77,53 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right"> {{#usuario}}
-                        <li><a href="#"><span
-								class="glyphicon glyphicon-user"></span> {{name}},{{full_name}}</a> </li>
-                        <li>
+                        <!-- IF -->
+                        <li><a href="/usuario"><span
+								class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{name}}
+								,{{full_name}}</a></li> 
+						<li>
                             <a class="glyphicon glyphicon-off" href="/logout"></a>
+                        </li> {{/usuario}} {{^usuario}}
+                        <!-- else -->
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
+								class="color-blue"><span class="glyphicon glyphicon-user"></span>Login/register</b>
+								<span class="caret"></span></a>
+                            <ul class="dropdown-menu login-panel">
+                                <li>
+                                    <div class="dropdown-header"> <span class="login-header color-blue">Sign In</span> <span class="forgot-password color-blue"><a
+											href="paginaForgotPassword.html">Forgot password?</a></span> </div>
+                                    <div class="clearfix"></div>
+                                    <div>
+                                        <form id="loginform" class="form-horizontal" role="form" autocomplete="off" action="/login" method="post">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+													class="glyphicon glyphicon-user color-blue"></i></span>
+                                                <!-- USERNAME OR EMAIL ADDRESS -->
+                                                <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email" pattern="[a-zA-Z0-9]{3,}" title="Minimum 3 letters or numbers." required> </div>
+                                            <div class="input-group"> <span class="input-group-addon"><i
+													class="glyphicon glyphicon-lock color-blue"></i></span>
+                                                <!--  PASSWORD  -->
+                                                <input id="login-password" type="password" class="form-control" name="password" placeholder="password" pattern=".{3,}" title="Minmimum 3 letters or numbers." required> </div>
+                                            <div class="center-text">
+                                                <label>
+                                                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me </label>
+                                            </div>
+                                            <div class="center-text"> <span class="error-message color-red"><i
+													class="glyphicon glyphicon-warning-sign"></i> Username &
+													password don't match!</span> </div>
+                                            <div class="form-group">
+                                                <!-- Button -->
+                                                <div class="col-sm-12 controls center-text">
+                                                    <input id="btn-login" type="submit" class="btn btn-block btn-success" value="Login">
+                                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
+                                                    <br> </div>
+                                                <div class="col-sm-12 controls center-text"> <a id="btn-login2" href="/register" class="btn btn-block btn-success2">Register</a>
+                                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>--></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                                <!--<li class="divider"></li>-->
+                            </ul>
                         </li> {{/usuario}}
                         <li>
                             <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge">{{countItems}}</span> </a>
@@ -94,63 +137,41 @@
     </div>
     <div>
         <!--CONTENIDO AQUÍ!-->
-        <div>
-            <section class=" container infomacion-articulo-general col-md-12"> {{#usuario}}
-                <div class="container info-articulo col-md-12" id="usuario">
-                    <div class="info-articulo-imagen col-md-4">
-                        <div class="col-md-7 ">
-                            <div class="col-sm-6"> <img src="{{imgRuta}}" alt="foto"> </div>
-                        </div>
-                    </div>
-                    <div class="info-articulo-texto col-sm-6">
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion"
-											href="#collapse1"><strong>Account info</strong> </a>
-									</h4> </div>
-                                <div id="collapse1" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><strong>User Id: </strong>{{name}}</li>
-                                            <li><strong>E-mail: </strong>{{email}}</li>
-                                            <li><strong>Shipping Address: </strong>{{address}}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion"
-											href="#collapse3"><strong>My Personal info</strong>  </a>
-									</h4> </div>
-                                <div id="collapse3" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><strong>Full Name: </strong>{{full_name}}</li>
-                                            <li><strong>Phone Number: </strong>{{phone}}</li>
-                                            <li><strong>Number of orders: </strong>{{sizeOrders}}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-										<a  data-parent="#accordion"
-											href="/modifyAccount"><strong>Modify Account</strong>  </a>
-									</h4> </div>
+        <div class="container">
+            <br>
+            <h1 class="well">Modify your Account</h1>
+            <div class="col-lg-12 well">
+                <div class="row">
+                    <form action="/updateUser">
+                        <div class="col-sm-12">
+                            <div class="row">
                                 
+                                <div class="col-sm-6 form-group">
+                                    <label>Full Name*</label>
+                                    <input name="fullName" required="required" type="text" placeholder="Enter Last Name Here.." class="form-control"> </div>
                             </div>
+                            <div class="form-group">
+                                <label>Address (Street, number... )*</label>
+                                <textarea name="address" required="required" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input pattern="[0-9]{9}" name="phone" type="tel" placeholder="Enter Phone Number Here.." class="form-control"> </div>
+                            <div class="form-group">
+                                <label>Email Address*</label>
+                                <input name="email" required="required" type="email" placeholder="Enter Email Address Here.." class="form-control"> </div>
+                            <div class="form-group">
+                                <label>Password*</label>
+                                <input name="pass" required="required" type="password" placeholder="Enter a Password Here.." class="form-control"> </div>
+                            <div class="form-group">
+                                <label>Confirm Password*</label>
+                                <input required="required" type="password" placeholder="Repeat Password Here.." class="form-control"> </div>
+                            <button type="submit" class="btn btn-lg btn-info">Submit</button>
                         </div>
-                    </div>
-                </div> {{/usuario}} </section>
+                    </form>
+                </div>
+            </div>
         </div>
-        <!-- FIN CONTENIDO AQUÍ!-->
-        <br>
-        <div class="container"></div>
     </div>
     <form id="searchByCat" action="/ListadoProductoSearch" >
       <input type="hidden" name="inp-search" id='searchCat' value="cat">
@@ -161,11 +182,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-6 footerleft ">
-                        <div class="logofooter">Dirando Shop</div>
+                        <div class="logofooter"> Dirando Shop</div>
                         <p>Dirando is an online store that distributes specialized cycling material of high quality. Since 2017.</p>
-                        <p> <i class="fa fa-map-pin"></i> Calle Ferraz, 1228008 Madrid </p>
-                        <p> <i class="fa fa-phone"></i> Phone (Madrid) : +91 9999 878 398 </p>
-                        <p> <i class="fa fa-envelope"></i> E-mail : info@dirando.com </p>
+                        <p><i class="fa fa-map-pin"></i> Calle Ferraz, 1228008 Madrid</p>
+                        <p><i class="fa fa-phone"></i> Phone (Madrid) : +91 9999 878 398</p>
+                        <p><i class="fa fa-envelope"></i> E-mail : info@dirando.com</p>
                     </div>
                     <div class="col-md-2 col-sm-6 paddingtop-bottom">
                         <h6 class="heading7">HIGH INTEREST</h6>
@@ -176,17 +197,14 @@
                     <div class="col-md-3 col-sm-6 paddingtop-bottom">
                         <h6 class="heading7">US...</h6>
                         <ul class="footer-ul">
-                            <li><a href="https://github.com/Igna91" target="_blank">
-									Ignacio de Lucas Noguero</a></li>
-                            <li><a href="https://github.com/danijimeno" target="_blank">
-									Daniel Jimeno Sáez</a></li>
-                            <li><a href="https://github.com/rperezll" target="_blank">
-									Roberto Pérez Llanos</a></li>
+                            <li><a href="https://github.com/Igna91" target="_blank"> Ignacio de Lucas Noguero</a></li>
+                            <li><a href="https://github.com/danijimeno" target="_blank"> Daniel Jimeno Sáez</a></li>
+                            <li><a href="https://github.com/rperezll" target="_blank"> Roberto Pérez Llanos</a></li>
                             <li><a href="https://github.com/AlejandroPinto" target="_blank"> Alejandro Pinto Fernández</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 col-sm-6 paddingtop-bottom">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6074.652808006513!2d-3.7159819887295646!3d40.42377077161084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1485886121582" width="250" height="250" frameborder="0" style="border: 40" allowfullscreen></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6074.652808006513!2d-3.7159819887295646!3d40.42377077161084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1485886121582" width="250" height="250" frameborder="0" style="border:40" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
