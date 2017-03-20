@@ -20,7 +20,8 @@
 		"957cb356-1503-b78b-b0c8-54a2a8fa69fd",
 		"e214bd08-7cdf-b4e9-1c71-7bb4e420e870",
 		"2edb2f40-88e8-63b6-07ff-c0d7e406c75c",
-		"a866c24e-3d37-b758-c954-fa672d6c16c7"
+		"a866c24e-3d37-b758-c954-fa672d6c16c7",
+		"3652c9e4-309e-3ede-fa36-679860464222"
 	],
 	"folders": [],
 	"timestamp": 1489922272159,
@@ -66,6 +67,24 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {}
+		},
+		{
+			"id": "3652c9e4-309e-3ede-fa36-679860464222",
+			"headers": "",
+			"url": "http://localhost:8080/rest/updateAccount?phone=898586325&pass=1234&fullName=ksjhgdshafjshfjaojfl&address=oshdsfjasodifjoadsjfoiasjdgoiajgoiad&email=jksafksajfj@sihfiasdfioj",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "PUT",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1490009722086,
+			"name": "updateAccount",
+			"description": "Actualizar datos del usuario",
+			"collectionId": "9eaf65ce-0848-436f-ca15-dd5b78c4e6b3",
+			"responses": []
 		},
 		{
 			"id": "3baa5274-5841-0194-409e-145a50667304",
@@ -349,7 +368,7 @@
 		{
 			"id": "ebceb143-5307-b67b-a700-f0f4847eebfc",
 			"headers": "//Authorization: Basic dXNlcjpwYXNz\n//Accept: application/json\n",
-			"url": "http://localhost:8080/rest/carrusel",
+			"url": "http://localhost:8080/rest/?page=0&size=3",
 			"preRequestScript": null,
 			"pathVariables": {},
 			"method": "GET",
@@ -359,7 +378,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1489922345384,
+			"time": 1489960335716,
 			"name": "getIndexItems",
 			"description": "Devolver los 3 productos del index",
 			"collectionId": "9eaf65ce-0848-436f-ca15-dd5b78c4e6b3",
