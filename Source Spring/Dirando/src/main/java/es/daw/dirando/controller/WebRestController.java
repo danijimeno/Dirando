@@ -60,6 +60,7 @@ public class WebRestController {
 			if ( fs.getSpecificCategory(result)!=null ){
 	    		return fs.getProductsByCategory(result, page);
 	    	}else{
+	    		
 	    		return fs.getProductsByName(result,page);
 	    	}
 		}
