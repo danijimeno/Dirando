@@ -14,17 +14,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.daw.dirando.service.CategoryServices;
+import es.daw.dirando.service.CommentServices;
+import es.daw.dirando.service.OrderServices;
+import es.daw.dirando.service.ProductServices;
+import es.daw.dirando.service.PublicServices;
+import es.daw.dirando.service.UserServices;
 import es.daw.dirando.model.Producto;
 import es.daw.dirando.model.Publicidad;
 import es.daw.dirando.model.Usuario;
-import es.daw.dirando.service.ToolsServices;
+
 
 @RestController
 @RequestMapping("/rest")
 public class WebRestController {
 	
 	@Autowired
-	private ToolsServices fs;
+	private CategoryServices cas;
+	
+	@Autowired
+	private CommentServices cos;
+	
+	@Autowired
+	private OrderServices os;
+	
+	@Autowired
+	private ProductServices prs;
+	
+	@Autowired
+	private PublicServices pus;
+	
+	@Autowired
+	private UserServices us;
 	
 	/*START*************************************/
 	/*REST METHODS FRONTEND*/
@@ -32,13 +53,13 @@ public class WebRestController {
 	
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public Page<Producto> getIndexItems(Pageable page) {
-	        return fs.get3Items(page);
+	        return prs.get3Items(page);
 		}
 		
 		@RequestMapping(value = "/updateAccount", method = RequestMethod.PUT)
 		public void updateAccount(Authentication http, String phone, String pass, String fullName, String address, String email) {
 			if(http != null){
-				fs.updateUser(http.getName(), phone, pass, fullName, address, email);
+				us.updateUser(http.getName(), phone, pass, fullName, address, email);
 			}
 		}
 		
@@ -46,92 +67,92 @@ public class WebRestController {
 		public Usuario isLogged(Authentication http) {
 			Usuario user = new Usuario();
 			if(http != null){
-	    		user =fs.getUser(http.getName());
+	    		user =us.getUser(http.getName());
 	    	}
 	        return user;
 		}
 		
 		@RequestMapping(value = "/carrusel", method = RequestMethod.GET)
 		public Iterable<Publicidad> getCarrusel() {
-			Iterable<Publicidad> publicity = fs.findAllPublicity();
+			Iterable<Publicidad> publicity = pus.findAllPublicity();
 			return publicity;
 		}
 		
 		@RequestMapping(value = "/getCategory", method = RequestMethod.GET)
 		public Page<Producto> getItemsByCategory(String category, Pageable page) {
-			return fs.getProductsByCategory(category, page);
+			return prs.getProductsByCategory(category, page);
 		}
 		
 		@RequestMapping(value = "/getItems", method = RequestMethod.GET)
 		public Page<Producto> getItemsBySearch(String result, Pageable page) {
-			if ( fs.getSpecificCategory(result)!=null ){
-	    		return fs.getProductsByCategory(result, page);
+			if ( cas.getSpecificCategory(result)!=null ){
+	    		return prs.getProductsByCategory(result, page);
 	    	}else{
 	    		
-	    		return fs.getProductsByName(result,page);
+	    		return prs.getProductsByName(result,page);
 	    	}
 		}
 		
 		@RequestMapping(value = "/getCartSize", method = RequestMethod.GET)
 		public int getCartSize() {
-			return fs.cartSize();
+			return os.cartSize();
 		}
 		
 		@RequestMapping(value = "/getUser", method = RequestMethod.GET)
 		public Usuario getUser(Authentication http) {
 			if(http != null){
-				return fs.getUser(http.getName());
+				return us.getUser(http.getName());
 			}
 			return new Usuario();
 		}
 		
 		@RequestMapping(value = "/payProcess", method = RequestMethod.GET)
 		public String payProcess(Authentication http) {
-			return fs.isLoggedANDThereAreProducts(http);
+			return us.isLoggedANDThereAreProducts(http);
 		}
 		@RequestMapping(value = "/payProcess", method = RequestMethod.PUT)
 		public void payProcess2(Authentication http) {
 			if(http != null){
-				fs.makeOrderfromSessionCart(http);
-				fs.clearCart();
-				fs.saveUser(http.getName());
+				os.makeOrderfromSessionCart(http);
+				os.clearCart();
+				us.saveUser(http.getName());
 			}
 		}
 		
 		@RequestMapping(value = "/deleteCart", method = RequestMethod.DELETE)
 		public void deleteCart() {
-			fs.clearCart();
+			os.clearCart();
 		}
 		
 		@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
 		public Producto productDetail(String id) {
-			return fs.getSpecificProduct(Long.parseLong(id));
+			return prs.getSpecificProduct(Long.parseLong(id));
 		}
 		@RequestMapping(value = "/getRating", method = RequestMethod.GET)
 		public float[] getRating(String id) {
-			return fs.dataRating(Long.parseLong(id));
+			return prs.dataRating(Long.parseLong(id));
 		}
 			
 		@RequestMapping(value = "/addComment", method = RequestMethod.PUT)
 		public void addComment(Authentication http, String id, String comment, String rating) {
 			if(http != null){
-				fs.addCommentIntoProduct(http.getName(), id, comment, rating);
+				cos.addCommentIntoProduct(http.getName(), id, comment, rating);
 			}
 		}
 		
 		@RequestMapping(value = "/getCart", method = RequestMethod.GET)
 		public List<Producto> getCart(Authentication http, String id, String comment, String ratin) {
-			return fs.getShoppingCart();
+			return os.getShoppingCart();
 		}
 		
 		@RequestMapping(value = "/addToCart", method = RequestMethod.PUT)
 		public void addToCart(String info, String name, String price) {
-			fs.addCartSession(info, name, price);
+			os.addCartSession(info, name, price);
 		}
 		
 		@RequestMapping(value = "/addNewUser", method = RequestMethod.POST)
 		public void addNewUser(String phone, String name, String pass, String fullName, String address, String email) {
-			fs.addUser(phone, name, pass, fullName, address, email);
+			us.addUser(phone, name, pass, fullName, address, email);
 		}
 		
 		/********************************/
