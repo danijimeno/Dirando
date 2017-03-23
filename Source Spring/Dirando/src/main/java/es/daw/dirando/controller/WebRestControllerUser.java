@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.daw.dirando.service.UserServices;
@@ -18,10 +19,6 @@ public class WebRestControllerUser {
 	@Autowired
 	private UserServices us;
 	
-	/*START*************************************/
-	/*REST METHODS FRONTEND*/
-	/**************************************/
-		
 		@RequestMapping(value = "/updateAccount", method = RequestMethod.PUT)
 		public void updateAccount(Authentication http, String phone, String pass, String fullName, String address, String email) {
 			if(http != null){
@@ -42,6 +39,14 @@ public class WebRestControllerUser {
 			us.addUser(phone, name, pass, fullName, address, email);
 		}
 				
-	/*FINISH FRONTEND METHODS*************************************/
+		@RequestMapping(value = "/correctLogIn", method = RequestMethod.GET)
+		public @ResponseBody String correctLogIn() {
+			return "In Log!";
+		}
+		
+		@RequestMapping(value = "/errorLogIn", method = RequestMethod.GET)
+		public @ResponseBody String errorLogIn() {
+			return "LogIn error!";
+		}
 		
 }

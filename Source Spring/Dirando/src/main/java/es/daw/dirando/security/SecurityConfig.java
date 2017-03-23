@@ -27,8 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/ListadoProducto").permitAll();
         http.authorizeRequests().antMatchers("/ListadoProductoAjax").permitAll();
         
-
-
         //Private pages (all other pages)
         http.authorizeRequests().antMatchers("/usuario").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
