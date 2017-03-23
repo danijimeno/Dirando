@@ -14,16 +14,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import es.daw.dirando.service.ToolsServices;
+import es.daw.dirando.service.CategoryServices;
+import es.daw.dirando.service.CommentServices;
+import es.daw.dirando.service.OrderServices;
+import es.daw.dirando.service.ProductServices;
+import es.daw.dirando.service.PublicServices;
+import es.daw.dirando.service.UserServices;
 import es.daw.dirando.model.Comment;
 import es.daw.dirando.model.Producto;
 
 
 @Controller
 public class WebController {
-
+	
 	@Autowired
-	private ToolsServices fs;
+	private CategoryServices cas;
+	
+	@Autowired
+	private CommentServices cos;
+	
+	@Autowired
+	private OrderServices os;
+	
+	@Autowired
+	private ProductServices prs;
+	
+	@Autowired
+	private PublicServices pus;
+	
+	@Autowired
+	private UserServices us;
 	
 	/*************************************************/
 	/* Simple Queries */
@@ -32,10 +52,10 @@ public class WebController {
 		/* index Query */
 	    @RequestMapping("/")
 	    public String index(Model model,Authentication http) {
-	    	model.addAttribute("carrusel",fs.findAllPublicity());
-	    	model.addAttribute("countItems", fs.cartSize() );
+	    	model.addAttribute("carrusel",pus.findAllPublicity());
+	    	model.addAttribute("countItems", os.cartSize() );
 	    	if(http != null){
-	    		model.addAttribute("usuario",fs.getUser(http.getName()));
+	    		model.addAttribute("usuario",us.getUser(http.getName()));
 	    	}
 	        return "index";
 	    }
@@ -43,9 +63,9 @@ public class WebController {
 	    /*payMethods query*/
 	    @RequestMapping("/payMethods")
 	    public String payMethods(Model model, Authentication http) {
-	    	model.addAttribute("countItems", fs.cartSize() );
+	    	model.addAttribute("countItems", os.cartSize() );
 	    	if(http != null){
-	    		model.addAttribute("usuario",fs.getUser(http.getName()));
+	    		model.addAttribute("usuario",us.getUser(http.getName()));
 	    	}
 	    	return "paginaPaymentsMethods";
 	    }
@@ -53,13 +73,13 @@ public class WebController {
 	    /*Buy process*/
 	    @RequestMapping("/buy")
 	    public String buyButton(Model model,Authentication http) {
-	    	if(http != null && fs.cartSize()>0){
+	    	if(http != null && os.cartSize()>0){
 	    		/*Add the current Order into the User logged*/
-	    		fs.makeOrderfromSessionCart(http);
-	    		fs.clearCart();
-	    		fs.saveUser(http.getName());
-		    	model.addAttribute("usuario",fs.getUser(http.getName()));
-		    	model.addAttribute("countItems", fs.cartSize() );
+	    		os.makeOrderfromSessionCart(http);
+	    		os.clearCart();
+	    		us.saveUser(http.getName());
+		    	model.addAttribute("usuario",us.getUser(http.getName()));
+		    	model.addAttribute("countItems", os.cartSize() );
 	    		return "paginaPago";
 	    	}else{
 	    		return "/";
@@ -69,7 +89,7 @@ public class WebController {
 	    /* register Query */
 	    @RequestMapping("/register")
 	    public String register(Model model) {
-	    	model.addAttribute("countItems", fs.cartSize() );
+	    	model.addAttribute("countItems", os.cartSize() );
 	    	return "paginaRegistro";
 	    }
 	    
@@ -77,16 +97,16 @@ public class WebController {
 	    @RequestMapping("/modifyAccount")
 	    public String modifyAccount(Model model,Authentication http) {
 	    	if(http != null){
-	    		model.addAttribute("usuario",fs.getUser(http.getName()));
+	    		model.addAttribute("usuario",us.getUser(http.getName()));
 	    	}
-	    	model.addAttribute("countItems", fs.cartSize() );
+	    	model.addAttribute("countItems", os.cartSize() );
 	    	return "paginaModifyAccount";
 	    }
 	    
 	    /* add user Query */
 	    @RequestMapping("/updateUser")
 	    public String updateUser(Model model,  Authentication http, @RequestParam(value = "phone") String phone, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
-	    	fs.updateUser(http.getName(), phone, pass, fullName, address, email);
+	    	us.updateUser(http.getName(), phone, pass, fullName, address, email);
 	    	return "/";
 	    }
 	    
@@ -94,17 +114,17 @@ public class WebController {
 	    /* add user Query */
 	    @RequestMapping("/addUser")
 	    public String addUser(Model model, @RequestParam(value = "phone") String phone, @RequestParam(value = "name") String name, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
-	    	fs.addUser(phone, name, pass, fullName, address, email);
+	    	us.addUser(phone, name, pass, fullName, address, email);
 	    	return "/";
 	    }
 	    
 	    /* shoppingCart Query */
 	    @RequestMapping("/shoppingCart")
 	    public String shoppingCart(Model model,Authentication http) {
-	    	model.addAttribute("countItems", fs.cartSize() );
-	    	model.addAttribute("subtotal",fs.calculateTotalPrice());
+	    	model.addAttribute("countItems", os.cartSize() );
+	    	model.addAttribute("subtotal",os.calculateTotalPrice());
 	    	if(http != null){	    		
-	    		model.addAttribute("usuario",fs.getUser(http.getName()));
+	    		model.addAttribute("usuario",us.getUser(http.getName()));
 	    	}
 	    	return "paginaCarrito";
 	    }
@@ -113,14 +133,14 @@ public class WebController {
 	    @RequestMapping("/Producto/{id}")
 	    public String productoInfo(Model model,@PathVariable long id, Authentication http){
 	    	if(http != null){
-	    		model.addAttribute("usuario",fs.getUser(http.getName()));
+	    		model.addAttribute("usuario",us.getUser(http.getName()));
 	    	}
-	    	model.addAttribute("countItems", fs.cartSize() );
-	    	model.addAttribute("producto",fs.getSpecificProduct(id));
+	    	model.addAttribute("countItems", os.cartSize() );
+	    	model.addAttribute("producto",prs.getSpecificProduct(id));
 	    	DecimalFormat decimals = new DecimalFormat("0");
-	    	model.addAttribute("best", decimals.format(fs.dataRating(id)[0]));
-	    	model.addAttribute("improve", decimals.format(fs.dataRating(id)[1]));
-	    	model.addAttribute("worst", decimals.format(fs.dataRating(id)[2]));
+	    	model.addAttribute("best", decimals.format(prs.dataRating(id)[0]));
+	    	model.addAttribute("improve", decimals.format(prs.dataRating(id)[1]));
+	    	model.addAttribute("worst", decimals.format(prs.dataRating(id)[2]));
 	    	return "paginaDetalleProducto";
 	    }
 	    
@@ -128,9 +148,9 @@ public class WebController {
 	    @RequestMapping("/ListadoProductoSearch")
 	    public String listadoProductos(Model model,Authentication http, @RequestParam(value = "inp-search")String search){
 	    	model.addAttribute("resultSearch",search);
-	    	model.addAttribute("countItems", fs.cartSize() );
+	    	model.addAttribute("countItems", os.cartSize() );
 	    	if(http != null){
-	    		model.addAttribute("usuario",fs.getUser(http.getName()));
+	    		model.addAttribute("usuario",us.getUser(http.getName()));
 	    	}
 	    	return "paginaListadoProductos";
 	    }
@@ -139,9 +159,9 @@ public class WebController {
 	    @RequestMapping("/ProductoCategoria")
 	    public @ResponseBody String listadoProductoCategoria (Model model, Authentication http, @RequestParam(value = "cat")String cat){
 	    	model.addAttribute("resultSearch",cat);
-	    	model.addAttribute("countItems", fs.cartSize() );
+	    	model.addAttribute("countItems", os.cartSize() );
 	    	if(http != null){
-	    		model.addAttribute("usuario",fs.getUser(http.getName()));
+	    		model.addAttribute("usuario",us.getUser(http.getName()));
 	    	}
 	    	return "paginaListadoProductos";
 	    }
@@ -150,20 +170,20 @@ public class WebController {
 	    @RequestMapping("/usuario")
 	    public String usuarioreg(Model model, HttpServletRequest request, Authentication auth) {
 	    	if(request.isUserInRole("ADMIN")){
-	    		long numProducts = fs.getProductsNumber();
+	    		long numProducts = prs.getProductsNumber();
 	    		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 	    		model.addAttribute("numProd",numProducts);
-		    	model.addAttribute("numUsers",fs.getUserNumber());
-		    	model.addAttribute("numPed", fs.getPedidoNumber());
-		    	model.addAttribute("numCom", fs.getCommentsNumber());
+		    	model.addAttribute("numUsers",us.getUserNumber());
+		    	model.addAttribute("numPed", os.getPedidoNumber());
+		    	model.addAttribute("numCom", cos.getCommentsNumber());
 		    	model.addAttribute("numPunt",numProducts);
-		    	model.addAttribute("numCat", fs.getCategoryNumber());
+		    	model.addAttribute("numCat", cas.getCategoryNumber());
 	    		return "adminIndex";
 	    	}else{
 	    		model.addAttribute("usuario", request.getAttribute("USER"));
-	    		model.addAttribute("usuario",fs.getUser(auth.getName()));
-	    		model.addAttribute("sizeOrders", fs.sizeOrderUser(auth.getName()));
-		    	model.addAttribute("countItems", fs.cartSize() );
+	    		model.addAttribute("usuario",us.getUser(auth.getName()));
+	    		model.addAttribute("sizeOrders", os.sizeOrderUser(auth.getName()));
+		    	model.addAttribute("countItems", os.cartSize() );
 	    		return "paginaUsuario";
 	    	}
 	    }    
@@ -185,13 +205,13 @@ public class WebController {
 	    /* admin Query */
 	    @RequestMapping("/admin")
 	    public String admin(Model model) {
-	    	long numProducts = fs.getProductsNumber();
+	    	long numProducts = prs.getProductsNumber();
     		model.addAttribute("numProd",numProducts);
-	    	model.addAttribute("numUsers",fs.getUserNumber());
-	    	model.addAttribute("numPed", fs.getPedidoNumber());
-	    	model.addAttribute("numCom", fs.getCommentsNumber());
+	    	model.addAttribute("numUsers",us.getUserNumber());
+	    	model.addAttribute("numPed", os.getPedidoNumber());
+	    	model.addAttribute("numCom", cos.getCommentsNumber());
 	    	model.addAttribute("numPunt",numProducts);
-	    	model.addAttribute("numCat", fs.getCategoryNumber());
+	    	model.addAttribute("numCat", cas.getCategoryNumber());
 	    	return "adminIndex";
 	    }
 	    
@@ -199,15 +219,15 @@ public class WebController {
 	    @RequestMapping("/addComment")
 	    public String addComment (Model model, @RequestParam(value = "comment")String comment, @RequestParam(value = "id")String id, Authentication http, @RequestParam(value = "rating")String rating) {
 	    	if(http != null){
-	    		model.addAttribute("usuario",fs.getUser(http.getName()));
+	    		model.addAttribute("usuario",us.getUser(http.getName()));
 	    	}
-	    	fs.addCommentIntoProduct(http.getName(), id, comment, rating);
-	    	model.addAttribute("countItems", fs.cartSize() );
-	    	model.addAttribute("producto",fs.getSpecificProduct(Long.parseLong(id)));
+	    	cos.addCommentIntoProduct(http.getName(), id, comment, rating);
+	    	model.addAttribute("countItems", os.cartSize() );
+	    	model.addAttribute("producto",prs.getSpecificProduct(Long.parseLong(id)));
 	    	DecimalFormat decimals = new DecimalFormat("0");
-	    	model.addAttribute("best", decimals.format(fs.dataRating(Long.parseLong(id))[0]));
-	    	model.addAttribute("improve", decimals.format(fs.dataRating(Long.parseLong(id))[1]));
-	    	model.addAttribute("worst", decimals.format(fs.dataRating(Long.parseLong(id))[2]));
+	    	model.addAttribute("best", decimals.format(prs.dataRating(Long.parseLong(id))[0]));
+	    	model.addAttribute("improve", decimals.format(prs.dataRating(Long.parseLong(id))[1]));
+	    	model.addAttribute("worst", decimals.format(prs.dataRating(Long.parseLong(id))[2]));
 	    	return "paginaDetalleProducto";
 	    }
 	    
@@ -223,12 +243,12 @@ public class WebController {
 	    	} catch(InterruptedException ex) {
 	    	    Thread.currentThread().interrupt();
 	    	}
-	    	if ( fs.getSpecificCategory(result)!=null ){
-	    		return fs.getProductsByCategory(result, page);
+	    	if ( cas.getSpecificCategory(result)!=null ){
+	    		return prs.getProductsByCategory(result, page);
 	    	}else if ( result.equals("index") ){
-	    		return fs.getAllProducts(page);
+	    		return prs.getAllProducts(page);
 	    	}else{
-	    		return fs.getProductsByName(result,page);
+	    		return prs.getProductsByName(result,page);
 	    	}
 	    }
 	    
@@ -239,32 +259,32 @@ public class WebController {
 	    	} catch(InterruptedException ex) {
 	    	    Thread.currentThread().interrupt();
 	    	}
-	    	return fs.getShoppingCart();
+	    	return os.getShoppingCart();
 	    }
 	    
 	    @RequestMapping(value = "/ListadoProductoAjaxCarrito")
 	    public @ResponseBody Integer addCardQuery(Model model, @RequestParam(value = "info") String info, @RequestParam(value = "name")String name, @RequestParam(value = "price")String price){
-	    	fs.addCartSession(info, name, price);
-	    	model.addAttribute("countItems", fs.cartSize());
-	    	return fs.cartSize();
+	    	os.addCartSession(info, name, price);
+	    	model.addAttribute("countItems", os.cartSize());
+	    	return os.cartSize();
 	    }
 	    
 	    /*It's a user logged? for shopping cart (SC)*/
 	    @RequestMapping("/buy2")
 	    public @ResponseBody String isLoggedSC(Authentication http) {
-	    	return fs.isLoggedANDThereAreProducts(http);
+	    	return us.isLoggedANDThereAreProducts(http);
 	    }
 	    
 	    @RequestMapping("/deleteCart")
 	    public @ResponseBody String deleteCart() {
-    		fs.clearCart();
+    		os.clearCart();
     		return "200OK";
 	    }
 	    
 	    /*Get the comments about the product --> id...*/
 	    @RequestMapping("/loadComments")
 	    public @ResponseBody List<Comment> loadComments(Model model, @RequestParam String idProduct) {
-	    	return fs.getComments(idProduct);
+	    	return cos.getComments(idProduct);
 	    }
 	    
 }
