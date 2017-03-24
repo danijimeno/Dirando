@@ -56,7 +56,9 @@ public class WebControllerUser {
 	    /* add user Query */
 	    @RequestMapping("/updateUser")
 	    public String updateUser(Model model,  Authentication http, @RequestParam(value = "phone") String phone, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
-	    	us.updateUser(http.getName(), phone, pass, fullName, address, email);
+	    	if(http != null){
+	    		us.updateUser(http.getName(), phone, pass, fullName, address, email);
+	    	}
 	    	return "/";
 	    }
 	    

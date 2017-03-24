@@ -141,7 +141,7 @@ public class Usuario {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
 	}
 
 	public List<String> getRole() {
