@@ -1,10 +1,12 @@
 package es.daw.dirando.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.daw.dirando.model.Categoria;
-
+import es.daw.dirando.model.Producto;
 import es.daw.dirando.repository.CategoriaRepository;
 
 @Service
@@ -23,4 +25,11 @@ public class CategoryServices {
 			return categoriaRepository.findByName(category);
 		}
 		
+		public void deleteProductFromCategoria(Producto product){
+			Categoria cat = categoriaRepository.findByName(product.getCategoria());
+			List<Producto> list = cat.getProductos();
+			list.remove(product);
+			cat.setProductos(list);
+			categoriaRepository.save(cat);
+		}
 }

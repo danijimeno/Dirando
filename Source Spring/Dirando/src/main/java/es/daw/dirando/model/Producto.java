@@ -131,7 +131,7 @@ public class Producto {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -155,7 +155,7 @@ public class Producto {
 		return precio;
 	}
 
-	public void setPrecio(long precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 
@@ -197,6 +197,7 @@ public class Producto {
 	public void setComments (Comment comment){
 		this.comments.add(comment);
 	}
+
 	
 	@Override
 	public String toString() {

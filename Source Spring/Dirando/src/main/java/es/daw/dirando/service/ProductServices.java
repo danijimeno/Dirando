@@ -49,4 +49,15 @@ public class ProductServices {
 			return productoRepository.findAll(page);
 		}
 		
+		public void deleteProduct(Producto product){
+			productoRepository.delete(product);
+		}
+		
+		public void addProduct(String nombre ,String imagen, String desProducto, String categoria, 
+				float precio, int stock, int theBest, int mustImprove, int bad){
+			
+			Producto product = new Producto(nombre, desProducto, precio, theBest, mustImprove, bad, imagen, stock, categoria);
+			productoRepository.save(product);
+		}
+		
 }
