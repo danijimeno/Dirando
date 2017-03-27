@@ -23,16 +23,30 @@ Por otro lado, la parte privada de la aplicación poseerá el control sobre la l
 - Daniel Jimeno Sáez       :arrow_right:   d.jimeno@alumnos.urjc.es   :arrow_right:   https://github.com/danijimeno
 
 ## Diagrama navegación fase 2: ##
-![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama/DiagramaNavegacion.PNG)
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/DiagramaNavegacion.PNG)
 
 ## Diagrama navegación fase 3: ##
-![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama/diagramaNav3.png)
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/diagramaNav3.png)
 
 ## Diagrama Entidades fase 3: ##
-![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama/diagramaEntidades.jpg)
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/diagramaEntidades.jpg)
 
-## Diagrama Clases y templates fase 3: ##
-![logo](https://github.com/danijimeno/Dirando/blob/master/Diagrama/diagramaClases.jpg)
+## Diagrama Clases y templates V1 fase 3: ##
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/diagramaClasesFase3.jpg)
+
+## Diagrama Clases y templates (V2 ACTUALIZADO): ##
+WebControllers + Services + Repositories [FRONTEND]
+####
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/WebController+Services+Repositories.jpg)
+####
+Templates + WebControllers [FRONTEND]
+####
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/WebControllers+Templates.jpg)
+
+## Diagrama API REST [FRONTEND]: ##
+WebRestControllers + Services + Repositories [FRONTEND]
+####
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/RestController+Services+Repositories.jpg)
 
 ## Template bootstrap ##
 El template de bootstrap que hemos usado ha sido en la zona de administración, hemos cambiado los cuerpos de las páginas y modificado alguna parte del menu.
