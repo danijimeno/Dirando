@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -116,10 +115,34 @@ public class AdminRestController {
 		
 		@RequestMapping(value = "/categories", method = RequestMethod.POST)
 		@ResponseStatus(HttpStatus.CREATED)
-		public Categoria newCategory(@RequestParam("name") String nombre) {
-			
-			Categoria c = categoryService.addCategory(nombre);
+		public Categoria newCategory(@RequestBody Categoria category) {
+			Categoria c = categoryService.addCategory(category);
 			return c;
+		}
+		
+		@RequestMapping(value = "/categories/{id}", method = RequestMethod.GET)
+		public ResponseEntity<Categoria> getCategory(@PathVariable long id) {
+			
+			Categoria category = categoryService.getSpecificCategoryId(id);
+			
+			if(category != null){
+				return new ResponseEntity<>(category, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
+		@RequestMapping(value = "/categories/{id}", method = RequestMethod.PUT)
+		public ResponseEntity<Categoria> updateCategory(@PathVariable long id, @RequestBody Categoria categoryUpdated) {
+			
+			Categoria category = categoryService.getSpecificCategoryId(id);
+			
+			if(category != null){
+				categoryService.updateCategory(id, categoryUpdated);
+				return new ResponseEntity<>(categoryUpdated, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
 		}
 		
 		@RequestMapping(value = "/categories/{id}", method = RequestMethod.DELETE)

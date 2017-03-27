@@ -49,9 +49,19 @@ public class CategoryServices {
 	    	categoriaRepository.delete(category);
 		}
 		
-		public Categoria addCategory(String name){
-			Categoria cat = new Categoria(name);
-			categoriaRepository.save(cat);
-			return cat;
+		public Categoria addCategory(Categoria category){
+			categoriaRepository.save(category);
+			return category;
+		}
+		
+		public void updateCategory(long id, Categoria category){
+			Categoria oldCateg = categoriaRepository.findOne(id);
+			category.setId(id);
+			category.setProductos(oldCateg.getProductos());
+			for(Producto p :category.getProductos()){
+	    		p.setCategoria(category.getNombre());
+	    	}
+			category.setPublicidad(oldCateg.getPublicidad());
+			categoriaRepository.save(category);
 		}
 }
