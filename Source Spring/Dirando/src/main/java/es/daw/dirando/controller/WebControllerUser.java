@@ -3,6 +3,7 @@ package es.daw.dirando.controller;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,7 +58,7 @@ public class WebControllerUser {
 	    @RequestMapping("/updateUser")
 	    public String updateUser(Model model,  Authentication http, @RequestParam(value = "phone") String phone, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
 	    	if(http != null){
-	    		us.updateUser(http.getName(), phone, pass, fullName, address, email);
+	    		us.updateUser(http.getName(), phone, new BCryptPasswordEncoder().encode(pass), fullName, address, email);
 	    	}
 	    	return "/";
 	    }

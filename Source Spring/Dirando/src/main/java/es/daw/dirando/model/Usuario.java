@@ -124,8 +124,8 @@ public class Usuario {
 		return full_name;
 	}
 
-	public void setFullName(String full_name) {
-		this.full_name = full_name;
+	public void setFullName(String fullName) {
+		this.full_name = fullName;
 	}
 
 	public String getEmail() {
@@ -141,7 +141,7 @@ public class Usuario {
 	}
 
 	public void setPassword(String password) {
-		this.password = new BCryptPasswordEncoder().encode(password);
+		this.password = password;
 	}
 
 	public List<String> getRole() {

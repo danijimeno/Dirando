@@ -3,6 +3,8 @@ package es.daw.dirando.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,13 +18,14 @@ import es.daw.dirando.model.Usuario;
 @RequestMapping("/rest")
 public class WebRestControllerUser {
 	
+	
 	@Autowired
 	private UserServices us;
 	
 		@RequestMapping(value = "/updateAccount", method = RequestMethod.PUT)
 		public void updateAccount(Authentication http, String phone, String pass, String fullName, String address, String email) {
 			if(http != null){
-				us.updateUser(http.getName(), phone, pass, fullName, address, email);
+				us.updateUser(http.getName(), phone, new BCryptPasswordEncoder().encode(pass), fullName, address, email);
 			}
 		}
 		
@@ -35,8 +38,8 @@ public class WebRestControllerUser {
 		}
 				
 		@RequestMapping(value = "/addNewUser", method = RequestMethod.POST)
-		public void addNewUser(String phone, String name, String pass, String fullName, String address, String email) {
-			us.addUser(phone, name, pass, fullName, address, email);
+		public void addNewUser(@RequestBody Usuario user){
+			us.addUser(Long.toString(user.getPhone()), user.getName(), user.getPassword(), user.getFullName(), user.getAddress(), user.getEmail());
 		}
 				
 		@RequestMapping(value = "/correctLogIn", method = RequestMethod.GET)
@@ -48,5 +51,7 @@ public class WebRestControllerUser {
 		public @ResponseBody String errorLogIn() {
 			return "LogIn error!";
 		}
+		
+		
 		
 }
