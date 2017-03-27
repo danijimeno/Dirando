@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.daw.dirando.service.CategoryServices;
 import es.daw.dirando.service.ProductServices;
+import es.daw.dirando.service.UserServices;
 import es.daw.dirando.model.Categoria;
 import es.daw.dirando.model.Producto;
+import es.daw.dirando.model.Usuario;
 
 @RestController
 @RequestMapping("/rest/admin")
@@ -29,6 +32,9 @@ public class AdminRestController {
 	
 	@Autowired
 	private CategoryServices categoryService;
+	
+	@Autowired
+	private UserServices userService;
 	
 	
 		@RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
@@ -45,11 +51,22 @@ public class AdminRestController {
 		
 		@RequestMapping(value = "/products", method = RequestMethod.POST)
 		@ResponseStatus(HttpStatus.CREATED)
-		public void addProduct(@RequestParam String nombre ,@RequestParam("imagen") String imagen,
-				@RequestParam String desProducto, @RequestParam String categoria, @RequestParam float precio,
-				@RequestParam int stock, @RequestParam int theBest, @RequestParam int mustImprove, @RequestParam int bad) {
-			productService.addProduct(nombre, imagen, desProducto, categoria, precio, stock, theBest, mustImprove, bad);;
-			//return product;
+		public Producto newProduct(@RequestBody Producto product) {
+			productService.addProduct(product);
+			return product;
+		}
+		
+		@RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+		public ResponseEntity<Producto> updateProduct(@PathVariable long id, @RequestBody Producto productUpdated) {
+			
+			Producto product = productService.getSpecificProduct(id);
+			
+			if(product != null){
+				productService.updateProduct(id, productUpdated);
+				return new ResponseEntity<>(productUpdated, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
 		}
 		
 		@RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
@@ -99,7 +116,7 @@ public class AdminRestController {
 		
 		@RequestMapping(value = "/categories", method = RequestMethod.POST)
 		@ResponseStatus(HttpStatus.CREATED)
-		public Categoria addCategories(@RequestParam("name") String nombre) {
+		public Categoria newCategory(@RequestParam("name") String nombre) {
 			
 			Categoria c = categoryService.addCategory(nombre);
 			return c;
@@ -118,6 +135,31 @@ public class AdminRestController {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
 		}
-
+		
+		/*
+		 ********** USUARIOS ***********************
+		 * 
+		 */
+		
+		@RequestMapping(value = "/users", method = RequestMethod.GET)
+		public ResponseEntity<List<Usuario>> getUsers() {
+			
+			List<Usuario> u = userService.getUsers();
+			
+			if(u != null){
+				return new ResponseEntity<>(u, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
+		/*
+		@RequestMapping(value = "/users", method = RequestMethod.POST)
+		@ResponseStatus(HttpStatus.CREATED)
+		public Usuario newUserAdmin(@RequestBody Usuario user) {
+			
+			return user;
+		}
+		*/
 		
 }

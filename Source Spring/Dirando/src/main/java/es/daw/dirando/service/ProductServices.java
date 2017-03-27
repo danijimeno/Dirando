@@ -53,10 +53,13 @@ public class ProductServices {
 			productoRepository.delete(product);
 		}
 		
-		public void addProduct(String nombre ,String imagen, String desProducto, String categoria, 
-				float precio, int stock, int theBest, int mustImprove, int bad){
-			
-			Producto product = new Producto(nombre, desProducto, precio, theBest, mustImprove, bad, imagen, stock, categoria);
+		public Producto addProduct(Producto product){
+			productoRepository.save(product);
+			return product;
+		}
+		
+		public void updateProduct(long id, Producto product){
+			product.setId(id);
 			productoRepository.save(product);
 		}
 		
