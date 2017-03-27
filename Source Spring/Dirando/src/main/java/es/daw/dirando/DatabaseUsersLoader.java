@@ -230,10 +230,10 @@ public class DatabaseUsersLoader {
 		category2.getProductos().add(p22);
 		category2.getProductos().add(p23);
 		
-		category2.getProductos().add(p28);
-		category2.getProductos().add(p29);
-		category2.getProductos().add(p30);
-		category2.getProductos().add(p31);
+		category4.getProductos().add(p28);
+		category4.getProductos().add(p29);
+		category4.getProductos().add(p30);
+		category4.getProductos().add(p31);
 		
 		category5.getProductos().add(p32);
 		category5.getProductos().add(p33);
