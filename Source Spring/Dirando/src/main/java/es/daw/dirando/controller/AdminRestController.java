@@ -176,13 +176,23 @@ public class AdminRestController {
 			}
 		}
 		
-		/*
+		@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+		public ResponseEntity<Usuario> getUser(@PathVariable long id) {
+			
+			Usuario user = userService.getUserById(id);
+			
+			if(user != null){
+				return new ResponseEntity<>(user, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
 		@RequestMapping(value = "/users", method = RequestMethod.POST)
 		@ResponseStatus(HttpStatus.CREATED)
 		public Usuario newUserAdmin(@RequestBody Usuario user) {
-			
-			return user;
+			Usuario u = userService.addUserAdmin(user);
+			return u;
 		}
-		*/
-		
+	
 }

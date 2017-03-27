@@ -59,7 +59,23 @@ public class ProductServices {
 		}
 		
 		public void updateProduct(long id, Producto product){
+			Producto oldProd = productoRepository.findOne(id);
 			product.setId(id);
+			if(product.getNombre()== null){
+				product.setNombre(oldProd.getNombre());
+			}
+			if(product.getDesProducto()==null){
+				product.setDesProducto(oldProd.getDesProducto());
+			}
+			if(product.getImage()==null){
+				product.setImage(oldProd.getImage());
+			}
+			if(product.getPrecio()==0){
+				product.setPrecio(oldProd.getPrecio());
+			}
+			if(product.getCategoria()==null){
+				product.setCategoria(oldProd.getCategoria());
+			}
 			productoRepository.save(product);
 		}
 		
