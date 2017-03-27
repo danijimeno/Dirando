@@ -25,11 +25,33 @@ public class CategoryServices {
 			return categoriaRepository.findByName(category);
 		}
 		
+		public Categoria getSpecificCategoryId(long id){
+			return categoriaRepository.findOne(id);
+		}
+		
+		public List<Categoria> getAllCategories(){
+			return categoriaRepository.findAll();
+		}
+		
 		public void deleteProductFromCategoria(Producto product){
 			Categoria cat = categoriaRepository.findByName(product.getCategoria());
 			List<Producto> list = cat.getProductos();
 			list.remove(product);
 			cat.setProductos(list);
 			categoriaRepository.save(cat);
+		}
+		
+		public void deleteCategory(Categoria category){
+			for(Producto p :category.getProductos()){
+	    		p.setCategoria(null);
+	    	}
+			category.setPublicidad(null);
+	    	categoriaRepository.delete(category);
+		}
+		
+		public Categoria addCategory(String name){
+			Categoria cat = new Categoria(name);
+			categoriaRepository.save(cat);
+			return cat;
 		}
 }

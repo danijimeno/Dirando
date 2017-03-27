@@ -1,5 +1,7 @@
 package es.daw.dirando.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.daw.dirando.service.CategoryServices;
 import es.daw.dirando.service.ProductServices;
+import es.daw.dirando.model.Categoria;
 import es.daw.dirando.model.Producto;
 
 @RestController
@@ -71,6 +74,46 @@ public class AdminRestController {
 			
 			if(p != null){
 				return new ResponseEntity<>(p, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
+		/*
+		 ********** CATEGORIAS***********************
+		 * 
+		 */
+
+		
+		@RequestMapping(value = "/categories", method = RequestMethod.GET)
+		public ResponseEntity<List<Categoria>> getCategories() {
+			
+			List<Categoria> c = categoryService.getAllCategories();
+			
+			if(c != null){
+				return new ResponseEntity<>(c, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
+		@RequestMapping(value = "/categories", method = RequestMethod.POST)
+		@ResponseStatus(HttpStatus.CREATED)
+		public Categoria addCategories(@RequestParam("name") String nombre) {
+			
+			Categoria c = categoryService.addCategory(nombre);
+			return c;
+		}
+		
+		@RequestMapping(value = "/categories/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<Categoria> deleteCategory(@PathVariable long id) {
+			
+			Categoria category = categoryService.getSpecificCategoryId(id);
+			
+			if(category != null){
+				categoryService.deleteCategory(category);
+				
+				return new ResponseEntity<>(category, HttpStatus.OK);
 			}else{
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
