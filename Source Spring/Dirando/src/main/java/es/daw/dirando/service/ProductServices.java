@@ -1,10 +1,13 @@
 package es.daw.dirando.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import es.daw.dirando.model.Comment;
 import es.daw.dirando.model.Producto;
 
 import es.daw.dirando.repository.ProductoRepository;
@@ -77,6 +80,20 @@ public class ProductServices {
 				product.setCategoria(oldProd.getCategoria());
 			}
 			productoRepository.save(product);
+		}
+		
+		public Comment getComment(long id, long idc){
+			Producto prod = productoRepository.findOne(id);
+			List<Comment> comments = prod.getComments();
+			for(Comment c: comments){
+				if(c.getId()==idc){
+					comments.remove(c);
+					productoRepository.save(prod);
+					return c;
+				}
+			}
+			return null;
+			
 		}
 		
 }

@@ -222,6 +222,24 @@ public class AdminRestController {
 			}
 		}
 		
+		@RequestMapping(value = "/products/{id1}/comments/{id2}", method = RequestMethod.DELETE)
+		public ResponseEntity<Comment> deleteComment(@PathVariable long id1, @PathVariable long id2) {
+			
+			Producto product = productService.getSpecificProduct(id1);
+			Comment c = productService.getComment(id1, id2);
+			
+			if(product != null){
+				if(c != null){
+					commentService.deleteComment(id2);
+					return new ResponseEntity<>(c, HttpStatus.OK);
+				}else{
+					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				}
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
 		/*
 		 ********** PUBLICIDAD ***********************
 		 * 

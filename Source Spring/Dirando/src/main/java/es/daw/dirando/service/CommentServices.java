@@ -61,9 +61,12 @@ public class CommentServices {
 			return productoRepository.findProductoById(Long.parseLong(idProduct)).getComments();
 		}
 		
-		
 		public List<Comment> getAllComments(){
 			return commentRepository.findAll();
+		}
+		
+		public void deleteComment(long id){
+			commentRepository.delete(id);
 		}
 		
 				
