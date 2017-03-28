@@ -1,6 +1,7 @@
 package es.daw.dirando.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,19 @@ public class UserServices {
 			return usuarioRepository.findAll();
 		}
 		
+		public Usuario getUserById (long id){
+			return usuarioRepository.findOne(id);
+		}
+		
+		public Usuario addUserAdmin(Usuario user){
+			List<String> ro = new ArrayList<>();
+			ro.add("ROLE_USER");
+			ro.add("ROLE_ADMIN");
+			user.setRole(ro);
+			
+			usuarioRepository.save(user);
+			return user;
+		}
 		
 		
 		

@@ -60,5 +60,11 @@ public class CommentServices {
 		public List<Comment> getComments(String idProduct){
 			return productoRepository.findProductoById(Long.parseLong(idProduct)).getComments();
 		}
+		
+		
+		public List<Comment> getAllComments(){
+			return commentRepository.findAll();
+		}
+		
 				
 }
