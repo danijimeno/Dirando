@@ -47,6 +47,10 @@ Templates + WebControllers [FRONTEND]
 WebRestControllers + Services + Repositories [FRONTEND]
 ####
 ![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/RestController+Services+Repositories.jpg)
+####
+AdminRestControllers + Services + Repositories [FRONTEND]
+####
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/DiagramAdminRestController-Services-Repository.jpg)
 
 ## Template bootstrap ##
 El template de bootstrap que hemos usado ha sido en la zona de administración, hemos cambiado los cuerpos de las páginas y modificado alguna parte del menu.
