@@ -1,0 +1,263 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ApiRestMetodosAdmin",
+		"_postman_id": "f1c4cc3b-b3d7-529a-2fd5-436b5e8847b1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://localhost:8443/rest/login?username=admin&password=adminpass",
+			"request": {
+				"url": "https://localhost:8443/rest/login?username=admin&password=adminpass",
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/products/?page=0&size=10",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/products/?page=0&size=10",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/publicity",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/publicity",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/publicity/2",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/publicity/2",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/comments",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/comments",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/products/2",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/products/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"nombre\": \"Nuevo nombre\",\n      \"precio\": 0,\n      \"theBest\": 1,\n      \"mustImprove\": 1,\n      \"Bad\": 0,\n      \"image\": \"img/ejemplo2.jpg\",\n      \"stock\": 50\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/products",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/products",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/users",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"nuevouserpost\",\n  \"fullName\": \"Garcia Garcia\",\n  \"email\": \"nuevo@gmail.com\",\n  \"imgRuta\": \"\",\n  \"password\": \"pass\",\n  \"phone\": \"668588558\",\n  \"address\": \"direccion calle\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/users",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/users",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/users/2",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/users/2",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/products",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/products",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"nombre\": \"Nuevo nombre\",\n      \"desProducto\": \"If you ask us, it had beent\",\n      \"precio\": 50,\n      \"theBest\": 1,\n      \"mustImprove\": 1,\n      \"bad\": 1,\n      \"image\": \"img/ejemplo2.jpg\",\n      \"stock\": 50,\n      \"categoria\": \"nueva\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/products/2",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/products/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"nombre\": \"Nuevo nombre\",\n      \"desProducto\": \"If you ask us, it had beent\",\n      \"precio\": 50,\n      \"theBest\": 1,\n      \"mustImprove\": 1,\n      \"bad\": 1,\n      \"image\": \"img/ejemplo2.jpg\",\n      \"stock\": 50,\n      \"categoria\": \"nueva\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/categories/4",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/categories/4",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"nueva\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/categories/1",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/categories/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/categories/4",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/categories/4",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/categories",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/categories",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"nueva\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/categories",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/categories",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/rest/admin/products/1",
+			"request": {
+				"url": "https://localhost:8443/rest/admin/products/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
