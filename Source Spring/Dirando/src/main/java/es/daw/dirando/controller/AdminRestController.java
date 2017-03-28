@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.daw.dirando.service.CategoryServices;
+import es.daw.dirando.service.CommentServices;
 import es.daw.dirando.service.ProductServices;
+import es.daw.dirando.service.PublicServices;
 import es.daw.dirando.service.UserServices;
 import es.daw.dirando.model.Categoria;
+import es.daw.dirando.model.Comment;
 import es.daw.dirando.model.Producto;
+import es.daw.dirando.model.Publicidad;
 import es.daw.dirando.model.Usuario;
 
 @RestController
@@ -34,6 +38,12 @@ public class AdminRestController {
 	
 	@Autowired
 	private UserServices userService;
+	
+	@Autowired
+	private CommentServices commentService;
+	
+	@Autowired
+	private PublicServices publicityService;
 	
 	
 		@RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
@@ -193,6 +203,54 @@ public class AdminRestController {
 		public Usuario newUserAdmin(@RequestBody Usuario user) {
 			Usuario u = userService.addUserAdmin(user);
 			return u;
+		}
+		
+		/*
+		 ********** COMENTARIOS ***********************
+		 * 
+		 */
+		
+		@RequestMapping(value = "/comments", method = RequestMethod.GET)
+		public ResponseEntity<List<Comment>> getComments() {
+			
+			List<Comment> com = commentService.getAllComments();
+			
+			if(com != null){
+				return new ResponseEntity<>(com, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
+		/*
+		 ********** PUBLICIDAD ***********************
+		 * 
+		 */
+		
+		@RequestMapping(value = "/publicity", method = RequestMethod.GET)
+		public ResponseEntity<Iterable<Publicidad>> getPublicity() {
+			
+			Iterable<Publicidad> pub = publicityService.findAllPublicity();
+			
+			if(pub != null){
+				return new ResponseEntity<>(pub, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
+		@RequestMapping(value = "/publicity/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<Publicidad> deletePublicity(@PathVariable long id) {
+			
+			Publicidad publicity = publicityService.getPublicity(id);
+			
+			if(publicity != null){
+				publicityService.deletePublicity(publicity);
+				
+				return new ResponseEntity<>(publicity, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
 		}
 	
 }

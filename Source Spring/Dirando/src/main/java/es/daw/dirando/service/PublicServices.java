@@ -16,4 +16,12 @@ public class PublicServices {
 		public Iterable<Publicidad> findAllPublicity(){
 			return publicityRepository.findAll();
 		}
+		
+		public Publicidad getPublicity(long id){
+			return publicityRepository.findOne(id);
+		}
+		
+		public void deletePublicity(Publicidad publicity){
+			publicityRepository.delete(publicity);
+		}
 }
