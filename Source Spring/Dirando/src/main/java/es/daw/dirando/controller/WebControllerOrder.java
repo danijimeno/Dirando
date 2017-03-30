@@ -81,7 +81,7 @@ public class WebControllerOrder {
 	    
 	    @RequestMapping(value = "/ListadoProductoAjaxCarrito")
 	    public @ResponseBody Integer addCardQuery(Model model, @RequestParam(value = "info") String info, @RequestParam(value = "name")String name, @RequestParam(value = "price")String price){
-	    	os.addCartSession(info, name, price);
+	    	os.addCartSession(Long.parseLong(info), name,  Float.parseFloat(price));
 	    	model.addAttribute("countItems", os.cartSize());
 	    	return os.cartSize();
 	    }

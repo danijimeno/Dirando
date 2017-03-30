@@ -28,8 +28,8 @@ public class UserServices {
 	    }
 		
 		//Update user data
-		public void updateUser(String name, String phone, String pass, String fullName, String address, String email) {
-	    	usuarioRepository.findUserByName(name).setPhone(Long.valueOf(phone));
+		public void updateUser(String name, long phone, String pass, String fullName, String address, String email) {
+	    	usuarioRepository.findUserByName(name).setPhone(phone);
 	    	usuarioRepository.findUserByName(name).setPassword(pass);
 	    	usuarioRepository.findUserByName(name).setFullName(fullName);
 	    	usuarioRepository.findUserByName(name).setAddress(address);

@@ -58,7 +58,7 @@ public class WebControllerUser {
 	    @RequestMapping("/updateUser")
 	    public String updateUser(Model model,  Authentication http, @RequestParam(value = "phone") String phone, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
 	    	if(http != null){
-	    		us.updateUser(http.getName(), phone, new BCryptPasswordEncoder().encode(pass), fullName, address, email);
+	    		us.updateUser(http.getName(), Long.parseLong(phone), new BCryptPasswordEncoder().encode(pass), fullName, address, email);
 	    	}
 	    	return "/";
 	    }

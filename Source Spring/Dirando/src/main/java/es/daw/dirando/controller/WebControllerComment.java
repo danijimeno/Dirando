@@ -41,7 +41,7 @@ public class WebControllerComment {
 	    	if(http != null){
 	    		model.addAttribute("usuario",us.getUser(http.getName()));
 	    	}
-	    	cos.addCommentIntoProduct(http.getName(), id, comment, rating);
+	    	cos.addCommentIntoProduct(http.getName(), Long.parseLong(id), comment, rating);
 	    	model.addAttribute("countItems", os.cartSize() );
 	    	model.addAttribute("producto",prs.getSpecificProduct(Long.parseLong(id)));
 	    	DecimalFormat decimals = new DecimalFormat("0");

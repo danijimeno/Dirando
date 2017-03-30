@@ -30,8 +30,8 @@ public class OrderServices {
 		/*Tools for the session cart*/
 		/****************************/
 			//Add in a session products in cart
-			public void addCartSession(String info, String name, String price){
-				pedido.setPedido(new Producto ( Long.valueOf(info),name, Float.valueOf(price) ));
+			public void addCartSession(long info, String name, float price){
+				pedido.setPedido(new Producto ( info, name, price ));
 			}
 			//Calculate cart size
 			public int cartSize(){

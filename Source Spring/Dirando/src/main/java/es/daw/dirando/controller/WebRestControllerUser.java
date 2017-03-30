@@ -22,9 +22,9 @@ public class WebRestControllerUser {
 	
 		/*Modify account Method*/
 			@RequestMapping(value = "/account", method = RequestMethod.PUT)
-			public ResponseEntity<Void> updateAccount(Authentication http, String phone, String pass, String fullName, String address, String email) {
+			public ResponseEntity<Void> updateAccount(Authentication http, @RequestBody Usuario user, String phone, String pass, String fullName, String address, String email) {
 				if(http != null){
-					us.updateUser(http.getName(), phone, new BCryptPasswordEncoder().encode(pass), fullName, address, email);
+					us.updateUser(http.getName(), user.getPhone(), user.getPassword(), user.getFullName(), user.getAddress(), user.getEmail());
 					return new ResponseEntity<>(HttpStatus.OK);
 				}else{
 					return new ResponseEntity<>(HttpStatus.LOCKED);

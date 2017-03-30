@@ -25,25 +25,25 @@ public class CommentServices {
 	private CommentRepository commentRepository;
 	
 		//Add comment into a product
-		public void addCommentIntoProduct (String nameHttp, String id, String comment, String rating){
+		public void addCommentIntoProduct (String nameHttp, long id, String comment, String rating){
 			if (Integer.parseInt(rating)==3){
 	    		Comment co = new Comment (usuarioRepository.findUserByName(nameHttp).getName(), comment, "The Best!");
-	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
-	    		productoRepository.findProductoById(Long.parseLong(id)).incrementTheBest();
+	    		productoRepository.findProductoById(id).setComments(co);
+	    		productoRepository.findProductoById(id).incrementTheBest();
 	    	}else if(Integer.parseInt(rating)==2){
 	    		Comment co = new Comment (usuarioRepository.findUserByName(nameHttp).getName(), comment, "Must Improve!");
-	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
-	    		productoRepository.findProductoById(Long.parseLong(id)).incrementMustImprove();
+	    		productoRepository.findProductoById(id).setComments(co);
+	    		productoRepository.findProductoById(id).incrementMustImprove();
 	    	}else if(Integer.parseInt(rating)==1){
 	    		Comment co = new Comment (usuarioRepository.findUserByName(nameHttp).getName(), comment, "Bad!");
-	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
-	    		productoRepository.findProductoById(Long.parseLong(id)).incrementBad();
+	    		productoRepository.findProductoById(id).setComments(co);
+	    		productoRepository.findProductoById(id).incrementBad();
 	    	}else{
 	    		Comment co = new Comment (usuarioRepository.findUserByName(nameHttp).getName(), comment, null);
-	    		productoRepository.findProductoById(Long.parseLong(id)).setComments(co);
+	    		productoRepository.findProductoById(id).setComments(co);
 	    	}
 			/*Update the new data product*/
-			saveProduct(productoRepository.findProductoById(Long.parseLong(id)));
+			saveProduct(productoRepository.findProductoById(id));
 		}
 		
 		public void saveProduct(Producto pro){
