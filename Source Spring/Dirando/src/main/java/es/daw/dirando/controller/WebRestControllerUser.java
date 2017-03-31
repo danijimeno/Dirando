@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +21,7 @@ public class WebRestControllerUser {
 	
 		/*Modify account Method*/
 			@RequestMapping(value = "/account", method = RequestMethod.PUT)
-			public ResponseEntity<Void> updateAccount(Authentication http, @RequestBody Usuario user, String phone, String pass, String fullName, String address, String email) {
+			public ResponseEntity<Void> updateAccount(Authentication http, @RequestBody Usuario user) {
 				if(http != null){
 					us.updateUser(http.getName(), user.getPhone(), user.getPassword(), user.getFullName(), user.getAddress(), user.getEmail());
 					return new ResponseEntity<>(HttpStatus.OK);
