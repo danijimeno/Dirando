@@ -27,29 +27,21 @@ public class WebRestControllerOrder {
 	private UserServices us;
 	
 		/*Pay Process Methods*/
-			/*Check if you are logged in and you have items in the cart to place the order*/
-			@RequestMapping(value = "/pay", method = RequestMethod.GET)
-			public ResponseEntity<String> payProcess(Authentication http) {
-				switch (us.isLoggedANDThereAreProducts(http)){
-				case "0":
-					return new ResponseEntity<>(HttpStatus.OK );
-				case "2":
-					return new ResponseEntity<>("The cart is empty!",HttpStatus.PARTIAL_CONTENT);
-				default:
-					return new ResponseEntity<>("Logged required!",HttpStatus.UNAUTHORIZED);
-				}
-			}
 			/*Makes effective the order*/
 			@RequestMapping(value = "/pay", method = RequestMethod.PUT)
 			public ResponseEntity<String> payProcess2(Authentication http) {
-				if(http != null){
-					os.makeOrderfromSessionCart(http);
-					os.clearCart();
-					us.saveUser(http.getName());
-					return new ResponseEntity<>(HttpStatus.OK);
-				}else{
-					return new ResponseEntity<>(HttpStatus.LOCKED);
+				switch (us.isLoggedANDThereAreProducts(http)){
+					case "0":
+						os.makeOrderfromSessionCart(http);
+						os.clearCart();
+						us.saveUser(http.getName());
+						return new ResponseEntity<>(HttpStatus.OK);
+					case "2":
+						return new ResponseEntity<>("The cart is empty!",HttpStatus.PARTIAL_CONTENT);
+					default:
+						return new ResponseEntity<>("Logged required!",HttpStatus.UNAUTHORIZED);
 				}
+				
 			}
 		/*End Pay Process Methods*/
 		
