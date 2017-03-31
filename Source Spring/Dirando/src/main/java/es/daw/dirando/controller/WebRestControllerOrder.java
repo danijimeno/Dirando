@@ -35,7 +35,7 @@ public class WebRestControllerOrder {
 						os.makeOrderfromSessionCart(http);
 						os.clearCart();
 						us.saveUser(http.getName());
-						return new ResponseEntity<>(HttpStatus.OK);
+						return new ResponseEntity<>("Finished payment", HttpStatus.OK);
 					case "2":
 						return new ResponseEntity<>("The cart is empty!",HttpStatus.PARTIAL_CONTENT);
 					default:
@@ -53,7 +53,7 @@ public class WebRestControllerOrder {
 			@RequestMapping(value = "/cart", method = RequestMethod.DELETE)
 			public ResponseEntity<String> deleteCart() {
 				os.clearCart();
-				return new ResponseEntity<>(HttpStatus.OK);
+				return new ResponseEntity<>("The Cart is empty!", HttpStatus.OK);
 			}		
 			@RequestMapping(value = "/cart", method = RequestMethod.GET)
 			public ResponseEntity< List<Producto> > getCart(Authentication http) {
@@ -68,7 +68,7 @@ public class WebRestControllerOrder {
 			@RequestMapping(value = "/cart", method = RequestMethod.PUT)
 			public ResponseEntity<String> addToCart(@RequestBody Producto product, String info, String name, String price) {
 				os.addCartSession(product.getId(),product.getNombre(),product.getPrecio());
-				return new ResponseEntity<>(HttpStatus.OK);
+				return new ResponseEntity<>("Product added to cart", HttpStatus.OK);
 				
 			}
 		/*End Cart Methods*/
