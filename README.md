@@ -55,3 +55,318 @@ AdminRestControllers + Services + Repositories [FRONTEND]
 ## Template bootstrap ##
 El template de bootstrap que hemos usado ha sido en la zona de administración, hemos cambiado los cuerpos de las páginas y modificado alguna parte del menu.
 https://startbootstrap.com/template-overviews/sb-admin-2/
+
+# Dirando Wiki
+*Small description of the methods used*
+
+## WebController Guide
+### WebRestControllerCategory
+ - Return the products of a category
+   - Method: GET
+   - URL: https://localhost:8443/rest/category
+   - Result: 
+     ```sh
+       { "id": 1, "nombre": "Specialized Epic XCO 2017", "desProducto": "If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight", "precio": 3500, "valoracion": 0, "theBest": 5, "mustImprove": 3, "image": "img/ejemplo1.jpg",      "stock": 30, "comments": [{ "id": 1, "user": "user", "content": "0_1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?", "rating": "XX"}],      "categoria": "xco", "referencia": 0,"bad": 1}|
+     ```
+    - Status code: 200 (OK)
+
+### WebRestControllerComment
+ - Add a comment
+   - Method: PUT
+   - URL: https://localhost:8443/rest/commentary
+   - Result: 
+     ```sh
+       { Me da error}|
+     ```
+    - Status code: 200 (OK)
+
+### WebRestControllerLog
+ - Check if the user is logged in
+   - Method: GET
+   - URL: https://localhost:8443/rest/log
+   - Result: 
+      User logged in
+     ```sh
+       Logged in!
+     ```
+    - Status code: 200 (OK)
+       User not logged in
+      ```sh
+       Not Logged !
+      ```
+    - Status code: 423 Locked (WebDAV)
+
+### WebRestControllerOrder 
+ - Pay an order
+   - Method: PUT
+   - URL: https://localhost:8443/rest/pay
+   - Result: 
+     Not empty car and logged in
+     ```sh
+       Finished payment
+     ```
+    - Status code: 200 (OK)
+       Not empty car but logged out
+      ```sh
+        Logged required!
+      ```
+    - Status code: 401 Not Anauthorized
+       Empty car 
+      ```sh
+       The cart is empty!
+      ```
+    - Status code: 206 Parcial Content
+
+ - Return carriage size
+   - Method: GET
+   - URL: https://localhost:8443/rest/cartSize
+   - Result: 
+     ```sh
+       1
+     ```
+    - Status code: 200 (OK)
+
+ - Return carriage
+   - Method: GET
+   - URL: https://localhost:8443/rest/cartSize
+   - Result: 
+      Not empty car
+     ```sh
+       {"id": 2,"nombre": "Specialized Epic XCO 2017","desProducto": null,"precio": 2000,"valoracion": 0,"theBest": 0, "mustImprove": 0,"image": null,"stock": 0,"comments": null,"categoria": null,"bad": 0,"referencia": 0}
+     ```
+    - Status code: 200 (OK)
+       Empty car
+      ```sh
+       
+      ```
+    - Status code: 204 No Content
+
+ - Delete cart
+   - Method: DELETE
+   - URL: https://localhost:8443/rest/cart
+   - Result: 
+     ```sh
+       The Cart is empty!
+     ```
+    - Status code: 200 (OK)
+
+ - Add to cart
+   - Method: PUT
+   - URL: https://localhost:8443/rest/cart
+   - Result: 
+     ```sh
+       Product added to cart
+     ```
+    - Status code: 200 (OK)
+### WebRestControllerProduct
+ - Show index
+   - Method: GET
+   - URL: https://localhost:8443/rest/indexItems
+   - Result: 
+     ```sh
+       {"content": [{"id": 1,"nombre": "Specialized Epic XCO 2017","desProducto": "If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New metry, crazy low frame weight","precio": 3500,"valoracion": 0,"theBest": 5,"mustImprove": 3,"image": "img/ejemplo1.jpg",  "stock": 30, "comments": [ {"id": 1,"user": "user","content": "0_1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?","rating": "XX" }]}
+     ```
+    - Status code: 200 (OK)
+
+ - Show carrusel
+   - Method: GET
+   - URL: https://localhost:8443/rest/carrusel
+   - Result: 
+     ```sh
+       [{"id": 1,"nomPublicidad": "Chania","imagen": "img/carousel1.jpg"},{"id": 2,"nomPublicidad": "Chania","imagen": "img/carousel2.jpg"},{"id": 3,"nomPublicidad": "Flower","imagen": "img/carousel3.jpg"}]
+     ```
+    - Status code: 200 (OK)
+
+ - Item by search
+   - Method: GET
+   - URL: https://localhost:8443/rest/items/{Id}
+   - Result: 
+     ```sh
+       {"content": [{"id": 2,"nombre": "Specialized XL 2017 2028","desProducto": "If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight","precio": 4600,"valoracion": 0,"theBest": 5, "mustImprove": 3,"image": img/ejemplo2.jpg","stock": 50,"comments": [],"categoria": "xco","bad": 1,"referencia": 0}]}
+     ```
+    - Status code: 200 (OK)
+
+- Show product details
+   - Method: GET
+   - URL: https://localhost:8443/rest/productDetail/{Id}
+   - Result: 
+     ```sh
+       {"id": 1,"nombre": "Specialized Epic XCO 2017","desProducto": "If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low rame weight","precio": 3500,"valoracion": 0,"theBest": 5,"mustImprove": 3,"image": "img/ejemplo1.jpg","stock": 30, "comments": [{"id": 1,"user": "user", "content": "0_1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?","rating": "XX"}],"categoria": "xco",  "bad": 1,"referencia": 0}
+     ```
+   - Status code: 200 (OK)
+
+- Show product rating
+   - Method: GET
+   - URL: https://localhost:8443/rest/productRating/{Id}
+   - Result: 
+     ```sh
+       [55.555557,33.333336,11.111112]
+     ```
+    - Status code: 200 (OK)
+
+### WebRestControllerUser
+ - Modify account
+   - Method: PUT
+   - URL: https://localhost:8443/rest/account
+   - Result: 
+     ```sh
+       |
+     ```
+    - Status code: 200 (OK)
+
+ - Show logged in user
+   - Method: GET
+   - URL: https://localhost:8443/rest/user
+   - Result: 
+     ```sh
+       {"id": 3,"name": "admin","email": "adminser@dirando.com","password": $2a$10$9pJOe8TTv98WFKwn0Ps4VurM3v20Wz.QN3aAMVKsrFsnmDoqEyz0y","role": ["ROLE_USER","ROLE_ADMIN"],"address": "Thomas Nolan Kaszas II,5322 Otter Lane,Middleberge FL 32068","phone": 695698365,"comments": [],"pedidos": [],"fullName": "Con honor"}
+     ```
+    - Status code: 200 (OK)
+
+ - Add new user
+   - Method: POST
+   - URL: https://localhost:8443/rest/user
+   - Result: 
+     ```sh
+       |
+     ```
+    - Status code: 200 (OK)
+
+## AdminController Guide
+### AdminRestController
+ - Return a product
+   - Method: GET
+   - URL: https://localhost:8443/rest/admin/products/{id}
+   - Result: 
+     ```sh
+       { "id": 1, "nombre": "Specialized Epic XCO 2017", "desProducto": "If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight", "precio": 3500, "valoracion": 0, "theBest": 5, "mustImprove": 3, "image": "img/ejemplo1.jpg",      "stock": 30, "comments": [{ "id": 1, "user": "user", "content": "0_1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?", "rating": "XX"}],      "categoria": "xco", "referencia": 0,"bad": 1}
+     ```
+    - Status code: 200 (OK)
+
+ - New product
+   - Method: POST
+   - URL: https://localhost:8443/rest/admin/products
+   - Result: 
+     ```sh
+       {"id": 57,"nombre": "Nuevo nombre","desProducto": "If you ask us, it had beent","precio": 50,"valoracion": 0, "theBest": 1,"mustImprove": 1,"image": "img/ejemplo2.jpg","stock": 50,"comments": null,"categoria": "nueva",  "referencia": 0}
+     ```
+    - Status code: 201 Created
+
+ - Upgrade a product
+   - Method: PUT
+   - URL: https://localhost:8443/rest/admin/products/{id}
+   - Result: 
+     ```sh
+       {"id": 2,"nombre": "Nuevo nombre","desProducto": "If you ask us, it had beent","precio": 50,"valoracion": 0,"theBest": 1,"mustImprove": 1,"image": "img/ejemplo2.jpg","stock": 50,"comments": null,"categoria": "nueva","bad": 0,  "referencia": 0}
+     ```
+    - Status code: 200 (OK)
+
+ - Delete a product
+   - Method: DELETE
+   - URL: https://localhost:8443/rest/admin/products/{id}
+   - Result: 
+     ```sh
+       {"id": 2,"nombre": "Nuevo nombre","desProducto": "If you ask us, it had beent","precio": 50,"valoracion": 0,"theBest": 1,"mustImprove": 1,"image": "img/ejemplo2.jpg","stock": 50,"comments": null,"categoria": "nueva","bad": 0,  "referencia": 0}
+     ```
+    - Status code: 200 (OK)
+
+ - Return all products
+   - Method: GET
+   - URL: https://localhost:8443/rest/admin/products
+   - Result: 
+     ```sh
+       { "id": 1, "nombre": "Specialized Epic XCO 2017", "desProducto": "If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight", "precio": 3500, "valoracion": 0, "theBest": 5, "mustImprove": 3, "image": "img/ejemplo1.jpg",      "stock": 30, "comments": [{ "id": 1, "user": "user", "content": "0_1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?", "rating": "XX"}],      "categoria": "xco", "referencia": 0,"bad": 1}
+     ```
+    - Status code: 200 (OK)
+
+ - Returns all products of all categories
+   - Method: GET
+   - URL: https://localhost:8443/rest/admin/categories
+   - Result: 
+     ```sh
+       { "id": 1, "nombre": "Specialized Epic XCO 2017", "desProducto": "If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight", "precio": 3500, "valoracion": 0, "theBest": 5, "mustImprove": 3, "image": "img/ejemplo1.jpg",      "stock": 30, "comments": [{ "id": 1, "user": "user", "content": "0_1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?", "rating": "XX"}],      "categoria": "xco", "referencia": 0,"bad": 1}...
+     ```
+    - Status code: 200 (OK)
+
+ - Add new categorie
+   - Method: POST
+   - URL: https://localhost:8443/rest/admin/categories
+   - Result: 
+     ```sh
+       {"id": 6,"publicidad": null,"productos": null,"nombre": "nueva"}
+     ```
+    - Status code: 201 Created
+
+ - Returns all products in a category
+   - Method: GET
+   - URL: https://localhost:8443/rest/admin/categories/{id}
+   - Result: 
+     ```sh
+       {"id": 4,"publicidad": [],"productos": [{"id": 25,"nombre": "Specialized TopFuel 2014","desProducto": "If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight","precio": 3500,"valoracion": 0,"theBest": 5,"mustImprove": 3,   "image": "img/ejemplo1.jpg","stock": 30,"comments": [],"categoria": "cyclocross","bad": 1,"referencia": 0},
+     ```
+    - Status code: 200 (OK)
+
+ - Upgrade a category
+   - Method: PUT
+   - URL: https://localhost:8443/rest/admin/categories/{id}
+   - Result: 
+     ```sh
+       {"id": 4,"publicidad": [],"productos": [{"id": 25,"nombre": "Specialized TopFuel 2014","desProducto": "If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight","precio": 3500,"valoracion": 0,"theBest": 5,"mustImprove": 3,    "image": "img/ejemplo1.jpg","stock": 30,"comments": [],"categoria": "nueva","bad": 1, "referencia": 0},...
+     ```
+    - Status code: 201 Created
+
+ - Delete a category
+   - Method: DELETE
+   - URL: https://localhost:8443/rest/admin/categories/{id}
+   - Result: 
+     ```sh
+       {"id": 4,null: [],"productos": [{"id": 25,"nombre": "Specialized TopFuel 2014","desProducto": "If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight","precio": 3500,"valoracion": 0,"theBest": 5,"mustImprove": 3,    "image": "img/ejemplo1.jpg","stock": 30,"comments": [],"categoria": null ,"bad": 1, "referencia": 0},...
+     ```
+    - Status code: 200 (OK)
+
+- Returns all users
+   - Method: GET
+   - URL: https://localhost:8443/rest/admin/users
+   - Result: 
+     ```sh
+       [{"id": 1,"name": "user","email": "userDomPru@gmail.com","password": $2a$10$wm/QYuSvX9abk.1QnFS5huGB910vJ3nTKQ0JpcYotbgj2feRKqX9u","role": ["ROLE_USER"],"address": "Thomas Nolan Kaszas I,5322 Otter Lane,Middleberge FL 32068","phone": 695698365,"comments": [],"pedidos": [],"fullName": "Dominguez Pruiz"},
+     ```
+    - Status code: 200 (OK)
+
+- Returns an users
+   - Method: GET
+   - URL: https://localhost:8443/rest/admin/users/{id}
+   - Result: 
+     ```sh
+       {"id": 2,"name": "user2","email": "userDomPru@gmail.com", "password": "$2a$10$sKuh1QHsOr2sTcu7XYw68uaITfybeHe3b42QNkmQ32av58ulQg3va", "role": ["ROLE_USER"], "address": "Thomas Nolan Kaszas II,5322 Otter Lane,Middleberge FL 32068","phone": 695698365,"comments": [],"pedidos": [],"fullName": "Dominguez Pruiz"}
+     ```
+    - Status code: 200 (OK)
+
+- Add an users
+   - Method: POST
+   - URL: https://localhost:8443/rest/admin/users
+   - Result: 
+     ```sh
+       {"id": 4,"name": "nuevouserpost","email": "nuevo@gmail.com","password": "pass","role": ["ROLE_USER","ROLE_ADMIN"  ],"address": "direccion calle","phone": 668588558,"comments": [],"pedidos": [],"fullName": "Garcia Garcia"}
+     ```
+    - Status code: 201 Created
+
+- Return ads
+   - Method: GET
+   - URL: https://localhost:8443/rest/admin/publicity
+   - Result: 
+     ```sh
+       [{"id": 1,"nomPublicidad": "Chania","imagen": "img/carousel1.jpg"},{"id": 2,"nomPublicidad": "Chania","imagen": "img/carousel2.jpg"},{"id": 3,"nomPublicidad": "Flower","imagen": "img/carousel3.jpg"}]
+     ```
+    - Status code: 200 (OK)
+
+- Returns ande delete an ad 
+   - Method: DELETE
+   - URL: https://localhost:8443/rest/admin/publicity/{id}
+   - Result: 
+     ```sh
+       {"id": 2,"nomPublicidad": "Chania","imagen": "img/carousel2.jpg"}
+     ```
+    - Status code: 200 (OK)
+ 
+
