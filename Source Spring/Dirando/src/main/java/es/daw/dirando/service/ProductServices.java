@@ -42,7 +42,7 @@ public class ProductServices {
 		}
 		public Page<Producto> getProductsByCategory(String category, Pageable page){
 			return productoRepository.findByCategoria(category, page);
-				}
+		}
 		
 		//Get specific items and full contents about entities
 		public Producto getSpecificProduct(long id){

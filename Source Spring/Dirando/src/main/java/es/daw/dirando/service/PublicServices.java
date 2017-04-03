@@ -24,4 +24,8 @@ public class PublicServices {
 		public void deletePublicity(Publicidad publicity){
 			publicityRepository.delete(publicity);
 		}
+		
+		public void savePublicity(Publicidad publicity){
+			publicityRepository.save(publicity);
+		}
 }

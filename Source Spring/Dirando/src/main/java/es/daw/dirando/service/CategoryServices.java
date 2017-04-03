@@ -64,4 +64,8 @@ public class CategoryServices {
 			category.setPublicidad(oldCateg.getPublicidad());
 			categoriaRepository.save(category);
 		}
+		
+		public void saveCategory(Categoria category){
+			categoriaRepository.save(category);
+		}
 }

@@ -7,39 +7,34 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.daw.dirando.repository.CategoriaRepository;
+import es.daw.dirando.service.CategoryServices;
 import es.daw.dirando.model.Categoria;
-import es.daw.dirando.model.Producto;
 
 @Controller
 public class AdminControllerCategory {
 	
 	@Autowired
-	private CategoriaRepository categoryRepository;
+	private CategoryServices categoryService;
 	
 	@RequestMapping("/admin/addCategory")
     public String addCategory(Model model, @RequestParam String category) {
-		model.addAttribute("categorias",categoryRepository.findAll());
-	    categoryRepository.save(new Categoria(category.trim()));
-	    model.addAttribute("categorias",categoryRepository.findAll());
+		model.addAttribute("categorias",categoryService.getAllCategories());
+	    categoryService.saveCategory(new Categoria(category.trim()));
+	    model.addAttribute("categorias",categoryService.getAllCategories());
     	return "adminCategories";
     }
    	
     @RequestMapping("/admin/categories")
     public String listCategories(Model model) {
-    	model.addAttribute("categorias",categoryRepository.findAll());
+    	model.addAttribute("categorias",categoryService.getAllCategories());
     	return "adminCategories";
     }
     
     @RequestMapping("/admin/deleteCategory/{id}")
     public String deleteCategory(Model model, @PathVariable long id) {
-    	Categoria cat = categoryRepository.findOne(id);
-    	for(Producto p :cat.getProductos()){
-    		p.setCategoria(null);
-    	}
-    	categoryRepository.delete(cat);
-    	
-		model.addAttribute("categorias",categoryRepository.findAll());
+    	Categoria cat = categoryService.getSpecificCategoryId(id);
+    	categoryService.deleteCategory(cat);
+		model.addAttribute("categorias",categoryService.getAllCategories());
     	return "adminCategories";
     }
        	

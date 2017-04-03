@@ -5,6 +5,8 @@ import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import es.daw.dirando.repository.CategoriaRepository;
-import es.daw.dirando.repository.ProductoRepository;
+import es.daw.dirando.service.CategoryServices;
+import es.daw.dirando.service.ProductServices;
 import es.daw.dirando.model.Categoria;
 import es.daw.dirando.model.Producto;
 
@@ -24,14 +26,14 @@ public class AdminControllerProduct {
 	private int j;
 
 	@Autowired
-	private ProductoRepository productoRepository;
+	private ProductServices productService;
 	
 	@Autowired
-	private CategoriaRepository categoryRepository;
+	private CategoryServices categoryService;
 
 	@RequestMapping("/admin/addProduct")
 	public String addProduct(Model model) {
-		model.addAttribute("categorias",categoryRepository.findAll());
+		model.addAttribute("categorias",categoryService.getAllCategories());
 		return "adminAddProduct";
 	}
 	
@@ -40,7 +42,7 @@ public class AdminControllerProduct {
 			@RequestParam String desProducto, @RequestParam String categoria, @RequestParam float precio,
 			@RequestParam int stock, @RequestParam int theBest, @RequestParam int mustImprove, @RequestParam int bad) {
 		
-		model.addAttribute("categorias",categoryRepository.findAll());
+		model.addAttribute("categorias",categoryService.getAllCategories());
 
 		String fileName = "p" + j + ".jpg";
 		j++;
@@ -58,11 +60,11 @@ public class AdminControllerProduct {
 				
 				fileName="img/"+fileName;
 				Producto product = new Producto(nombre, desProducto, precio, theBest, mustImprove, bad, fileName, stock, categoria);
-				Categoria category = categoryRepository.findByName(categoria);
+				Categoria category = categoryService.getSpecificCategory(categoria);
 				
-				productoRepository.save(product);
+				productService.addProduct(product);
 				category.getProductos().add(product);
-				categoryRepository.save(category);
+				categoryService.saveCategory(category);
 				
 				//model.addAttribute("imageTitles", imageTitles);
 				
@@ -86,27 +88,37 @@ public class AdminControllerProduct {
 	}
 	
 	@RequestMapping("/admin/listProduct")
-	public String listProduct(Model model) {
-		model.addAttribute("products",productoRepository.findAll());
+	public String listProduct(Model model, Pageable page) {
+		Page<Producto> products = productService.getAllProducts(page);
+		
+		model.addAttribute("products",products);
+		
+		model.addAttribute("showNext",!products.isLast());
+		model.addAttribute("showPrev",!products.isFirst());
+		model.addAttribute("numPage",products.getNumber());
+		model.addAttribute("nextPage",products.getNumber()+1);
+		model.addAttribute("prevPage",products.getNumber()-1);
+		
 		return "adminListProduct";
 	}
 	
 	@RequestMapping("/admin/product/{id}")
 	public String productDetail(Model model, @PathVariable long id) {
-		model.addAttribute("product",productoRepository.findOne(id));
+		model.addAttribute("product",productService.getSpecificProduct(id));
 		return "adminProductDetail";
 	}
 		
 	@RequestMapping("/admin/deleteProduct/{id}")
-	public String deleteProduct(Model model, @PathVariable long id) {
-		Producto p = productoRepository.findOne(id);
-		Categoria cat = categoryRepository.findByName(p.getCategoria());
+	public String deleteProduct(Model model, @PathVariable long id, Pageable page) {
+		Producto p = productService.getSpecificProduct(id);
+		Categoria cat = categoryService.getSpecificCategory(p.getCategoria());
 		List<Producto> list = cat.getProductos();
 		list.remove(p);
 		cat.setProductos(list);
-		categoryRepository.save(cat);
-		productoRepository.delete(productoRepository.findOne(id));
-		model.addAttribute("products",productoRepository.findAll());
+		categoryService.saveCategory(cat);
+		productService.deleteProduct(p);
+		
+		listProduct(model, page);
 		return "adminListProduct";
 	}
 	

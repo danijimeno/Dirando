@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import es.daw.dirando.repository.PublicidadRepository;
+import es.daw.dirando.service.PublicServices;
 import es.daw.dirando.model.Publicidad;
 
 @Controller
@@ -19,7 +19,7 @@ public class AdminControllerAdvertising {
 	private int i;
 	
 	@Autowired
-	private PublicidadRepository publicidadRepository;
+	private PublicServices publicityService;
    	
     @RequestMapping("/admin/advertising")
 	public String advertising() {
@@ -44,7 +44,7 @@ public class AdminControllerAdvertising {
 				
 				fileName="img/"+fileName;
 				Publicidad p = new Publicidad("",fileName);
-				publicidadRepository.save(p);
+				publicityService.savePublicity(p);
 				
 				//model.addAttribute("imageTitles", imageTitles);
 				
