@@ -76,7 +76,7 @@ https://startbootstrap.com/template-overviews/sb-admin-2/
    - URL: https://localhost:8443/rest/commentary
    - Result: 
      ```sh
-       { Me da error}|
+       
      ```
     - Status code: 200 (OK)
 
