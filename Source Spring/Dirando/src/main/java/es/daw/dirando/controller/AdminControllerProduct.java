@@ -118,8 +118,7 @@ public class AdminControllerProduct {
 		categoryService.saveCategory(cat);
 		productService.deleteProduct(p);
 		
-		listProduct(model, page);
-		return "adminListProduct";
+		return listProduct(model, page);
 	}
 	
 }

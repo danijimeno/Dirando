@@ -72,10 +72,9 @@ public class WebControllerUser {
 	    		us.addUser(phone, name, pass, fullName, address, email);
 	    		return "/";
 	    	}
+	    	model.addAttribute("alertNameIsUsed", true);
 	    	return register(model);
-	    	
 	    }
-	    
 	    
 	    
 	    	    	    	    
