@@ -1,5 +1,7 @@
 package es.daw.dirando.controller;
 
+import static org.assertj.core.api.Assertions.useDefaultDateFormatsOnly;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -57,7 +59,7 @@ public class WebControllerUser {
 	    /* add user Query */
 	    @RequestMapping("/updateUser")
 	    public String updateUser(Model model,  Authentication http, @RequestParam(value = "phone") String phone, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
-	    	if(http != null){
+	    	if((http != null)){
 	    		us.updateUser(http.getName(), Long.parseLong(phone), new BCryptPasswordEncoder().encode(pass), fullName, address, email);
 	    	}
 	    	return "/";
@@ -67,9 +69,16 @@ public class WebControllerUser {
 	    /* add user Query */
 	    @RequestMapping("/addUser")
 	    public String addUser(Model model, @RequestParam(value = "phone") String phone, @RequestParam(value = "name") String name, @RequestParam(value = "pass") String pass, @RequestParam(value = "fullName") String fullName, @RequestParam(value = "address") String address, @RequestParam(value = "email") String email) {
-	    	us.addUser(phone, name, pass, fullName, address, email);
-	    	return "/";
+	    	if(us.isNameRepeat(name)){
+	    		us.addUser(phone, name, pass, fullName, address, email);
+	    		return "/";
+	    	}
+	    	return register(model);
+	    	
 	    }
+	    
+	    
+	    
 	    	    	    	    
 	    /* user Query */
 	    @RequestMapping("/usuario")

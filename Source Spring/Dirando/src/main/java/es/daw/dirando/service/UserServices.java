@@ -54,7 +54,7 @@ public class UserServices {
 		}
 		
 		
-		//To get the total orders from specific user
+		//To get the total orders from specific user 
 		public int getTotalOrders(String nameHttp){
 			return usuarioRepository.findUserByName(nameHttp).getPedidos().size();
 		}
@@ -68,6 +68,11 @@ public class UserServices {
 	    	}else{
 	    		return "1";
 	    	}
+		}
+		
+		//check that name is not in use and return boolean value.
+		public boolean isNameRepeat(String name){
+			return (null == usuarioRepository.findUserByName(name))?true:false;
 		}
 		
 		public List<Usuario> getUsers (){
