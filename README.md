@@ -70,16 +70,6 @@ https://startbootstrap.com/template-overviews/sb-admin-2/
      ```
     - Status code: 200 (OK)
 
-### WebRestControllerComment
- - Add a comment
-   - Method: PUT
-   - URL: https://localhost:8443/rest/commentary
-   - Result: 
-     ```sh
-       
-     ```
-    - Status code: 200 (OK)
-
 ### WebRestControllerLog
  - Check if the user is logged in
    - Method: GET
