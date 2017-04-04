@@ -29,11 +29,12 @@ public class UserServices {
 		
 		//Update user data
 		public void updateUser(String name, long phone, String pass, String fullName, String address, String email) {
-	    	usuarioRepository.findUserByName(name).setPhone(phone);
-	    	usuarioRepository.findUserByName(name).setPassword(pass);
-	    	usuarioRepository.findUserByName(name).setFullName(fullName);
-	    	usuarioRepository.findUserByName(name).setAddress(address);
-	    	usuarioRepository.findUserByName(name).setEmail(email);
+	    	Usuario user = usuarioRepository.findUserByName(name);
+	    	user.setPhone(phone);
+	    	user.setPassword(pass);
+	    	user.setFullName(fullName);
+	    	user.setAddress(address);
+	    	user.setEmail(email);
 	    	saveUser(name);
 		}
 						
