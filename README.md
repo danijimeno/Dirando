@@ -143,6 +143,10 @@ https://startbootstrap.com/template-overviews/sb-admin-2/
  - Add to cart
    - Method: PUT
    - URL: https://localhost:8443/rest/cart
+   - Body:
+     ```sh
+       {"id": 2,"nombre":"Specialized Epic XCO 2017","precio":2000}
+     ```
    - Result: 
      ```sh
        Product added to cart
@@ -198,6 +202,10 @@ https://startbootstrap.com/template-overviews/sb-admin-2/
  - Modify account
    - Method: PUT
    - URL: https://localhost:8443/rest/account
+   - Body:
+     ```sh
+       {"fullName":"nuevo nombre comleto","email":"nuevo correo","phone":"98789797","password":"1234","address": "Nueva Calle los rosales 10"}
+     ```
    - Result: 
      ```sh
        |
@@ -216,6 +224,10 @@ https://startbootstrap.com/template-overviews/sb-admin-2/
  - Add new user
    - Method: POST
    - URL: https://localhost:8443/rest/user
+   - Body:
+     ```sh
+       {"name": "name","fullName":"NombreCompleto","email":"correo","phone":"98789797","password":"1234","address": "Calle los rosales 10"}
+     ```
    - Result: 
      ```sh
        |
@@ -236,6 +248,10 @@ https://startbootstrap.com/template-overviews/sb-admin-2/
  - New product
    - Method: POST
    - URL: https://localhost:8443/rest/admin/products
+   - Body:
+     ```sh
+       {"nombre": "Nuevo nombre","desProducto": "If you ask us, it had beent","precio": 50,"theBest": 1,     "mustImprove": 1, "bad": 1, "image": "img/ejemplo2.jpg","stock": 50,"categoria": "nueva"}
+     ```
    - Result: 
      ```sh
        {"id": 57,"nombre": "Nuevo nombre","desProducto": "If you ask us, it had beent","precio": 50,"valoracion": 0, "theBest": 1,"mustImprove": 1,"image": "img/ejemplo2.jpg","stock": 50,"comments": null,"categoria": "nueva",  "referencia": 0}
@@ -245,6 +261,10 @@ https://startbootstrap.com/template-overviews/sb-admin-2/
  - Upgrade a product
    - Method: PUT
    - URL: https://localhost:8443/rest/admin/products/{id}
+   - Body:
+     ```sh
+       {"nombre": "Nuevo nombre","desProducto": "If you ask us, it had beent","precio": 50,"theBest": 1,     "mustImprove": 1, "bad": 1, "image": "img/ejemplo2.jpg","stock": 50,"categoria": "nueva"}
+     ```
    - Result: 
      ```sh
        {"id": 2,"nombre": "Nuevo nombre","desProducto": "If you ask us, it had beent","precio": 50,"valoracion": 0,"theBest": 1,"mustImprove": 1,"image": "img/ejemplo2.jpg","stock": 50,"comments": null,"categoria": "nueva","bad": 0,  "referencia": 0}
@@ -281,6 +301,10 @@ https://startbootstrap.com/template-overviews/sb-admin-2/
  - Add new categorie
    - Method: POST
    - URL: https://localhost:8443/rest/admin/categories
+   - Body:
+     ```sh
+       {"nombre": "nueva"}
+     ```
    - Result: 
      ```sh
        {"id": 6,"publicidad": null,"productos": null,"nombre": "nueva"}
@@ -299,6 +323,10 @@ https://startbootstrap.com/template-overviews/sb-admin-2/
  - Upgrade a category
    - Method: PUT
    - URL: https://localhost:8443/rest/admin/categories/{id}
+   - Body:
+     ```sh
+       {"nombre": "nueva"}
+     ```
    - Result: 
      ```sh
        {"id": 4,"publicidad": [],"productos": [{"id": 25,"nombre": "Specialized TopFuel 2014","desProducto": "If you ask us, it had been too long since hardtails got their world shaken up. Well, our all-new Epic Hardtail Pro Carbon World Cup does just that. New geometry, crazy low frame weight","precio": 3500,"valoracion": 0,"theBest": 5,"mustImprove": 3,    "image": "img/ejemplo1.jpg","stock": 30,"comments": [],"categoria": "nueva","bad": 1, "referencia": 0},...
@@ -335,6 +363,10 @@ https://startbootstrap.com/template-overviews/sb-admin-2/
 - Add an users
    - Method: POST
    - URL: https://localhost:8443/rest/admin/users
+   - Body:
+     ```sh
+       {"name": "nuevouserpost","fullName": "Garcia Garcia","email": "nuevo@gmail.com","imgRuta": "","password": "pass",  "phone": "668588558","address": "direccion calle"}
+     ```
    - Result: 
      ```sh
        {"id": 4,"name": "nuevouserpost","email": "nuevo@gmail.com","password": "pass","role": ["ROLE_USER","ROLE_ADMIN"  ],"address": "direccion calle","phone": 668588558,"comments": [],"pedidos": [],"fullName": "Garcia Garcia"}
@@ -359,4 +391,3 @@ https://startbootstrap.com/template-overviews/sb-admin-2/
      ```
     - Status code: 200 (OK)
  
-
