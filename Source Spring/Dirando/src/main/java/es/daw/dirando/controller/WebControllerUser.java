@@ -1,6 +1,5 @@
 package es.daw.dirando.controller;
 
-import static org.assertj.core.api.Assertions.useDefaultDateFormatsOnly;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
