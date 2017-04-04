@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.daw.dirando.service.CategoryServices;
 import es.daw.dirando.service.CommentServices;
+import es.daw.dirando.service.OrderServices;
 import es.daw.dirando.service.ProductServices;
 import es.daw.dirando.service.PublicServices;
 import es.daw.dirando.service.UserServices;
 import es.daw.dirando.model.Categoria;
 import es.daw.dirando.model.Comment;
+import es.daw.dirando.model.Pedido;
 import es.daw.dirando.model.Producto;
 import es.daw.dirando.model.Publicidad;
 import es.daw.dirando.model.Usuario;
@@ -44,6 +46,9 @@ public class AdminRestController {
 	
 	@Autowired
 	private PublicServices publicityService;
+	
+	@Autowired
+	private OrderServices orderService;
 	
 	
 		@RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
@@ -266,6 +271,23 @@ public class AdminRestController {
 				publicityService.deletePublicity(publicity);
 				
 				return new ResponseEntity<>(publicity, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
+		/*
+		 ********** PEDIDOS ***********************
+		 * 
+		 */
+		
+		@RequestMapping(value = "/orders", method = RequestMethod.GET)
+		public ResponseEntity<Iterable<Pedido>> getOrders() {
+			
+			Iterable<Pedido> ord = orderService.getAllOrders();
+			
+			if(ord != null){
+				return new ResponseEntity<>(ord, HttpStatus.OK);
 			}else{
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}

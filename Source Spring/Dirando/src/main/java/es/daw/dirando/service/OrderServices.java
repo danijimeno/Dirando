@@ -70,4 +70,8 @@ public class OrderServices {
 	    	}
 			return subtotal;
 		}	
+		
+		public Iterable<Pedido> getAllOrders(){
+			return pedidoRepository.findAll();
+		}
 }
