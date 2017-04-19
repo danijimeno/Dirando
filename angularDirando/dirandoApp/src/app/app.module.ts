@@ -5,12 +5,16 @@ import { HttpModule } from '@angular/http';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppComponent } from './app.component';
-import { CarruselComponent } from './carrusel/carrusel.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { IndexbodyComponent } from './indexbody/indexbody.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarruselComponent
+    HeaderComponent,
+    FooterComponent,
+    IndexbodyComponent
   ],
   imports: [
     BrowserModule,
