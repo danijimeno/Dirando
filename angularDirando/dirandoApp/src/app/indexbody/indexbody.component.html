@@ -1,38 +1,55 @@
-   <div>
+<div>
+    <br>
+    <div class="container">
         <br>
-        <div class="container">
-            <br>
-            <br>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                </ol>
-                <!-- Wrapper for slides -->
-                <div  class="carousel-inner" role="listbox">
-                    <div class="item active"> <img src="assets/img/carousel1.jpg" alt="chania" width="460" height="345" /> </div> 
-                    <div *ngFor="let img of imagen" class="item"> <img src="assets/{{img.image}}" alt="{{nomPublicidad}}" width="460" height="345" /> </div> 
+        <br>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active"> <img src="assets/img/carousel1.jpg" alt="chania" width="460" height="345" /> </div>
+                <div *ngFor="let img of imagen" class="item"> <img src="assets/{{img.image}}" alt="{{img.name}}" width="460" height="345" /> </div>
+            </div>
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span>                </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span>                </a>
+        </div>
+    </div>
+</div>
+<div>
+    <br>
+    <div class="container">
+        <div  class="row" id="productosLista">
+            <!-- To content input use ajax query -->
+            <div  *ngFor="let item of items" class="col-sm-6 col-md-4">
+                <div  class="thumbnail"> <img class="img-responsive" src="https://localhost:8443/{{item.imagen}}">
+                    <div class="btn-group  pop-imagenes" role="group">
+                    <a href="/Producto/{{item.id}}" class="btn btn-secondary" role="button">View</a> <a class="btn btn-primary"
+                            role="button" id="AddCart-button{{item.id}}"  data-name="{{item.nombre}}"
+                            data-id="{{item.id}}">Add to cart</a> </div>
+                    <div class="caption">
+                        <h3 class="desc-articulo">{{item.nombre}}</h3>
+                        <p class="cortar">{{item.descripcion}}</p> <span class="precio">{{item.precio}}€</span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-{{item.stock}} progress-bar-striped active" role="progressbar"
+                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 50%"
+                                data-toggle="tooltip" data-placement="bottom" title="Stock"> {{item.stock}}</div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
             </div>
         </div>
     </div>
-    <div>
-        <br>
-        <div class="container">
-            <div class="row" id="productosLista">
-                <!-- To content input use ajax query -->
-            </div>
-        </div>
-    </div>
-    <div class="modal">
-        <!-- Place at bottom of page -->
-    </div>
-    <form id="searchByCat" action="/ListadoProductoSearch" >
-      <input type="hidden" name="inp-search" id='searchCat' value="cat">
- 	</form>
+</div>
+<div class="modal">
+    <!-- Place at bottom of page -->
+</div>
+<form id="searchByCat" action="/ListadoProductoSearch">
+    <input type="hidden" name="inp-search" id='searchCat' value="cat">
+</form>

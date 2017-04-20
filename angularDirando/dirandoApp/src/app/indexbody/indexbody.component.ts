@@ -1,33 +1,48 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import  {  Http  }  from  '@angular/http';
 
 @Component({
   selector: 'app-indexbody',
-  templateUrl: './indexbody.component.html',
-  styleUrls: ['./indexbody.component.css']
+  templateUrl: './indexbody.component.html'
 })
 
-export class IndexbodyComponent{
-  private imagen: Object[]= [];
+export class IndexbodyComponent {
+  
+  private  imagen: Object[] = [];
+  private items: Object[] = [];
 
-  constructor(private http: Http) {
-    console.log("Llega");
+
+  constructor(private  http:  Http)  {
     this.loadCarousel();
-   }
+    this.loadItemsIndex("0", "3");
+  }
 
-  loadCarousel() {
-    console.log("Llega2");
-      let url = "https://localhost:8443/rest/carrusel";
-      this.http.get(url).subscribe(
-        response => {
-          let data = response.json();
-          console.log(data);
-          for (var i = 0; i < data.length; i++) {
-            this.imagen.push({"name":data[i].nomPublicidad,"image":data[i].imagen}); 
-          }
-        console.log(this.imagen);
-        },
-        error => console.error(error)
-      );
-   }
+  loadCarousel()  {
+    let  url  =  "https://localhost:8443/rest/carrusel";
+    this.http.get(url).subscribe(
+      response  =>  {
+        let  data  =  response.json();
+        for  (var  i  =  0;  i  <  data.length;  i++)  {
+          this.imagen.push({ "name": data[i].nomPublicidad, "image": data[i].imagen });
+        }
+      },
+      error  =>  console.error(error)
+    );
+  }
+
+  loadItemsIndex(page: string, size: string)  {
+    let  url  =  "https://localhost:8443/rest/indexItems?page=" + page + "&size=" + size;
+    this.http.get(url).subscribe(
+      response  =>  {
+        let  data  =  response.json();
+        let data2 = data.content;
+        console.log(data2);
+        for  (var  i  =  0;  i  <  data2.length;  i++)  {
+          this.items.push({ "imagen": data2[i].image, "id": data2[i].id, "precio": data2[i].precio, "nombre": data2[i].nombre, "descripcion": data2[i].desProducto, "stock": data2[i].stock });
+        }
+        console.log(this.items);
+      },
+      error  =>  console.error(error)
+    );
+  }
 }
