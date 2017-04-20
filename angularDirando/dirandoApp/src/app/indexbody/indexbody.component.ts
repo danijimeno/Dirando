@@ -36,11 +36,9 @@ export class IndexbodyComponent {
       response  =>  {
         let  data  =  response.json();
         let data2 = data.content;
-        console.log(data2);
         for  (var  i  =  0;  i  <  data2.length;  i++)  {
           this.items.push({ "imagen": data2[i].image, "id": data2[i].id, "precio": data2[i].precio, "nombre": data2[i].nombre, "descripcion": data2[i].desProducto, "stock": data2[i].stock });
         }
-        console.log(this.items);
       },
       error  =>  console.error(error)
     );

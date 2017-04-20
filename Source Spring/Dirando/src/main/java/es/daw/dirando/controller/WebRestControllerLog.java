@@ -17,7 +17,7 @@ public class WebRestControllerLog {
 			if(http != null){
 				return new ResponseEntity<>("Logged In!",HttpStatus.OK );
 	    	}else{
-	    		return new ResponseEntity<>("Not Logged !",HttpStatus.LOCKED );
+	    		return new ResponseEntity<>("Not Logged !",HttpStatus.OK );
 	    	}
 		}
 		
