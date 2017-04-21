@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { CommonModule } from '@angular/common';  
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ export class HeaderComponent{
   private logCode: boolean;
 
   constructor(private http: Http) {
-    this.logCode=true;
+    this.logCode=false;
     this.loadCartSize();
     this.isLogged();
    }
@@ -31,7 +32,7 @@ export class HeaderComponent{
       this.http.get(url).subscribe(
         response => {
           let data = response.text();
-          if (data!="Logged In!"){
+          if (data == "Logged In!"){
             this.logCode=true;
           }else{
             this.logCode=false;

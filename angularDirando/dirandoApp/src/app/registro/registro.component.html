@@ -1,0 +1,60 @@
+<div>
+		<div class="container">
+			<br>
+			<h1 class="well">Welcome to Dirando World!</h1>
+			<div class="alert alert-warning alert-dismissible fade in" role="alert"> 
+			    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> 
+			    <strong>Username is already used!</strong> Please choose another username. 
+            </div>
+			<div class="col-lg-12 well">
+				<div class="row">
+					<form action="/addUser" method="post">
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-6 form-group">
+									<label>User Name*</label> <input name="name"
+										required="required" type="text"
+										placeholder="Enter First Name Here.." class="form-control">
+								</div>
+								<div class="col-sm-6 form-group">
+									<label>Full Name*</label> <input name="fullName"
+										required="required" type="text"
+										placeholder="Enter Last Name Here.." class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Address (Street, number... )*</label>
+								<input name="address" required="required"
+									placeholder="Enter Address Here.." 
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label>Phone Number</label> <input pattern="[0-9]{9}"
+									name="phone" type="tel" placeholder="Enter Phone Number Here.."
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label>Email Address*</label> <input name="email"
+									required="required" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+									placeholder="Enter Email Address Here.." class="form-control">
+							</div>
+							<div class="form-group">
+								<label>Password*</label> <input name="pass" pattern=".{3,}" required="required"
+									type="password" placeholder="Enter a Password Here.."
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label>Confirm Password*</label> <input required="required" pattern=".{3,}"
+									type="password" placeholder="Repeat Password Here.."
+									class="form-control">
+							</div>
+							<button type="submit" class="btn btn-lg btn-info">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<form id="searchByCat" action="/ListadoProductoSearch">
+		<input type="hidden" name="inp-search" id='searchCat' value="cat">
+	</form>

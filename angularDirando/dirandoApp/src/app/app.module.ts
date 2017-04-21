@@ -3,26 +3,30 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CommonModule } from '@angular/common';  
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { IndexbodyComponent } from './indexbody/indexbody.component';
 import { routing } from './app.routing';
+import { RegistroComponent } from './registro/registro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    IndexbodyComponent
+    IndexbodyComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     CarouselModule.forRoot(),
-    routing
+    routing,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

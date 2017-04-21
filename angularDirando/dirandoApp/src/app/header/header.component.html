@@ -60,7 +60,9 @@
                         </li>
                     </ul>
                     <!--*ngIf="logCode; then logueado; else noLogueado"-->
-                    <ul   class="nav navbar-nav navbar-right" > 
+                    <!--<span *ngIf="logCode; then logueado; else noLogueado"></span>-->
+                    <!--<ng-template #logueado>-->
+                    <ul  *ngIf="logCode == true" class="nav navbar-nav navbar-right" > 
                         <!-- IF -->
                         <!--<ng-template #logueado>-->
                             <li><a href="/usuario"><span
@@ -69,6 +71,10 @@
                             <li>
                                 <a class="glyphicon glyphicon-off" href="/logout"></a>
                             </li>
+                    </ul>
+                    <!--</ng-template>-->
+                    <!--<ng-template #noLogueado>-->
+                    <ul *ngIf="logCode == false" class="nav navbar-nav navbar-right">
                         <!--</ng-template>
                         <ng-template #noLogueado>-->
                         <!-- else -->
@@ -103,7 +109,7 @@
                                                         <input id="btn-login" type="submit" class="btn btn-block btn-success" value="Login">
                                                         <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
                                                         <br> </div>
-                                                    <div class="col-sm-12 controls center-text"> <a id="btn-login2" href="/register" class="btn btn-block btn-success2">Register</a>
+                                                    <div class="col-sm-12 controls center-text"> <a id="btn-login2" [routerLink]="['/registro']" class="btn btn-block btn-success2">Register</a>
                                                         <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>--></div>
                                                 </div>
                                             </form>
@@ -118,6 +124,7 @@
                             <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{cartSize}}</span> </a>
                         </li>
                     </ul>
+                    <!--</ng-template>-->
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
