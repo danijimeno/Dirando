@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { IndexbodyComponent } from './indexbody/indexbody.component';
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { IndexbodyComponent } from './indexbody/indexbody.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
