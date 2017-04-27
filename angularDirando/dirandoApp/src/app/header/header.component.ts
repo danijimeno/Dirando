@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent{
+  
   private cartSize: string;
   private logCode: boolean;
 
