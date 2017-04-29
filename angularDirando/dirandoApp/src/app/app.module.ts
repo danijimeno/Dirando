@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { IndexbodyComponent } from './indexbody/indexbody.component';
 import { routing } from './app.routing';
 import { RegistroComponent } from './registro/registro.component';
+import { CarritoService } from './carrito.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { RegistroComponent } from './registro/registro.component';
     routing,
     CommonModule
   ],
-  providers: [],
+  providers: [CarritoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

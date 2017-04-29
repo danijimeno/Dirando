@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { HeaderComponent } from './../header/header.component';
+import {CarritoService} from './../carrito.service';
 
 @Component({
   selector: 'app-indexbody',
@@ -14,7 +15,7 @@ export class IndexbodyComponent {
   private items: Object[] = [];
 
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private carritoService: CarritoService) {
     this.loadCarousel();
     this.loadItemsIndex("0", "3");
   }
@@ -57,6 +58,7 @@ export class IndexbodyComponent {
     this.http.put(url, data).subscribe(
       response => {
         console.log(response);
+        this.carritoService.loadCartSize();
       },
       error => console.error(error)
     );
