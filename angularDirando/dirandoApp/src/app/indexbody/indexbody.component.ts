@@ -49,18 +49,7 @@ export class IndexbodyComponent {
 
   addCart(idItem: string, nombreItem: string, precioItem: string) {
     console.log(idItem, nombreItem, precioItem);
-    let url = "https://localhost:8443/rest/cart";
-    let data = {
-      "id": idItem,
-      "nombre": nombreItem,
-      "precio": precioItem
-    };
-    this.http.put(url, data).subscribe(
-      response => {
-        console.log(response);
-        this.carritoService.loadCartSize();
-      },
-      error => console.error(error)
-    );
+    this.carritoService.addCart(idItem, nombreItem, precioItem)
   }
+  
 }

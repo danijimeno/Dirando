@@ -31,7 +31,8 @@ public class OrderServices {
 		/****************************/
 			//Add in a session products in cart
 			public void addCartSession(long info, String name, float price){
-				pedido.setPedido(new Producto ( info, name, price ));
+				this.pedido.setPedido(new Producto ( info, name, price ));
+				System.out.println("Con el nuevo item el tamaño del carrito es"+cartSize());
 			}
 			//Calculate cart size
 			public int cartSize(){

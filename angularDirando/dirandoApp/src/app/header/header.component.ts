@@ -22,7 +22,7 @@ export class HeaderComponent{
     /*Me suscribo a los cambios*/
       this.cartSize$ = this.carritoService.getCartSize$();
       this.cartSize$.subscribe(message => this.cartSize=message);
-    this.carritoService.loadCartSize();
+    //this.carritoService.loadCartSize(this.http);
     this.isLogged();
    }
 

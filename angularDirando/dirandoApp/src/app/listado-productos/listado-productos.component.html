@@ -1,0 +1,33 @@
+<div>
+    <br>
+    <div class="container">
+        <div  class="row" id="productosLista">
+            <!-- To content input use ajax query -->
+            <div  *ngFor="let item of items" class="col-sm-6 col-md-4">
+                <div  class="thumbnail"> <img class="img-responsive" src="https://localhost:8443/{{item.imagen}}">
+                    <div class="btn-group  pop-imagenes" role="group">
+                    <a href="/Producto/{{item.id}}" class="btn btn-secondary" role="button">View</a> <a (click)="addCart(item.id, item.nombre, item.precio)" class="btn btn-primary"
+                            role="button" id="AddCart-button{{item.id}}"  data-name="{{item.nombre}}"
+                            data-id="{{item.id}}">Add to cart</a> </div>
+                    <div class="caption">
+                        <h3 class="desc-articulo">{{item.nombre}}</h3>
+                        <p class="cortar">{{item.descripcion}}</p> <span class="precio">{{item.precio}}€</span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-{{item.stock}} progress-bar-striped active" role="progressbar"
+                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 50%"
+                                data-toggle="tooltip" data-placement="bottom" title="Stock"> {{item.stock}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div  class="row">
+                 <div class="col-sm-6 col-md-4">
+                    <button style="text-align:center;" id="btn-siguiente" (click)="loadItems()" >Siguiente</button>
+                 </div>
+             </div>
+        </div>
+    </div>
+    <br> 
+</div>
+
+
