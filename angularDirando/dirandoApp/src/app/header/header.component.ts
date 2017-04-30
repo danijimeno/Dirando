@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { CommonModule } from '@angular/common';  
 import { CarritoService } from './../carrito.service';
 import {Observable} from 'rxjs/Observable';
+import { LogService } from './../log.service';
 
 
 @Component({
@@ -14,31 +15,19 @@ import {Observable} from 'rxjs/Observable';
 export class HeaderComponent{
   
   private cartSize: string;
+    cartSize$: Observable<string>;
   private logCode: boolean;
-  cartSize$: Observable<string>;
+    logCode$: Observable<boolean>;
 
-  constructor(private http: Http, private carritoService: CarritoService) {
+  constructor(private http: Http, private carritoService: CarritoService,private logService: LogService) {
     this.logCode=false;
-    /*Me suscribo a los cambios*/
+    /*Me suscribo a los cambios del tamaño de carrito*/
       this.cartSize$ = this.carritoService.getCartSize$();
       this.cartSize$.subscribe(message => this.cartSize=message);
-    //this.carritoService.loadCartSize(this.http);
-    this.isLogged();
+    /*Me suscribo a los cambios del tamaño de logCode, que me dirá si el usuario está logueado*/
+      this.logCode$ = this.logService.getLogCode$();
+      this.logCode$.subscribe(message => this.logCode=message);
+    this.carritoService.loadCartSize();
+    this.logService.isLogged();
    }
-
-  isLogged(){
-    let url = "https://localhost:8443/rest/log";
-      this.http.get(url).subscribe(
-        response => {
-          let data = response.text();
-          if (data == "Logged In!"){
-            this.logCode=true;
-          }else{
-            this.logCode=false;
-          }
-          console.log(this.logCode);
-        },
-        error => console.error(error)
-      );
-  }
 }

@@ -32,4 +32,9 @@ export class ListadoProductosComponent{
     this.page=this.page+1;
   }
 
+  setStyles(valor: string){
+    let styles= {'width': valor+"%" };
+    return styles;
+  } 
+
 }

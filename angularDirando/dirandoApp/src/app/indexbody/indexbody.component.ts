@@ -51,5 +51,10 @@ export class IndexbodyComponent {
     console.log(idItem, nombreItem, precioItem);
     this.carritoService.addCart(idItem, nombreItem, precioItem)
   }
+
+  setStyles(valor: string){
+    let styles= {'width': valor+"%" };
+    return styles;
+  } 
   
 }
