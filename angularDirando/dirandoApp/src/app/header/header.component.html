@@ -63,7 +63,6 @@
                 <!--*ngIf="logCode; then logueado; else noLogueado"-->
                 <!--<span *ngIf="logCode; then logueado; else noLogueado"></span>-->
                 <!--<ng-template #logueado>-->
-                <ul *ngIf="logCode" class="nav navbar-nav navbar-right">
                     <!-- IF -->
                     <!--<ng-template #logueado>-->
                     <ul  *ngIf="loginService.isLogged" class="nav navbar-nav navbar-right" > 
@@ -118,8 +117,6 @@
                                                 </div>
                                             </form>
                                         </div>
-                                    </form>
-                                </div>
                             </li>
                             <!--<li class="divider"></li>-->
                         </ul>
