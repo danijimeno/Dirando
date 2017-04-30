@@ -1,66 +1,70 @@
-    <div class="header">
-        <div class="container">
-            <div class="col-md-12 col-sm-12 fondo-logotipo">
-                <div class="col-md-7 ">
-                    <div class="col-sm-6">
-                        <a href="/"> <img src="assets/img/logoNEW.png" alt="Logo"> </a>
-                    </div>
+<div class="header">
+    <div class="container">
+        <div class="col-md-12 col-sm-12 fondo-logotipo">
+            <div class="col-md-7 ">
+                <div class="col-sm-6">
+                    <a href="/"> <img src="assets/img/logoNEW.png" alt="Logo"> </a>
                 </div>
-                <div class="col-md-5 col-sm-6" id="publi"> <img src="assets/img/publi.gif" alt="publi"> </div>
             </div>
+            <div class="col-md-5 col-sm-6" id="publi"> <img src="assets/img/publi.gif" alt="publi"> </div>
         </div>
-        <nav class="navbar navbar-inverse col-md-12 col-sm-12">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">XCO</a>
-                            <ul class="dropdown-menu">
-                                <li><a id="protections">Protections</a></li>
-                                <li><a id="clothing">Clothing</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a id="xco">Bikes</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downhill</a>
-                            <ul class="dropdown-menu">
-                                <li><a id="protections1">Protections</a></li>
-                                <li><a id="clothing1">Clothing</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a id="downhill">Bikes</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Road</a>
-                            <ul class="dropdown-menu">
-                                <li><a id="protections2">Protections</a></li>
-                                <li><a id="clothing2">Clothing</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a id="road">Bikes</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cyclocross</a>
-                            <ul class="dropdown-menu">
-                                <li><a id="protections3">Protections</a></li>
-                                <li><a id="clothing3">Clothing</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a id="cyclocross">Bikes</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <form action="/ListadoProductoSearch" class="navbar-form search navbar-form-2">
-                                <div class="form-group">
-                                    <input required="required" name="inp-search" type="text" class="form-control" placeholder="Search">
-                                    <button type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-search"></span> </button>
-                                </div>
-                            </form>
-                        </li>
-                    </ul>
-                    <!--*ngIf="logCode; then logueado; else noLogueado"-->
-                    <!--<span *ngIf="logCode; then logueado; else noLogueado"></span>-->
+    </div>
+    <nav class="navbar navbar-inverse col-md-12 col-sm-12">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">XCO</a>
+                        <ul class="dropdown-menu">
+                            <li><a id="protections">Protections</a></li>
+                            <li><a id="clothing">Clothing</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a id="xco" [routerLink]="['/listadoProductos']">Bikes</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downhill</a>
+                        <ul class="dropdown-menu">
+                            <li><a id="protections1">Protections</a></li>
+                            <li><a id="clothing1">Clothing</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a id="downhill" [routerLink]="['/listadoProductos']">Bikes</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Road</a>
+                        <ul class="dropdown-menu">
+                            <li><a id="protections2">Protections</a></li>
+                            <li><a id="clothing2">Clothing</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a id="road" [routerLink]="['/listadoProductos']">Bikes</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cyclocross</a>
+                        <ul class="dropdown-menu">
+                            <li><a id="protections3">Protections</a></li>
+                            <li><a id="clothing3">Clothing</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a id="cyclocross" [routerLink]="['/listadoProductos']">Bikes</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <form action="/ListadoProductoSearch" class="navbar-form search navbar-form-2">
+                            <div class="form-group">
+                                <input required="required" name="inp-search" type="text" class="form-control" placeholder="Search">
+                                <button type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-search"></span> </button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+                <!--*ngIf="logCode; then logueado; else noLogueado"-->
+                <!--<span *ngIf="logCode; then logueado; else noLogueado"></span>-->
+                <!--<ng-template #logueado>-->
+                <ul *ngIf="logCode" class="nav navbar-nav navbar-right">
+                    <!-- IF -->
                     <!--<ng-template #logueado>-->
                     <ul  *ngIf="loginService.isLogged" class="nav navbar-nav navbar-right" > 
                         <!-- IF -->
@@ -77,18 +81,18 @@
                     <ul *ngIf="!loginService.isLogged" class="nav navbar-nav navbar-right">
                         <!--</ng-template>
                         <ng-template #noLogueado>-->
-                        <!-- else -->
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
+                    <!-- else -->
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
                                     class="color-blue"><span class="glyphicon glyphicon-user"></span>Login/register</b>
                                     <span class="caret"></span></a>
-                                <ul class="dropdown-menu login-panel">
-                                    <li>
-                                        <div class="dropdown-header"> <span class="login-header color-blue">Sign In</span> <span class="forgot-password color-blue"><a
+                        <ul class="dropdown-menu login-panel">
+                            <li>
+                                <div class="dropdown-header"> <span class="login-header color-blue">Sign In</span> <span class="forgot-password color-blue"><a
                                                 href="paginaForgotPassword.html">Forgot password?</a></span> </div>
-                                        <div class="clearfix"></div>
-                                        <div>
-                                            <form id="loginform" class="form-horizontal" role="form" autocomplete="off" action="/login" method="post">
-                                                <div class="input-group"> <span class="input-group-addon"><i
+                                <div class="clearfix"></div>
+                                <div>
+                                    <form id="loginform" class="form-horizontal" role="form" autocomplete="off" action="/login" method="post">
+                                        <div class="input-group"> <span class="input-group-addon"><i
                                                         class="glyphicon glyphicon-user color-blue"></i></span>
                                                     <!-- USERNAME OR EMAIL ADDRESS -->
                                                     <input id="login-username" type="text" class="form-control" name="username" #user placeholder="username or email" pattern="[a-zA-Z0-9]{3,}" title="Minimum 3 letters or numbers." required> </div>
@@ -99,8 +103,8 @@
                                                 <div class="center-text">
                                                     <label>
                                                         <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me </label>
-                                                </div>
-                                                <div class="center-text"> <span class="error-message color-red"><i
+                                        </div>
+                                        <div class="center-text"> <span class="error-message color-red"><i
                                                         class="glyphicon glyphicon-warning-sign"></i> Username &
                                                         password don't match!</span> </div>
                                                 <div class="form-group">
@@ -114,20 +118,22 @@
                                                 </div>
                                             </form>
                                         </div>
-                                    </li>
-                                    <!--<li class="divider"></li>-->
-                                </ul>
+                                    </form>
+                                </div>
                             </li>
-                        <!--</ng-template>-->
-                        <!--FIN Else -->
-                        <li>
-                            <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{cartSize}}</span> </a>
-                        </li>
-                    </ul>
+                            <!--<li class="divider"></li>-->
+                        </ul>
+                    </li>
                     <!--</ng-template>-->
-                </div>
-                <!-- /.navbar-collapse -->
+                    <!--FIN Else -->
+                    <li>
+                        <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{cartSize}}</span>                            </a>
+                    </li>
+                </ul>
+                <!--</ng-template>-->
             </div>
-            <!-- /.container-fluid -->
-        </nav>
-    </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+</div>

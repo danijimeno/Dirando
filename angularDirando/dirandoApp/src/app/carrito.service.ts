@@ -6,7 +6,6 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class CarritoService {
 
-
   private cartSize :string;
   private cartSize$: Subject<string> = new Subject<string>();
 
@@ -24,9 +23,24 @@ export class CarritoService {
         },
         error => console.error(error)
       );
-      console.log("Valor de la variable cartSize(observable de carritoService)",this.cartSize);
   }
 
+  addCart(idItem: string, nombreItem: string, precioItem: string) {
+    let url = "https://localhost:8443/rest/cart";
+    let data = {
+      "id": idItem,
+      "nombre": nombreItem,
+      "precio": precioItem
+    };
+    this.http.put(url, data).subscribe(
+      response => {
+        console.log("Datos del item añadido al carro",response);
+        this.loadCartSize();
+      },
+      error => console.error(error)
+    );
+  }
+  
   /*Este método me permite suscribirme a los cambios de la variable*/
   getCartSize$(): Observable<string> {
         return this.cartSize$.asObservable();

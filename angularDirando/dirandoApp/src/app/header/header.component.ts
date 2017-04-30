@@ -16,13 +16,15 @@ import {Observable} from 'rxjs/Observable';
 export class HeaderComponent{
   
   private cartSize: string;
+    cartSize$: Observable<string>;
   private logCode: boolean;
-  cartSize$: Observable<string>;
+    logCode$: Observable<boolean>;
 
   constructor(private http: Http,private loginService:LoginService, private carritoService: CarritoService) {
     /*Me suscribo a los cambios*/
       this.cartSize$ = this.carritoService.getCartSize$();
       this.cartSize$.subscribe(message => this.cartSize=message);
+    /*Me suscribo a los cambios del tamaño de logCode, que me dirá si el usuario está logueado*/
     this.carritoService.loadCartSize();
    }
 
