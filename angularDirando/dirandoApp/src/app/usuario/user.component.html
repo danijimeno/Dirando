@@ -1,0 +1,54 @@
+ <div class="container">
+            <section class=" container infomacion-articulo-general col-md-12"> 
+                <div class="container info-articulo col-md-12" id="usuario">
+                    <div class="info-articulo-imagen col-md-4">
+                        <div class="col-md-7 ">
+                            <div class="col-sm-6"> <img src="{{imgRuta}}" alt="foto"> </div>
+                        </div>
+                    </div>
+                    <div class="info-articulo-texto col-sm-6">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion"
+											href="#collapse1"><strong>Account info</strong> </a>
+									</h4> </div>
+                                <div id="collapse1" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li><strong>User Id: </strong>{{loginService.user.name}}</li>
+                                            <li><strong>E-mail: </strong>{{loginService.user.email}}</li>
+                                            <li><strong>Shipping Address: </strong>{{loginService.user.address}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion"
+											href="#collapse3"><strong>My Personal info</strong>  </a>
+									</h4> </div>
+                                <div id="collapse3" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li><strong>Full Name: </strong>{{full_name}}</li>
+                                            <li><strong>Phone Number: </strong>{{phone}}</li>
+                                            <li><strong>Number of orders: </strong>{{sizeOrders}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+										<a  data-parent="#accordion"
+											href="/modifyAccount"><strong>Modify Account</strong>  </a>
+									</h4> </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>  </section>
+        </div>

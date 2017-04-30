@@ -70,6 +70,7 @@ public class UserServices {
 	    	}
 		}
 		
+		
 		//check that name is not in use and return boolean value.
 		public boolean isNameRepeat(String name){
 			return (null == usuarioRepository.findUserByName(name))?true:false;

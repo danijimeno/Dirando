@@ -31,20 +31,18 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/rest/getUser/**").hasRole("USER");
 		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/rest/updateAccount/**").hasRole("USER");
 			
-		//Login form 
-        http.formLogin().loginPage("/rest/login");
-        http.formLogin().usernameParameter("username");
-        http.formLogin().passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/rest/correctLogIn");
-        http.formLogin().failureUrl("/rest/errorLogIn");
 
-        //Logout
-        http.logout().logoutUrl("/rest/logout");
-        http.logout().logoutSuccessHandler((rq, rs, a) -> {	});
-        
+		
+
+
 		// Disable CSRF protection (it is difficult to implement with ng2)
 		http.csrf().disable();
-		
+
+		// Use Http Basic Authentication
+		http.httpBasic();
+
+		// Do not redirect when logout
+		http.logout().logoutSuccessHandler((rq, rs, a) -> {	});
 		
 
 	}

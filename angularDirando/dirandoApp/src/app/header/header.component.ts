@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import {Router} from '@angular/router';
 import { CommonModule } from '@angular/common';  
 import { CarritoService } from './../carrito.service';
+import { LoginService } from '../login/login.service';
 import {Observable} from 'rxjs/Observable';
 
 
@@ -17,28 +19,26 @@ export class HeaderComponent{
   private logCode: boolean;
   cartSize$: Observable<string>;
 
-  constructor(private http: Http, private carritoService: CarritoService) {
-    this.logCode=false;
+  constructor(private http: Http,private loginService:LoginService, private carritoService: CarritoService) {
     /*Me suscribo a los cambios*/
       this.cartSize$ = this.carritoService.getCartSize$();
       this.cartSize$.subscribe(message => this.cartSize=message);
     this.carritoService.loadCartSize();
-    this.isLogged();
    }
 
-  isLogged(){
-    let url = "https://localhost:8443/rest/log";
-      this.http.get(url).subscribe(
-        response => {
-          let data = response.text();
-          if (data == "Logged In!"){
-            this.logCode=true;
-          }else{
-            this.logCode=false;
-          }
-          console.log(this.logCode);
-        },
-        error => console.error(error)
-      );
-  }
+
+logIn(event:any,user:string,pass:string){
+        event.preventDefault();
+        this.loginService.loginIn(user,pass).subscribe(
+            u => console.log(u),
+            error => alert('Invalid user or password')
+        );
+    }
+
+    logOut(){
+      this.loginService.logOut().subscribe(
+        response => {},
+        error => console.log('Error when trying to exit' + error)
+      );
+    }
 }

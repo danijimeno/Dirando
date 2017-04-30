@@ -20,6 +20,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -39,7 +41,7 @@ public class Usuario {
 	
 	@Column(name="Email")
 	private String email;
-	
+	@JsonIgnore
 	@Column(name="Password")
 	private String password;
 	
@@ -52,16 +54,16 @@ public class Usuario {
 	
 	@Column(name="address")
 	private String address;
-	
+	@JsonIgnore
 	@Column(name="phone_number")
 	private long phone;
 	
-	
+	@JsonIgnore
 	@Column(name="Comments")
 	@OneToMany (cascade=CascadeType.ALL)
 	private List<Comment> comments;
 	
-	
+	@JsonIgnore
 	@Column(name="Pedidos")
 	@OneToMany (cascade=CascadeType.ALL)
 	private List<Pedido> pedidos;

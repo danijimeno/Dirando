@@ -62,19 +62,19 @@
                     <!--*ngIf="logCode; then logueado; else noLogueado"-->
                     <!--<span *ngIf="logCode; then logueado; else noLogueado"></span>-->
                     <!--<ng-template #logueado>-->
-                    <ul  *ngIf="logCode == true" class="nav navbar-nav navbar-right" > 
+                    <ul  *ngIf="loginService.isLogged" class="nav navbar-nav navbar-right" > 
                         <!-- IF -->
                         <!--<ng-template #logueado>-->
-                            <li><a href="/usuario"><span
-                                    class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;
+                            <li><a href="" [routerLink]="['/user']"><span
+                                    class="glyphicon glyphicon-user">{{loginService.user.name}}</span>&nbsp;&nbsp;
                                     </a></li> 
                             <li>
-                                <a class="glyphicon glyphicon-off" href="/logout"></a>
+                                <a class="glyphicon glyphicon-off"  (click)="logOut()" [routerLink]="['']"></a>
                             </li>
                     </ul>
                     <!--</ng-template>-->
                     <!--<ng-template #noLogueado>-->
-                    <ul *ngIf="logCode == false" class="nav navbar-nav navbar-right">
+                    <ul *ngIf="!loginService.isLogged" class="nav navbar-nav navbar-right">
                         <!--</ng-template>
                         <ng-template #noLogueado>-->
                         <!-- else -->
@@ -91,11 +91,11 @@
                                                 <div class="input-group"> <span class="input-group-addon"><i
                                                         class="glyphicon glyphicon-user color-blue"></i></span>
                                                     <!-- USERNAME OR EMAIL ADDRESS -->
-                                                    <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email" pattern="[a-zA-Z0-9]{3,}" title="Minimum 3 letters or numbers." required> </div>
+                                                    <input id="login-username" type="text" class="form-control" name="username" #user placeholder="username or email" pattern="[a-zA-Z0-9]{3,}" title="Minimum 3 letters or numbers." required> </div>
                                                 <div class="input-group"> <span class="input-group-addon"><i
                                                         class="glyphicon glyphicon-lock color-blue"></i></span>
                                                     <!--  PASSWORD  -->
-                                                    <input id="login-password" type="password" class="form-control" name="password" placeholder="password" pattern=".{3,}" title="Minmimum 3 letters or numbers." required> </div>
+                                                    <input id="login-password" type="password" class="form-control" name="password" #pass placeholder="password" pattern=".{3,}" title="Minmimum 3 letters or numbers." required> </div>
                                                 <div class="center-text">
                                                     <label>
                                                         <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me </label>
@@ -106,7 +106,7 @@
                                                 <div class="form-group">
                                                     <!-- Button -->
                                                     <div class="col-sm-12 controls center-text">
-                                                        <input id="btn-login" type="submit" class="btn btn-block btn-success" value="Login">
+                                                        <input id="btn-login" type="submit" (click)="logIn($event,user.value,pass.value)" class="btn btn-block btn-success" value="Login">
                                                         <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
                                                         <br> </div>
                                                     <div class="col-sm-12 controls center-text"> <a id="btn-login2" [routerLink]="['/registro']" class="btn btn-block btn-success2">Register</a>
