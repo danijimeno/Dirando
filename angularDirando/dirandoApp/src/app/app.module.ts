@@ -11,7 +11,10 @@ import { FooterComponent } from './footer/footer.component';
 import { IndexbodyComponent } from './indexbody/indexbody.component';
 import { routing } from './app.routing';
 import { RegistroComponent } from './registro/registro.component';
+import {InfoUserComponent} from './usuario/user.component';
 import { CarritoService } from './carrito.service';
+import { LoginService } from './login/login.service';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { CarritoService } from './carrito.service';
     HeaderComponent,
     FooterComponent,
     IndexbodyComponent,
-    RegistroComponent
+    RegistroComponent,
+    InfoUserComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,7 @@ import { CarritoService } from './carrito.service';
     routing,
     CommonModule
   ],
-  providers: [CarritoService],
+  providers: [CarritoService,LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
