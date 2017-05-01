@@ -41,6 +41,7 @@ public class Usuario {
 	
 	@Column(name="Email")
 	private String email;
+	
 	@JsonIgnore
 	@Column(name="Password")
 	private String password;
@@ -54,7 +55,7 @@ public class Usuario {
 	
 	@Column(name="address")
 	private String address;
-	@JsonIgnore
+	
 	@Column(name="phone_number")
 	private long phone;
 	

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -12,13 +13,13 @@ export class ListadoProductosComponent{
   private page: number;
   private size: number;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, activatedRoute: ActivatedRoute) {
     this.page=0; this.size=6;
-    this.loadItems();
+    this.loadItems(activatedRoute.snapshot.params['producto']);
   }
 
-  loadItems() {
-    let url = "https://localhost:8443/rest/items/xco?page=" + this.page + "&size=" + this.size;
+  loadItems(producto: string) {
+    let url = "https://localhost:8443/rest/items/"+ producto +"?page=" + this.page + "&size=" + this.size;
     this.http.get(url).subscribe(
       response => {
         let data = response.json();

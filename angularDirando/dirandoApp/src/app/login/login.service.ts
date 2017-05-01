@@ -8,11 +8,11 @@ export interface User {
     id?: number;
     name: string;
     roles: string[];
-    full_name:string;
-    email:string;
-    imgRuta:string;
-    address:string;
-    phone:string;
+    full_name: string;
+    email: string;
+    imgRuta: string;
+    address: string;
+    phone: string;
 }
 
 @Injectable()
@@ -26,7 +26,7 @@ export class LoginService {
         this.reqIsLogged();
     }
 
-     reqIsLogged() {
+    reqIsLogged() {
 
         const headers = new Headers({
             'X-Requested-With': 'XMLHttpRequest'
@@ -47,8 +47,9 @@ export class LoginService {
 
     private processLogInResponse(response) {
         this.isLogged = true;
+        console.log(response);
         this.user = response.json();
-        
+
     }
 
     loginIn(user: string, pass: string) {

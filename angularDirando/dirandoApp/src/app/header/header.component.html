@@ -24,7 +24,7 @@
                             <li><a id="protections">Protections</a></li>
                             <li><a id="clothing">Clothing</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a id="xco" [routerLink]="['/listadoProductos']">Bikes</a></li>
+                            <li><a id="xco" [routerLink]="['/listadoProductos/xco']">Bikes</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downhill</a>
@@ -32,7 +32,7 @@
                             <li><a id="protections1">Protections</a></li>
                             <li><a id="clothing1">Clothing</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a id="downhill" [routerLink]="['/listadoProductos']">Bikes</a></li>
+                            <li><a id="downhill" [routerLink]="['/listadoProductos/downhill']">Bikes</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Road</a>
@@ -40,7 +40,7 @@
                             <li><a id="protections2">Protections</a></li>
                             <li><a id="clothing2">Clothing</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a id="road" [routerLink]="['/listadoProductos']">Bikes</a></li>
+                            <li><a id="road" [routerLink]="['/listadoProductos/road']">Bikes</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cyclocross</a>
@@ -48,7 +48,7 @@
                             <li><a id="protections3">Protections</a></li>
                             <li><a id="clothing3">Clothing</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a id="cyclocross" [routerLink]="['/listadoProductos']">Bikes</a></li>
+                            <li><a id="cyclocross" [routerLink]="['/listadoProductos/cyclocross']">Bikes</a></li>
                         </ul>
                     </li>
                     <li>
@@ -60,27 +60,18 @@
                         </form>
                     </li>
                 </ul>
-                <!--*ngIf="logCode; then logueado; else noLogueado"-->
-                <!--<span *ngIf="logCode; then logueado; else noLogueado"></span>-->
-                <!--<ng-template #logueado>-->
-                    <!-- IF -->
-                    <!--<ng-template #logueado>-->
-                    <ul  *ngIf="loginService.isLogged" class="nav navbar-nav navbar-right" > 
-                        <!-- IF -->
-                        <!--<ng-template #logueado>-->
-                            <li><a href="" [routerLink]="['/user']"><span
-                                    class="glyphicon glyphicon-user">{{loginService.user.name}}</span>&nbsp;&nbsp;
-                                    </a></li> 
-                            <li>
-                                <a class="glyphicon glyphicon-off"  (click)="logOut()" [routerLink]="['']"></a>
-                            </li>
-                    </ul>
-                    <!--</ng-template>-->
-                    <!--<ng-template #noLogueado>-->
-                    <ul *ngIf="!loginService.isLogged" class="nav navbar-nav navbar-right">
-                        <!--</ng-template>
-                        <ng-template #noLogueado>-->
-                    <!-- else -->
+                <ul *ngIf="loginService.isLogged" class="nav navbar-nav navbar-right">
+                    <li><a href="" [routerLink]="['/user']"><span
+                                    class="glyphicon glyphicon-user"></span>&nbsp; {{loginService.user.name}}, {{loginService.user.fullName}}&nbsp;&nbsp;
+                                    </a></li>
+                    <li>
+                        <a class="glyphicon glyphicon-off" (click)="logOut()" [routerLink]="['']"></a>
+                    </li>
+                    <li>
+                        <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{cartSize}}</span>                            </a>
+                    </li>
+                </ul>
+                <ul *ngIf="!loginService.isLogged" class="nav navbar-nav navbar-right">
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> <b
                                     class="color-blue"><span class="glyphicon glyphicon-user"></span>Login/register</b>
                                     <span class="caret"></span></a>
@@ -93,44 +84,40 @@
                                     <form id="loginform" class="form-horizontal" role="form" autocomplete="off" action="/login" method="post">
                                         <div class="input-group"> <span class="input-group-addon"><i
                                                         class="glyphicon glyphicon-user color-blue"></i></span>
-                                                    <!-- USERNAME OR EMAIL ADDRESS -->
-                                                    <input id="login-username" type="text" class="form-control" name="username" #user placeholder="username or email" pattern="[a-zA-Z0-9]{3,}" title="Minimum 3 letters or numbers." required> </div>
-                                                <div class="input-group"> <span class="input-group-addon"><i
+                                            <!-- USERNAME OR EMAIL ADDRESS -->
+                                            <input id="login-username" type="text" class="form-control" name="username" #user placeholder="username or email" pattern="[a-zA-Z0-9]{3,}"
+                                                title="Minimum 3 letters or numbers." required>                                            </div>
+                                        <div class="input-group"> <span class="input-group-addon"><i
                                                         class="glyphicon glyphicon-lock color-blue"></i></span>
-                                                    <!--  PASSWORD  -->
-                                                    <input id="login-password" type="password" class="form-control" name="password" #pass placeholder="password" pattern=".{3,}" title="Minmimum 3 letters or numbers." required> </div>
-                                                <div class="center-text">
-                                                    <label>
+                                            <!--  PASSWORD  -->
+                                            <input id="login-password" type="password" class="form-control" name="password" #pass placeholder="password" pattern=".{3,}"
+                                                title="Minmimum 3 letters or numbers." required>                                            </div>
+                                        <div class="center-text">
+                                            <label>
                                                         <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me </label>
                                         </div>
                                         <div class="center-text"> <span class="error-message color-red"><i
                                                         class="glyphicon glyphicon-warning-sign"></i> Username &
                                                         password don't match!</span> </div>
-                                                <div class="form-group">
-                                                    <!-- Button -->
-                                                    <div class="col-sm-12 controls center-text">
-                                                        <input id="btn-login" type="submit" (click)="logIn($event,user.value,pass.value)" class="btn btn-block btn-success" value="Login">
-                                                        <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
-                                                        <br> </div>
-                                                    <div class="col-sm-12 controls center-text"> <a id="btn-login2" [routerLink]="['/registro']" class="btn btn-block btn-success2">Register</a>
-                                                        <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>--></div>
-                                                </div>
-                                            </form>
+                                        <div class="form-group">
+                                            <!-- Button -->
+                                            <div class="col-sm-12 controls center-text">
+                                                <input id="btn-login" type="submit" (click)="logIn($event,user.value,pass.value)" class="btn btn-block btn-success" value="Login">
+                                                <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
+                                                <br> </div>
+                                            <div class="col-sm-12 controls center-text"> <a id="btn-login2" [routerLink]="['/registro']" class="btn btn-block btn-success2">Register</a>
+                                                <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>--></div>
                                         </div>
+                                    </form>
+                                </div>
                             </li>
-                            <!--<li class="divider"></li>-->
                         </ul>
                     </li>
-                    <!--</ng-template>-->
-                    <!--FIN Else -->
                     <li>
                         <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{cartSize}}</span>                            </a>
                     </li>
                 </ul>
-                <!--</ng-template>-->
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
     </nav>
 </div>

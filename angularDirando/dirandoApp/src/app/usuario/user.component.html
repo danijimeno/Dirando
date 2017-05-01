@@ -3,7 +3,7 @@
                 <div class="container info-articulo col-md-12" id="usuario">
                     <div class="info-articulo-imagen col-md-4">
                         <div class="col-md-7 ">
-                            <div class="col-sm-6"> <img src="{{imgRuta}}" alt="foto"> </div>
+                            <div class="col-sm-6"> <img src="assets/img/logoNEW.png" alt="foto"> </div>
                         </div>
                     </div>
                     <div class="info-articulo-texto col-sm-6">
@@ -33,9 +33,9 @@
                                 <div id="collapse3" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul>
-                                            <li><strong>Full Name: </strong>{{full_name}}</li>
-                                            <li><strong>Phone Number: </strong>{{phone}}</li>
-                                            <li><strong>Number of orders: </strong>{{sizeOrders}}</li>
+                                            <li><strong>Full Name: </strong>{{loginService.user.fullName}}</li>
+                                            <li><strong>Phone Number: </strong>{{loginService.user.phone}}</li>
+                                            <!--<li><strong>Number of orders: </strong>{{loginService.user.xxxx}}</li>-->
                                         </ul>
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
 										<a  data-parent="#accordion"
-											href="/modifyAccount"><strong>Modify Account</strong>  </a>
+											href="/cuenta"><strong>Modify Account</strong>  </a>
 									</h4> </div>
                                 
                             </div>
