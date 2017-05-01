@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Http} from '@angular/http';
 import {LoginService} from '../login/login.service';
 
 
@@ -10,9 +9,7 @@ import {LoginService} from '../login/login.service';
 
 export class InfoUserComponent{
 
-    constructor(private http:Http,private loginService:LoginService){}
-
-    infoReq(){
-        
+    constructor(private loginService:LoginService){
+        console.log("En user",this.loginService.user);
     }
 }

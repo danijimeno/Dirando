@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ListadoProductosComponent{
 
   private items: Object[] = [];
+  private categoria: string;
   private page: number;
   private size: number;
 
@@ -25,7 +26,10 @@ export class ListadoProductosComponent{
         let data = response.json();
         let data2 = data.content;
         for (var i = 0; i < data2.length; i++) {
-          this.items.push({ "imagen": data2[i].image, "id": data2[i].id, "precio": data2[i].precio, "nombre": data2[i].nombre, "descripcion": data2[i].desProducto, "stock": data2[i].stock });
+          if (i==0){
+            this.categoria= data2[i].categoria;
+          }
+          this.items.push({ "categoria": data2[i].categoria, "imagen": data2[i].image, "id": data2[i].id, "precio": data2[i].precio, "nombre": data2[i].nombre, "descripcion": data2[i].desProducto, "stock": data2[i].stock });
         }
       },
       error => console.error(error)

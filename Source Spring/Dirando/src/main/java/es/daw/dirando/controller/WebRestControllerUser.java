@@ -20,6 +20,13 @@ public class WebRestControllerUser {
 	private UserServices us;
 	
 		/*Modify account Method*/
+			//Método pruebas angular
+			@RequestMapping(value = "/account2", method = RequestMethod.PUT)
+			public ResponseEntity<Void> updateAccount2(@RequestBody Usuario user) {
+				System.out.println("Funciona");
+				us.updateUser(user.getName(), user.getPhone(), user.getPassword(), user.getFullName(), user.getAddress(), user.getEmail());
+				return new ResponseEntity<>(HttpStatus.OK);
+			}
 			@RequestMapping(value = "/account", method = RequestMethod.PUT)
 			public ResponseEntity<Void> updateAccount(Authentication http, @RequestBody Usuario user) {
 				if(http != null){
