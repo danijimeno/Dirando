@@ -23,7 +23,9 @@ public class WebRestControllerUser {
 			//Método pruebas angular
 			@RequestMapping(value = "/account2", method = RequestMethod.PUT)
 			public ResponseEntity<Void> updateAccount2(@RequestBody Usuario user) {
-				System.out.println("Funciona");
+				//La pass da null (in work)
+				System.out.println("Nueva contraseña:" +user.getPassword());
+				
 				us.updateUser(user.getName(), user.getPhone(), user.getPassword(), user.getFullName(), user.getAddress(), user.getEmail());
 				return new ResponseEntity<>(HttpStatus.OK);
 			}

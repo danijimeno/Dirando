@@ -2,39 +2,37 @@ import { Component } from '@angular/core';
 import {LoginService} from '../login/login.service';
 import { Http } from '@angular/http';
 
-export interface User {
-    name: string;
-    full_name: string;
-    email: string;
-    address: string;
-    phone: string;
-}
-
 @Component({
   selector: 'app-modificar-cuenta',
   templateUrl: './modificar-cuenta.component.html'
 })
 export class ModificarCuentaComponent{
-  edit: {
-        name: "user",
-        fullName:"nuevo nombre comleto",
-        email:"nuevo correo",
-        phone:"98789797",
-        password:"1234",
-        address: "Nueva Calle los rosales 10"
-       };
 
+  private body : Object;
 
-  constructor(private http: Http, private loginService: LoginService) { 
-  }
+  edit = {
+        fullName: "" ,
+        email: "",
+        phone: "",
+        password: "",
+        address: ""
+    };
+
+  constructor(private http: Http, private loginService: LoginService) {}
   
-  //Método de prueba para nuevo mapping en backend (not work)
+  //Método de prueba para nuevo mapping en backend (in work)
   modifica() {
+    this.body = {
+        name: this.loginService.user['name'],
+        fullName: this.edit.fullName,
+        email:this.edit.email,
+        phone: this.edit.phone,
+        password: this.edit.password,
+        address: this.edit.address
+    };
     let url = "https://localhost:8443/rest/account2";
-    this.http.put(url,this.edit).subscribe(
-      response => {
-        console.log(response);
-        },
+    this.http.put(url,this.body).subscribe(
+      response => console.log(response),
       error => console.error(error)
     );
   }

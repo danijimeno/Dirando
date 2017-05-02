@@ -9,7 +9,5 @@ import {LoginService} from '../login/login.service';
 
 export class InfoUserComponent{
 
-    constructor(private loginService:LoginService){
-        console.log("En user",this.loginService.user);
-    }
+    constructor(private loginService:LoginService){}
 }

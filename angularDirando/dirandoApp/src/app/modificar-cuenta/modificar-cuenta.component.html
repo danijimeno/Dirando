@@ -3,30 +3,30 @@
 	<h1 class="well">Modify your Account</h1>
 	<div class="col-lg-12 well">
 		<div class="row">
-			<!--(ngSubmit)="modifica()" #edit="ngForm"-->
-			<form >
+			<form (ngSubmit)="modifica()">
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-6 form-group">
-							<label>Full Name*</label> <input name="fullName" required="required" type="text" value="{{loginService.user.fullName}}"
-								placeholder="Enter Last Name Here.." class="form-control">
+							<label>Full Name*</label> 
+							<input [(ngModel)]="edit.fullName" required="required" name="fullName" type="text" value="{{loginService.user.fullName}}"
+								placeholder="{{loginService.user.fullName}}" class="form-control">
 						</div>
 					</div>
 					<div class="form-group">
-						<label>Password*</label> <input name="pass" required="required" type="password" pattern=".{3,}" placeholder="Enter a same Password or change here."
+						<label>Password*</label> <input [(ngModel)]="edit.password" name="pass" required="required" type="password" pattern=".{3,}" placeholder="Enter a same Password or change here."
 							class="form-control">
 					</div>
 					<div class="form-group">
 						<label>Address (Street, number... )*</label>
-						<input name="address" required="required" value="{{loginService.user.address}}" placeholder="Enter Address Here.." class="form-control">
+						<input [(ngModel)]="edit.address" name="address" required="required" value="{{loginService.user.address}}" placeholder="{{loginService.user.address}}" class="form-control">
 					</div>
 					<div class="form-group">
-						<label>Phone Number</label> <input pattern="[0-9]{9}" name="phone" type="tel" value="{{loginService.user.phone}}" placeholder="Enter Phone Number Here.."
+						<label>Phone Number</label> <input [(ngModel)]="edit.phone" required="required" pattern="[0-9]{9}" name="phone" type="tel" value="{{loginService.user.phone}}" placeholder="{{loginService.user.phone}}"
 							class="form-control">
 					</div>
 					<div class="form-group">
-						<label>Email Address*</label> <input  name="email" required="required" type="email" value="{{loginService.user.email}}"
-							placeholder="Enter Email Address Here.." class="form-control">
+						<label>Email Address*</label> <input [(ngModel)]="edit.email" required="required" name="email" type="email" value="{{loginService.user.email}}"
+							placeholder="{{loginService.user.email}}" class="form-control">
 					</div>
 
 					<button type="submit" class="btn btn-lg btn-info">Submit</button>
