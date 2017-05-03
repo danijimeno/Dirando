@@ -20,7 +20,6 @@ export class ModificarCuentaComponent{
 
   constructor(private http: Http, private loginService: LoginService) {}
   
-  //Método de prueba para nuevo mapping en backend (in work)
   modifica() {
     this.body = {
         name: this.loginService.user['name'],
@@ -32,7 +31,9 @@ export class ModificarCuentaComponent{
     };
     let url = "https://localhost:8443/rest/account2";
     this.http.put(url,this.body).subscribe(
-      response => console.log(response),
+      response => {console.log(response),
+                  this.loginService.logOut()
+                  },
       error => console.error(error)
     );
   }
