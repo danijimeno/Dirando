@@ -15,6 +15,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HeaderComponent {
 
+  private busquedaItem: string;
   private cartSize: string;
   cartSize$: Observable<string>;
   private logCode: boolean;
@@ -27,6 +28,9 @@ export class HeaderComponent {
     this.carritoService.loadCartSize();
   }
 
+  setBusqueda( busqueda: string ){
+    this.busquedaItem=busqueda;
+  }
 
   logIn(event: any, user: string, pass: string) {
     event.preventDefault();
