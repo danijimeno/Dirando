@@ -7,7 +7,7 @@ const URL = 'https://localhost:8443/rest';
 export interface User {
     id?: number;
     name: string;
-    roles: string[];
+    role: string[];
     full_name: string;
     email: string;
     imgRuta: string;
@@ -49,6 +49,13 @@ export class LoginService {
         this.isLogged = true;
         console.log(response);
         this.user = response.json();
+
+        for(let rol of this.user.role){
+            if(rol == "ROLE_ADMIN"){
+                this.isAdmin = true;
+            }
+        }
+        console.log("Administrador " + this.isAdmin);
 
     }
 
