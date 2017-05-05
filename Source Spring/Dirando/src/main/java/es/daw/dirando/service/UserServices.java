@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import es.daw.dirando.model.Pedido;
@@ -31,7 +32,7 @@ public class UserServices {
 		public void updateUser(String name, long phone, String pass, String fullName, String address, String email) {
 	    	Usuario user = usuarioRepository.findUserByName(name);
 	    	user.setPhone(phone);
-	    	user.setPassword(pass);
+	    	user.setPassword(new BCryptPasswordEncoder().encode(pass));
 	    	user.setFullName(fullName);
 	    	user.setAddress(address);
 	    	user.setEmail(email);

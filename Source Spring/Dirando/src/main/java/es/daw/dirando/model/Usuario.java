@@ -42,7 +42,6 @@ public class Usuario {
 	@Column(name="Email")
 	private String email;
 	
-	@JsonIgnore
 	@Column(name="Password")
 	private String password;
 	

@@ -23,10 +23,7 @@ public class WebRestControllerUser {
 			//Método angular
 			@RequestMapping(value = "/account2", method = RequestMethod.PUT)
 			public ResponseEntity<Void> updateAccount2(@RequestBody Usuario user) {
-				//La pass da null (in work)
-				System.out.println("Nueva contraseña:" +user.getPassword());
-				
-				us.updateUser(user.getName(), user.getPhone(), /*user.getPassword()*/"1234", user.getFullName(), user.getAddress(), user.getEmail());
+				us.updateUser(user.getName(), user.getPhone(), user.getPassword(), user.getFullName(), user.getAddress(), user.getEmail());
 				return new ResponseEntity<>(HttpStatus.OK);
 			}
 			@RequestMapping(value = "/account", method = RequestMethod.PUT)
@@ -56,8 +53,7 @@ public class WebRestControllerUser {
 			}		
 			@RequestMapping(value = "/user", method = RequestMethod.POST)
 			public ResponseEntity<Void> addNewUser(@RequestBody Usuario user){
-				System.out.println(user.getPhone()+" "+ user.getName()+" "+ user.getPassword()+" "+ user.getFullName()+" "+ user.getAddress()+" "+ user.getEmail());
-				us.addUser(Long.toString(user.getPhone()), user.getName(), /*user.getPassword()*/"1234", user.getFullName(), user.getAddress(), user.getEmail());
+				us.addUser(Long.toString(user.getPhone()), user.getName(), user.getPassword(), user.getFullName(), user.getAddress(), user.getEmail());
 				return new ResponseEntity<>(HttpStatus.OK);
 			}
 		/*End User Methods*/
