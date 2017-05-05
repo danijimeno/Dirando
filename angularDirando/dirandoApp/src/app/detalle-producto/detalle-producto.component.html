@@ -26,7 +26,7 @@
                 <em>The best!</em>
               </h6>
               <div class="progress">
-                <div class="progress-bar success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [ngStyle]="setStyles(producto.best)" >{{producto.best}}%<span class="glyphicon glyphicon-heart"></span> </div>
+                <div class="progress-bar success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [ngStyle]="setStyles(producto.best)">{{producto.best}}%<span class="glyphicon glyphicon-heart"></span> </div>
               </div>
               <h6 class="price">
                 <em>Must improve!</em>
@@ -49,7 +49,7 @@
                 <div class="progress-bar progress-bar- progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0"
                   aria-valuemax="100" [ngStyle]="setStyles(producto.stock)" data-toggle="tooltip" data-placement="bottom" title="Disponibilidad">{{producto.stock}} UD.</div>
               </div>
-              <div class="action"> <a  [routerLink]="['/home']" id="addCartButton" class="add-to-cart btn btn-default" type="button">Add to cart</a> </div>
+              <div class="action"> <a [routerLink]="['/home']" id="addCartButton" class="add-to-cart btn btn-default" type="button">Add to cart</a>                </div>
             </div>
           </div>
         </div>
@@ -65,43 +65,53 @@
             <h1>Comments</h1>
             <ul id="comments-list" class="comments-list">
               <!-- HERE COMMENTS -->
-
+              <li *ngFor="let comentario of comentarios">
+                <div class="comment-main-level">
+                  <div class="comment-avatar"> <img src="assets/img/logoNEW.png" alt=""> </div>
+                  <div class="comment-box">
+                    <div class="comment-head"> <span class="glyphicon glyphicon-heart"></span>
+                      <h6 class="comment-name">{{comentario.user}}</h6>
+                    </div>
+                    <div class="comment-content">{{comentario.content}}</div>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
-          <div *ngIf="logged" class="row" id="addComment">
-								<form action="/addComment">
-									<div class="form-group">
-										<br>
-										<label for="comment">Comment:</label>
-										<textarea required="required" name="comment" class="form-control" rows="5" id="comment"></textarea>
-									</div>
-									<label for="comment">Rating:</label>
-									<div id="ratingContent" class="btn-group btn-group-justified" role="group"
-										aria-label="...">
-										<div class="btn-group" role="group">
-											<button data-value="3" type="button" class="btn btn-default">
+
+          <div *ngIf="loginService.isLogged" class="row" id="addComment">
+            <form (ngSubmit)="addComment()">
+              <div class="form-group">
+                <br>
+                <label for="comment">Comment:</label>
+                <textarea [(ngModel)]="comentario.text" required="required" name="comment" class="form-control" rows="5" id="comment"></textarea>
+              </div>
+              <label for="comment">Rating:</label>
+              <div id="ratingContent" class="btn-group btn-group-justified" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                  <button (click)="setBest($event)" data-value="3" type="button" class="btn btn-default">
 												<span class="glyphicon glyphicon-heart"></span> The Best!
 											</button>
-										</div>
-										<div class="btn-group" role="group">
-											<button data-value="2" type="button" class="btn btn-default">
+                </div>
+                <div class="btn-group" role="group">
+                  <button (click)="setImprove($event)" data-value="2" type="button" class="btn btn-default">
 												<span class="glyphicon glyphicon-minus"></span> Must improve!
 											</button>
-										</div>
-										<div class="btn-group" role="group">
-											<button data-value="1" type="button" class="btn btn-default">
+                </div>
+                <div class="btn-group" role="group">
+                  <button (click)="setBad($event)" data-value="1" type="button" class="btn btn-default">
 												<span class="glyphicon glyphicon-remove"></span> Bad!
 											</button>
-										</div>
-									</div>
-									<br>
-									<input type="hidden" name="id" value="{{id}}"/>
-									<input type="hidden" id="ratingEvent" name="rating" value="0"/>
-									<button type="submit" class="btn btn-primary btn-md">Submit</button>
-								</form>
-								
+                </div>
+              </div>
+              <br>
+              <input type="hidden" name="id" value="{{id}}" />
+              <input type="hidden" id="ratingEvent" name="rating" value="0" />
+              <button type="submit" class="btn btn-primary btn-md">Submit</button>
+            </form>
+
           </div>
-          <h3 *ngIf="!logged">You need to be logged in order to add comments.</h3>
+          <h3 *ngIf="!loginService.isLogged">You must be logged in order to add comments.</h3>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 interface Rating{
   best: string,
@@ -15,27 +16,63 @@ interface Rating{
 
 export class DetalleProductoComponent{
 
-  
-  private logged: boolean = false;
   private productos: Object[] = [];
+  private comentarios: Object[] = [];
+
+  //Datos locales de comentarios para cargar en el template
+    private comentario = {
+      text: "",
+      rating: ""
+    }
+    private valoracion: string = "3";
   
-  constructor(private http: Http, activatedRoute: ActivatedRoute) {
-    this.loadProduct(activatedRoute.snapshot.params['id']);  
+  constructor(private http: Http, private activatedRoute: ActivatedRoute, private loginService: LoginService) {
+    this.loadProduct(this.activatedRoute.snapshot.params['id']);  
+  }
+
+  addComment(){
+    let url = "https://localhost:8443/rest/commentary2";
+    let data = {
+        "name": this.loginService.user.name,
+        "idProduct": this.activatedRoute.snapshot.params['id'],
+        "comment": this.comentario.text,
+        "rating": this.valoracion
+    };
+      this.http.put(url,data).subscribe(
+        response => {
+            this.comentarios.push({ 
+              "user": data.name,
+              "content": data.comment
+            });
+          this.loadProduct(this.activatedRoute.snapshot.params['id']);
+        },
+        error => console.error(error)
+      );
   }
 
   loadProduct(id: number){
+    this.productos.length=0;
+    this.comentarios.length=0;
     let url = "https://localhost:8443/rest/productDetail/"+id;
       this.http.get(url).subscribe(
         response => {
           let data = response.json();
+
           let ra : Rating = this.calcula(data.theBest, data.mustImprove, data.bad);
           
           this.productos.push({ 
             "imagen": data.image,"id": data.id,"nombre": data.nombre,"precio": data.precio,
             "best": ra.best,"mustImprove": ra.improve,"bad": ra.bad,"descripcion": data.desProducto,
             "stock": data.stock });
-
-          console.log("este es el producto pedido: ",this.productos);
+            console.log(data);
+          for(let i=0; i<data.comments.length; i++){
+            this.comentarios.push({ 
+              "user": data.comments[i].user,
+              "content": data.comments[i].content
+            });
+          }
+           console.log("comentarios: ",this.comentarios);
+           console.log("este es el producto pedido: ",this.productos);
         },
         error => console.error(error)
       );
@@ -56,5 +93,14 @@ export class DetalleProductoComponent{
     return styles;
   } 
 
+  setBest(event){
+    this.valoracion="3";
+  }
+  setImprove(event){
+    this.valoracion="2";
+  }
+  setBad(event){
+    this.valoracion="1";
+  }
 
 }
