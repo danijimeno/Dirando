@@ -21,7 +21,7 @@ export class HeaderComponent {
   private logCode: boolean;
   logCode$: Observable<boolean>;
 
-  constructor(private  http:  Http, private loginService: LoginService, private carritoService: CarritoService)  {
+  constructor(private  http:  Http, private router: Router, private loginService: LoginService, private carritoService: CarritoService)  {
     /*Me suscribo a los cambios del tamaño del carrito*/
     this.cartSize$ = this.carritoService.getCartSize$();
       this.cartSize$.subscribe(message => this.cartSize = message);
@@ -30,6 +30,10 @@ export class HeaderComponent {
 
   setBusqueda( busqueda: string ){
     this.busquedaItem=busqueda;
+  }
+  buscar( param: string ){
+    console.log("llega:",param);
+    this.router.navigate(['/listadoProductos/' + param]);
   }
 
   logIn(event: any, user: string, pass: string) {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {LoginService} from '../login/login.service';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modificar-cuenta',
@@ -18,7 +19,7 @@ export class ModificarCuentaComponent{
         address: ""
     };
 
-  constructor(private http: Http, private loginService: LoginService) {}
+  constructor(private http: Http, private router: Router, private loginService: LoginService) {}
   
   modifica() {
     this.body = {
@@ -36,6 +37,7 @@ export class ModificarCuentaComponent{
                   },
       error => console.error(error)
     );
+    this.router.navigate(['/home']);
   }
 
 }

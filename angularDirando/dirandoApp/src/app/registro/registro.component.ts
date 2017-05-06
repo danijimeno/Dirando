@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -17,7 +18,7 @@ export class RegistroComponent{
     };
     private body : Object;
 
-  constructor(private http: Http) { }
+  constructor( private router: Router, private http: Http) { }
 
   crear() {
     this.body = {
@@ -33,6 +34,7 @@ export class RegistroComponent{
       response => console.log(response),
       error => console.error(error)
     );
+    this.router.navigate(['/home']);
   }
 
 }
