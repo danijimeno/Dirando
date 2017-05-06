@@ -24,10 +24,10 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		// URLs that need authentication to access to it
 			//Admin querys ...
-				http.authorizeRequests().antMatchers(HttpMethod.GET, "/rest/admin/**").hasRole("ADMIN");
-				http.authorizeRequests().antMatchers(HttpMethod.POST, "/rest/admin/**").hasRole("ADMIN");
+				//http.authorizeRequests().antMatchers(HttpMethod.GET, "/rest/admin/**").hasRole("ADMIN");
+				//http.authorizeRequests().antMatchers(HttpMethod.POST, "/rest/admin/**").hasRole("ADMIN");
 				http.authorizeRequests().antMatchers(HttpMethod.PUT, "/rest/admin/**").hasRole("ADMIN");
-				http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/rest/admin/**").hasRole("ADMIN");
+				//http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/rest/admin/**").hasRole("ADMIN");
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/rest/getUser/**").hasRole("USER");
 		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/rest/updateAccount/**").hasRole("USER");
 			

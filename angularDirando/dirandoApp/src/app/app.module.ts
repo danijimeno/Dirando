@@ -25,6 +25,7 @@ import { CarritoService } from './carrito.service';
 
 import { AdministracionComponent } from './administracion/administracion.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminCategoriasComponent } from './admin-categorias/admin-categorias.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { AdminComponent } from './admin/admin.component';
     DetalleProductoComponent,
     ModificarCuentaComponent,
     AdministracionComponent,
-    AdminComponent
+    AdminComponent,
+    AdminCategoriasComponent
   ],
   imports: [
     BrowserModule,
