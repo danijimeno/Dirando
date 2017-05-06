@@ -23,6 +23,9 @@ import { ModificarCuentaComponent } from './modificar-cuenta/modificar-cuenta.co
 import { LoginService } from './login/login.service';
 import { CarritoService } from './carrito.service';
 
+import { AdministracionComponent } from './administracion/administracion.component';
+import { AdminComponent } from './admin/admin.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { CarritoService } from './carrito.service';
     InfoUserComponent,
     ListadoProductosComponent,
     DetalleProductoComponent,
-    ModificarCuentaComponent
+    ModificarCuentaComponent,
+    AdministracionComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

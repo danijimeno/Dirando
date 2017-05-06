@@ -60,7 +60,18 @@
                         </form>
                     </li>
                 </ul>
-                <ul *ngIf="loginService.isLogged" class="nav navbar-nav navbar-right">
+                <ul *ngIf="loginService.isLogged && loginService.isAdmin" class="nav navbar-nav navbar-right">
+                    <li><a href="" [routerLink]="['administracion']"><span
+                                    class="glyphicon glyphicon-user"></span>&nbsp; {{loginService.user.name}}, {{loginService.user.fullName}}&nbsp;&nbsp;
+                                    </a></li>
+                    <li>
+                        <a class="glyphicon glyphicon-off" (click)="logOut()" [routerLink]="['']"></a>
+                    </li>
+                    <li>
+                        <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{cartSize}}</span>                            </a>
+                    </li>
+                </ul>
+                <ul *ngIf="loginService.isLogged  && !loginService.isAdmin" class="nav navbar-nav navbar-right">
                     <li><a href="" [routerLink]="['/user']"><span
                                     class="glyphicon glyphicon-user"></span>&nbsp; {{loginService.user.name}}, {{loginService.user.fullName}}&nbsp;&nbsp;
                                     </a></li>
