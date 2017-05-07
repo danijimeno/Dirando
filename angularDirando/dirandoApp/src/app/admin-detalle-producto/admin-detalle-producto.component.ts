@@ -30,7 +30,7 @@ export class AdminDetalleProductoComponent {
         console.log(data);
         this.producto.push({
           "imagen": data.image, "id": data.id, "nombre": data.nombre, "precio": data.precio,
-          "best": data.theBest, "mustImprove": data.mustImprove, "bad": data.bad, "descripcion": data.desProducto,
+          "best": data.theBest, "mustImprove": data.mustImprove, "bad": data.bad, "desProducto": data.desProducto,
           "stock": data.stock, "categoria": data.categoria
         });
       },
@@ -51,5 +51,9 @@ export class AdminDetalleProductoComponent {
       },
       error  =>  console.error(error)
     );
+  }
+
+  modificarProducto(){
+    this.router.navigate(['/administracion/editarProducto',this.activatedRoute.snapshot.params['id']])
   }
 }

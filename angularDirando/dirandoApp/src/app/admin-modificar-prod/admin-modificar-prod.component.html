@@ -1,5 +1,4 @@
 <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -73,37 +72,67 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Productos</h1>
+                    <h1 class="page-header">Modificar Producto</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <div *ngFor="let pro of producto" class="panel panel-primary">
+                <div class="col-lg-12">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
-                            Producto: {{pro.nombre}} 
+                            Modificación de un producto
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-8 col-lg-offset-2">
-                                    <h3></h3>
-                                    <p>Id: {{pro.id}}</p>
-                                    <p>Imagen: {{pro.imagen}}</p>
-                                    <p>{{pro.desProducto}}</p>
-                                    <p>Categoría: {{pro.categoria}}</p>
-                                    <p>Precio:  {{pro.precio}}€</p>
-                                    <p>Cantidad: {{pro.stock}}</p>
-                                    <p>Valoraciones</p>
-                                    <p>Mejor: {{pro.best}}</p>
-                                    <p>Debe Mejorar: {{pro.mustImprove}}</p>
-                                    <p>Malo: {{pro.bad}}</p>
-                                    <br>
-                                    <button (click)="modificarProducto()"type="button" class="btn btn-warning"><i class="fa fa-pencil fa-fw"></i> Modificar producto</button>
-                                    <button (click)="eliminarProducto()" type="button" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Eliminar producto</button>
-                                    <button [routerLink]="['/adminProductos']" type="button" class="btn btn-info">Todos los productos</button>
+                                    <form role="form" (ngSubmit)="modificarProducto()" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label>Nombre del producto</label>
+                                            <input [(ngModel)]="nuevo.nombre" class="form-control" name="nombre" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <!-- <input class="form-control" placeholder="" name="imagen"> -->
+                                            <input type="file" name="image">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea [(ngModel)]="nuevo.desProducto" class="form-control" rows="3" name="desProducto" required="required"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Categoría</label>
+                                            <p>{{nuevo.categoria}}</p>
+                                            <select [(ngModel)]="nuevo.categoria" class="form-control" name="categoria" required="required">
+                                                <option *ngFor="let categoria of categorias" [value]="categoria.nombre">{{categoria.nombre}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Precio</label>
+                                            <input [(ngModel)]="nuevo.precio" type="number" class="form-control" name="precio" min="1" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Cantidad</label>
+                                            <input [(ngModel)]="nuevo.stock" type="number" class="form-control" name="stock" min="1" max="999" required="required">
+                                        </div>
+                                        <label>Valoraciones</label>
+                                        <div class="form-group">
+                                            <label>theBest</label>
+                                            <input [(ngModel)]="nuevo.theBest" type="number" class="form-control" name="theBest" min="0" max="999" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>mustImprove</label>
+                                            <input [(ngModel)]="nuevo.mustImprove" type="number" class="form-control" name="mustImprove" min="0" max="999" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Bad</label>
+                                            <input [(ngModel)]="nuevo.bad" type="number" class="form-control" name="bad" min="0" max="999" required="required">
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Guardar articulo</button>
+                                        <button (click)="cancelar()" type="button" class="btn btn-default">Cancelar</button>
+                                    </form>
                                 </div>
-                                <!-- /.col-lg -->
+                                <!-- /.col-lg-12 -->
                             </div>
                             <!-- /.row -->
                         </div>
