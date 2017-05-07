@@ -29,6 +29,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminCategoriasComponent } from './admin-categorias/admin-categorias.component';
 import { AdminProductosComponent } from './admin-productos/admin-productos.component';
 import { AdminDetalleProductoComponent } from './admin-detalle-producto/admin-detalle-producto.component';
+import { AdminAñadirProductoComponent } from './admin-añadir-producto/admin-añadir-producto.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AdminDetalleProductoComponent } from './admin-detalle-producto/admin-de
     AdminComponent,
     AdminCategoriasComponent,
     AdminProductosComponent,
-    AdminDetalleProductoComponent
+    AdminDetalleProductoComponent,
+    AdminAñadirProductoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,153 @@
+<div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Dirando</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> Admin <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a [routerLink]="['/administracion']"><i class="fa fa-home fa-fw"></i> Inicio</a>
+                        </li>
+                        <li>
+                            <a><i class="fa fa-shopping-bag fa-fw"></i> Productos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a [routerLink]="['/adminAnadirProducto']">Añadir producto</a>
+                                </li>
+                                <li>
+                                    <a [routerLink]="['/adminProductos']">Productos existentes</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a [routerLink]="['/administracion']"><i class="fa fa-users fa-fw"></i> Usuarios</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/adminCategorias']"><i class="fa fa-tags fa-fw"></i> Categorias</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/administracion']"><i class="fa fa-shopping-cart fa-fw"></i> Pedidos</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/administracion']"><i class="fa fa-newspaper-o fa-fw"></i> Publicidad</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Nuevo Producto</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            Alta de un nuevo producto
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-8 col-lg-offset-2">
+                                    <form role="form" (ngSubmit)="anadirProducto()">
+                                        <div class="form-group">
+                                            <label>Nombre del producto</label>
+                                            <input [(ngModel)]="nuevo.nombre" class="form-control" name="nombre" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <!-- <input class="form-control" placeholder="" name="imagen"> -->
+                                            <input type="file" name="imagen">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea [(ngModel)]="nuevo.desProducto" class="form-control" rows="3" name="desProducto" required="required"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Categoría</label>
+                                            <select [(ngModel)]="nuevo.categoria" class="form-control" name="categoria" required="required">
+                                                <option>xco</option>
+                                                <option>downhill</option>
+                                                <option>road</option>
+                                                <option>cyclocross</option>
+                                                <option>helmet</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Precio</label>
+                                            <input [(ngModel)]="nuevo.precio" type="number" class="form-control" name="precio" min="1" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Cantidad</label>
+                                            <input [(ngModel)]="nuevo.stock" type="number" class="form-control" name="stock" min="1" max="999" required="required">
+                                        </div>
+                                        <label>Valoraciones</label>
+                                        <div class="form-group">
+                                            <label>theBest</label>
+                                            <input [(ngModel)]="nuevo.theBest" type="number" class="form-control" name="theBest" min="0" max="999" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>mustImprove</label>
+                                            <input [(ngModel)]="nuevo.mustImprove" type="number" class="form-control" name="mustImprove" min="0" max="999" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Bad</label>
+                                            <input [(ngModel)]="nuevo.bad" type="number" class="form-control" name="bad" min="0" max="999" required="required">
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Guardar articulo</button>
+                                        <button type="reset" class="btn btn-default">Reset articulo</button>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-12 -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
