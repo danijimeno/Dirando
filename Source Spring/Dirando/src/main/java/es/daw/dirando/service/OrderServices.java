@@ -21,6 +21,9 @@ public class OrderServices {
 	private Pedido pedido; //For the cart session...
 	
 	@Autowired
+	private PedidoRepository pedidoR;
+	
+	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
 	@Autowired
@@ -36,7 +39,7 @@ public class OrderServices {
 			}
 			//Calculate cart size
 			public int cartSize(){
-				return pedido.getPedidos().size();
+				return this.pedido.getPedidos().size();
 			}
 			//Return the session shopping Cart
 			public List<Producto> getShoppingCart(){

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
+import {ShopService} from '../shop/shop.service';
 
 
 @Component({
@@ -14,10 +15,15 @@ export class ListadoProductosComponent{
   private page: number;
   private size: number;
 
-  constructor(private http: Http, activatedRoute: ActivatedRoute) {
+  constructor(private http: Http, activatedRoute: ActivatedRoute,private shopservice:ShopService) {
     this.page=0; this.size=6;
     this.loadItems(activatedRoute.snapshot.params['producto']);
   }
+
+  addCart(id:number){
+    this.shopservice.addProductCart(id);
+  }
+
 
   loadItems(producto: string) {
     let url = "https://localhost:8443/rest/items/"+ producto +"?page=" + this.page + "&size=" + this.size;

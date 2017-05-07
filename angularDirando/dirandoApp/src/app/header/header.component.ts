@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input} from '@angular/core';
 import  {  Http  }  from  '@angular/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { CarritoService } from './../carrito.service';
 import { LoginService } from '../login/login.service';
+import {ShopService} from '../shop/shop.service';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -16,16 +16,15 @@ import { Observable } from 'rxjs/Observable';
 export class HeaderComponent {
 
   private busquedaItem: string;
-  private cartSize: string;
-  cartSize$: Observable<string>;
   private logCode: boolean;
-  logCode$: Observable<boolean>;
+  private num:number;
 
-  constructor(private  http:  Http, private loginService: LoginService, private carritoService: CarritoService)  {
-    /*Me suscribo a los cambios del tamaño del carrito*/
-    this.cartSize$ = this.carritoService.getCartSize$();
-      this.cartSize$.subscribe(message => this.cartSize = message);
-    this.carritoService.loadCartSize();
+  constructor(private  http:  Http, private loginService: LoginService,private shopservice:ShopService)  {
+  this.reloadCart()
+}
+
+  reloadCart(){
+    return this.num = this.shopservice.cartSize(); 
   }
 
   setBusqueda( busqueda: string ){
@@ -42,7 +41,7 @@ export class HeaderComponent {
 
   logOut() {
     this.loginService.logOut().subscribe(
-      response => { },
+      response => {this.reloadCart() },
       error => console.log('Error when trying to exit' + error)
     );
   }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { HeaderComponent } from './../header/header.component';
-import {CarritoService} from './../carrito.service';
+import {Product} from '../product.model';
+import {ShopService} from '../shop/shop.service';
 
 @Component({
   selector: 'app-indexbody',
@@ -13,9 +14,9 @@ export class IndexbodyComponent {
 
   private imagen: Object[] = [];
   private items: Object[] = [];
+  private product:Product;
 
-
-  constructor(private http: Http, private carritoService: CarritoService) {
+  constructor(private http: Http,private shopservice:ShopService) {
     this.loadCarousel();
     this.loadItemsIndex("0", "3");
   }
@@ -47,9 +48,8 @@ export class IndexbodyComponent {
     );
   }
 
-  addCart(idItem: string, nombreItem: string, precioItem: string) {
-    console.log(idItem, nombreItem, precioItem);
-    this.carritoService.addCart(idItem, nombreItem, precioItem)
+  addCart(product) {
+    this.shopservice.addProductCart(product);
   }
 
   setStyles(valor: string){

@@ -15,13 +15,14 @@ import { IndexbodyComponent } from './indexbody/indexbody.component';
 import { routing } from './app.routing';
 import { RegistroComponent } from './registro/registro.component';
 import {InfoUserComponent} from './usuario/user.component';
+import {ShopComponent} from './shop/shop.component';
 import { ListadoProductosComponent } from './listado-productos/listado-productos.component';
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 import { ModificarCuentaComponent } from './modificar-cuenta/modificar-cuenta.component';
 
 //Servicios
 import { LoginService } from './login/login.service';
-import { CarritoService } from './carrito.service';
+import {ShopService} from './shop/shop.service';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CarritoService } from './carrito.service';
     InfoUserComponent,
     ListadoProductosComponent,
     DetalleProductoComponent,
-    ModificarCuentaComponent
+    ModificarCuentaComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,7 @@ import { CarritoService } from './carrito.service';
     routing,
     CommonModule
   ],
-  providers: [CarritoService,LoginService],
+  providers: [LoginService,ShopService],
 
   bootstrap: [AppComponent]
 })

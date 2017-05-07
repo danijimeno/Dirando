@@ -6,9 +6,9 @@
             <div  *ngFor="let item of items" class="col-sm-6 col-md-4">
                 <div  class="thumbnail"> <img class="img-responsive" src="https://localhost:8443/{{item.imagen}}">
                     <div class="btn-group  pop-imagenes" role="group">
-                    <a href="/detalleProducto/{{item.id}}" class="btn btn-secondary" role="button">View</a> <a (click)="addCart(item.id, item.nombre, item.precio)" class="btn btn-primary"
-                            role="button" id="AddCart-button{{item.id}}"  data-name="{{item.nombre}}"
-                            data-id="{{item.id}}">Add to cart</a> </div>
+                    <a href="/detalleProducto/{{item.id}}" class="btn btn-secondary" role="button">View</a> 
+                    <a (click)="addCart(item.id)" class="btn btn-primary"
+                            role="button">Add to cart</a> </div>
                     <div class="caption">
                         <h3 class="desc-articulo">{{item.nombre}}</h3>
                         <p class="cortar">{{item.descripcion}}</p> <span class="precio">{{item.precio}}€</span>

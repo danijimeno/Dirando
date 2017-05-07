@@ -68,7 +68,7 @@
                         <a class="glyphicon glyphicon-off" (click)="logOut()" [routerLink]="['']"></a>
                     </li>
                     <li>
-                        <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{cartSize}}</span>                            </a>
+                        <a [routerLink]="['/Cart']"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{shopservice.num}}</span>                            </a>
                     </li>
                 </ul>
                 <ul *ngIf="!loginService.isLogged" class="nav navbar-nav navbar-right">
@@ -114,7 +114,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{cartSize}}</span>                            </a>
+                        <a [routerLink]="['/Cart']"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{shopservice.num}}</span>                            </a>
                     </li>
                 </ul>
             </div>

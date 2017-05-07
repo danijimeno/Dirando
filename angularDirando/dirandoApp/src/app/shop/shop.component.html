@@ -1,0 +1,61 @@
+   <div>
+        <!--CONTENIDO AQUÍ!-->
+        <section class="container">
+            <h3 class="panel-heading">Purchase Order</h3>
+            <div class="table-responsive">
+                <table class="table table-striped" id="productList">
+                    <thead>
+                        <tr >
+                            <th WIDTH="100" HEIGHT="40">
+                                <p>Code Product</p>
+                            </th>
+                            <th>
+                                <p>Product Name</p>
+                            </th>
+                            <th>
+                                <p>Price</p>
+                            </th>
+                            <th WIDTH="100" HEIGHT="40">
+                                <p>Options</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- HERE GOES  PRODUCT'S LIST CONTENT -->
+                    </tbody>
+                        <tr *ngFor="let product of listProduct" >
+                            <th WIDTH="100" HEIGHT="40">
+                                <p>{{product.id}}</p>
+                            </th>
+                            <th>
+                                <p>{{product.nombre}}</p>
+                            </th>
+                            <th>
+                                <p>{{product.precio}}</p>
+                            </th>
+                            <th>
+                                <a  [routerLink]="['/detalleProducto/',product.id]"> View</a>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th WIDTH="200" HEIGHT="40" style="text-align:right">
+                                <p>SUBTOTAL: €</p>
+                            </th>
+                        </tr>
+                </table>
+            </div>
+            <div id="CarritoBtts">
+                <p class="col-md-8 col-sm-7"></p> 
+                <a (click)="clearCart()" class="btn btn-danger" role="button" id="deleteButton"><span class="glyphicon glyphicon-remove"></span>Delete Purchase Order</a> 
+                <button href="" class="btn btn-success" role="button" id="buyButton" [disabled]="!loginservice.isLogged"><span class="glyphicon glyphicon-shopping-cart"></span>Buy</button> </div>
+        </section>
+        <!--FIN CONTENIDO AQUÍ!-->
+        <br>
+        <div class="container"> </div>
+    </div>
+    <div class="modal">
+        <!-- Place at bottom of page -->
+    </div>
+    <form id="searchByCat" action="/ListadoProductoSearch" >
+      <input type="hidden" name="inp-search" id='searchCat' value="cat">
+ 	</form>
