@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-admin-categorias',
@@ -15,13 +17,20 @@ export class AdminCategoriasComponent {
     "nombre": ""
   }
 
-  constructor(private  http:  Http) { 
+  constructor(private  http:  Http,  private router: Router, private loginService: LoginService) { 
+    if (this.loginService.isAdmin==false){
+      this.router.navigate(['/home']);
+    }
     this.loadCategories();
   }
 
    loadCategories() {
     let url = this.URL;
-    this.http.get(url).subscribe(
+    const headers = new Headers({
+            'X-Requested-With': 'XMLHttpRequest'
+    });
+    const options = new RequestOptions({ withCredentials: true, headers });
+    this.http.get(url,options).subscribe(
       response => {
         let data = response.json();
         for (var i=0; i< data.length; i++){
@@ -34,7 +43,11 @@ export class AdminCategoriasComponent {
 
   eliminarCategoria(catId: string){
     let url = this.URL + catId;
-    this.http.delete(url).subscribe(
+    const headers = new Headers({
+            'X-Requested-With': 'XMLHttpRequest'
+    });
+    const options = new RequestOptions({ withCredentials: true, headers });
+    this.http.delete(url,options).subscribe(
       response => {
         this.categorias.length=0;
         this.loadCategories();
@@ -48,7 +61,11 @@ export class AdminCategoriasComponent {
     this.nuevaCat = {
       "nombre": nueva
     }
-    this.http.post(url,this.nuevaCat).subscribe(
+    const headers = new Headers({
+            'X-Requested-With': 'XMLHttpRequest'
+    });
+    const options = new RequestOptions({ withCredentials: true, headers });
+    this.http.post(url,this.nuevaCat,options).subscribe(
       response => {
         this.categorias.length=0;
         this.loadCategories();
