@@ -19,7 +19,8 @@ export class HeaderComponent {
   private logCode: boolean;
   private num:number;
 
-  constructor(private  http:  Http, private loginService: LoginService,private shopservice:ShopService)  {
+
+  constructor(private router:Router,private  http:  Http, private loginService: LoginService,private shopservice:ShopService)  {
   this.reloadCart()
 }
 
@@ -29,6 +30,10 @@ export class HeaderComponent {
 
   setBusqueda( busqueda: string ){
     this.busquedaItem=busqueda;
+  }
+  buscar( param: string ){
+    console.log("llega:",param);
+    this.router.navigate(['/listadoProductos/' + param]);
   }
 
   logIn(event: any, user: string, pass: string) {

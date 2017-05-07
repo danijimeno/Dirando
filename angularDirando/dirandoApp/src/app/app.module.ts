@@ -24,6 +24,10 @@ import { ModificarCuentaComponent } from './modificar-cuenta/modificar-cuenta.co
 import { LoginService } from './login/login.service';
 import {ShopService} from './shop/shop.service';
 
+import { AdministracionComponent } from './administracion/administracion.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminCategoriasComponent } from './admin-categorias/admin-categorias.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +40,10 @@ import {ShopService} from './shop/shop.service';
     ListadoProductosComponent,
     DetalleProductoComponent,
     ModificarCuentaComponent,
-    ShopComponent
+    ShopComponent,
+    AdministracionComponent,
+    AdminComponent,
+    AdminCategoriasComponent
   ],
   imports: [
     BrowserModule,

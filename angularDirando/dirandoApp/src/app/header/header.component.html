@@ -21,46 +21,57 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">XCO</a>
                         <ul class="dropdown-menu">
-                            <li><a id="protections">Protections</a></li>
-                            <li><a id="clothing">Clothing</a></li>
+                            <li><a href="/listadoProductos/helmet" id="protections">Protections</a></li>
+                            <li><a href="/listadoProductos/helmet" id="clothing">Clothing</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a id="xco" href="/listadoProductos/xco">Bikes</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downhill</a>
                         <ul class="dropdown-menu">
-                            <li><a id="protections1">Protections</a></li>
-                            <li><a id="clothing1">Clothing</a></li>
+                            <li><a href="/listadoProductos/helmet" id="protections1">Protections</a></li>
+                            <li><a href="/listadoProductos/helmet" id="clothing1">Clothing</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a id="downhill" href="/listadoProductos/downhill" >Bikes</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Road</a>
                         <ul class="dropdown-menu">
-                            <li><a id="protections2">Protections</a></li>
-                            <li><a id="clothing2">Clothing</a></li>
+                            <li><a href="/listadoProductos/helmet" id="protections2">Protections</a></li>
+                            <li><a href="/listadoProductos/helmet" id="clothing2">Clothing</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a id="road" href="/listadoProductos/road">Bikes</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cyclocross</a>
                         <ul class="dropdown-menu">
-                            <li><a id="protections3">Protections</a></li>
-                            <li><a id="clothing3">Clothing</a></li>
+                            <li><a href="/listadoProductos/downhill" id="protections3">Protections</a></li>
+                            <li><a href="/listadoProductos/downhill" id="clothing3">Clothing</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a id="cyclocross" href="/listadoProductos/cyclocross">Bikes</a></li>
                         </ul>
                     </li>
                     <li>
-                        <form  class="navbar-form search navbar-form-2">
+                        <form (ngSubmit)="buscar(busqueda.value)" class="navbar-form search navbar-form-2">
                             <div class="form-group">
-                                <input #busqueda (blur)="setBusqueda(busqueda.value)" required="required" name="inp-search" type="text" class="form-control" placeholder="Search">
-                                <button [routerLink]="['/listadoProductos/',busquedaItem]"  class="btn btn-default"> <span class="glyphicon glyphicon-search"></span> </button>
+                                <input #busqueda required="required" name="inp-search" type="text" class="form-control" placeholder="Search">
+                                <button type="submit"  class="btn btn-default"> <span class="glyphicon glyphicon-search"></span> </button>
                             </div>
                         </form>
                     </li>
                 </ul>
-                <ul *ngIf="loginService.isLogged" class="nav navbar-nav navbar-right">
+                <ul *ngIf="loginService.isLogged && loginService.isAdmin" class="nav navbar-nav navbar-right">
+                    <li><a href="" [routerLink]="['administracion']"><span
+                                    class="glyphicon glyphicon-user"></span>&nbsp; {{loginService.user.name}}, {{loginService.user.fullName}}&nbsp;&nbsp;
+                                    </a></li>
+                    <li>
+                        <a class="glyphicon glyphicon-off" (click)="logOut()" [routerLink]="['']"></a>
+                    </li>
+                    <li>
+                        <a href="/shoppingCart"> <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="countItems">{{cartSize}}</span>                            </a>
+                    </li>
+                </ul>
+                <ul *ngIf="loginService.isLogged  && !loginService.isAdmin" class="nav navbar-nav navbar-right">
                     <li><a href="" [routerLink]="['/user']"><span
                                     class="glyphicon glyphicon-user"></span>&nbsp; {{loginService.user.name}}, {{loginService.user.fullName}}&nbsp;&nbsp;
                                     </a></li>
