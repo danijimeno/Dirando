@@ -84,7 +84,6 @@ public class AdminControllerProduct {
 			
 			return "adminAddProduct";
 		}
-		
 	}
 	
 	@RequestMapping("/admin/listProduct")
@@ -119,6 +118,90 @@ public class AdminControllerProduct {
 		productService.deleteProduct(p);
 		
 		return listProduct(model, page);
+	}
+	
+	@RequestMapping("/admin/modifyProduct/{id}")
+	public String modifyProduct(Model model, @PathVariable long id) {
+		model.addAttribute("product",productService.getSpecificProduct(id));
+		model.addAttribute("categorias",categoryService.getAllCategories());
+		return "adminUpdateProduct";
+	}
+	
+	@RequestMapping("/admin/updateProduct/{id}")
+	public String updateProduct(Model model, @PathVariable long id, @RequestParam String nombre ,@RequestParam("imagen") MultipartFile imagen,
+			@RequestParam String desProducto, @RequestParam String categoria, @RequestParam float precio,
+			@RequestParam int stock, @RequestParam int theBest, @RequestParam int mustImprove, @RequestParam int bad) {
+		
+		model.addAttribute("categorias",categoryService.getAllCategories());
+		Producto prod = productService.getSpecificProduct(id);
+
+		String fileName = "p" + j + ".jpg";
+		j++;
+		
+		if (!imagen.isEmpty()) {
+			try {
+
+				File filesFolder = new File(FILES_FOLDER);
+				if (!filesFolder.exists()) {
+					filesFolder.mkdirs();
+				}
+
+				File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
+				imagen.transferTo(uploadedFile);
+				
+				fileName="img/"+fileName;
+				
+				prod.setNombre(nombre);
+				prod.setDesProducto(desProducto);
+				prod.setPrecio(precio);
+				prod.setImage(fileName);
+				prod.setStock(stock);
+				prod.setTheBest(theBest);
+				prod.setMustImprove(mustImprove);
+				prod.setBad(bad);
+				if(!prod.getCategoria().equals(categoria)){
+					categoryService.deleteProductFromCategoria(prod);
+					prod.setCategoria(categoria);
+					Categoria category = categoryService.getSpecificCategory(categoria);
+					category.getProductos().add(prod);
+					categoryService.saveCategory(category);
+				}
+				
+				productService.addProduct(prod);
+				
+				//model.addAttribute("imageTitles", imageTitles);
+				
+				return productDetail(model,id);
+
+			} catch (Exception e) {
+				
+				model.addAttribute("fileName",fileName);
+				model.addAttribute("error",
+						e.getClass().getName() + ":" + e.getMessage());
+				
+				return "adminAddProduct";
+			}
+		} else {
+			prod.setNombre(nombre);
+			prod.setDesProducto(desProducto);
+			prod.setPrecio(precio);
+			prod.setImage(prod.getImage());
+			prod.setStock(stock);
+			prod.setTheBest(theBest);
+			prod.setMustImprove(mustImprove);
+			prod.setBad(bad);
+			if(!prod.getCategoria().equals(categoria)){
+				categoryService.deleteProductFromCategoria(prod);
+				prod.setCategoria(categoria);
+				Categoria category = categoryService.getSpecificCategory(categoria);
+				category.getProductos().add(prod);
+				categoryService.saveCategory(category);
+			}
+			
+			productService.addProduct(prod);
+			
+			return productDetail(model,id);
+		}
 	}
 	
 }

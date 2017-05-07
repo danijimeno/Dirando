@@ -197,6 +197,18 @@ public class Producto {
 	public void setComments (Comment comment){
 		this.comments.add(comment);
 	}
+	
+	public void setTheBest(int theBest) {
+		this.theBest = theBest;
+	}
+	
+	public void setMustImprove(int mustImprove) {
+		this.mustImprove = mustImprove;
+	}
+	
+	public void setBad(int bad) {
+		this.Bad = bad;
+	}
 
 	
 	@Override

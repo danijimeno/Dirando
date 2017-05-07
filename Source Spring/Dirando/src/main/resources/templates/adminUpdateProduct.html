@@ -11,7 +11,7 @@
 
     <title>Administración | Dirando</title>
 
-   <!-- Bootstrap Core CSS -->
+    <!-- Bootstrap Core CSS -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
@@ -109,47 +109,73 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Productos</h1>
+                    <h1 class="page-header">Modificar Producto</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <div class="panel panel-primary">
-                       {{#product}}
+                <div class="col-lg-12">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
-                            Producto {{id}}
+                            Modificación de un producto
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-8 col-lg-offset-2">
-                                    <h3>{{nombre}}</h3>
-                                    <ul>
-	                                    <li><p>Id: {{id}}</p></li>
-	                                    <li><p>Imagen: {{image}}</p></li>
-	                                    <li><p>{{desProducto}}</p></li>
-	                                    <li><p>Categoría: {{categoria}}</p></li>
-	                                    <li><p>Precio: {{precio}} €</p></li>
-	                                    <li><p>Cantidad: {{stock}}</p></li>
-	                                    <li><p>Valoraciones</p></li>
-	                                    <ul>
-		                                    <li><p>Mejor: {{theBest}}</p></li>
-		                                    <li><p>Debe Mejorar: {{mustImprove}}</p></li>
-		                                    <li><p>Malo: {{Bad}}</p></li>
-	                                    </ul>
-                                    </ul>
-                                    <br>
-                                    <a href="/admin/modifyProduct/{{id}}"><button type="button" class="btn btn-warning"><i class="fa fa-pencil fa-fw"></i> Modificar producto</button></a>
-                                    <a href="/admin/deleteProduct/{{id}}"><button type="button" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Eliminar producto</button></a>
-                                    <a href="/admin/listProduct"><button type="button" class="btn btn-info">Todos los productos</button></a>
+                                    <form role="form" method="post" action="/admin/updateProduct/{{id}}" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label>Nombre del producto</label>
+                                            <input class="form-control" name="nombre" required="required" value="{{product.nombre}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <!-- <input class="form-control" placeholder="" name="imagen"> -->
+                                            <input type="file" name="imagen" value="{{product.image}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="form-control" rows="3" name="desProducto" required="required">{{product.desProducto}}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Categoría</label>
+                                            <p>{{product.categoria}}</p>
+                                            <select value="{{product.categoria}}" class="form-control" name="categoria" required="required">
+                                                {{#categorias}}
+                                                <option>{{nombre}}</option>
+                                                {{/categorias}}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Precio</label>
+                                            <input type="number" class="form-control" name="precio" min="1" required="required" value="{{product.precio}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Cantidad</label>
+                                            <input type="number" class="form-control" name="stock" min="1" max="999" required="required" value="{{product.stock}}">
+                                        </div>
+                                        <label>Valoraciones</label>
+                                        <div class="form-group">
+                                            <label>theBest</label>
+                                            <input type="number" class="form-control" name="theBest" min="0" max="999" required="required" value="{{product.theBest}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>mustImprove</label>
+                                            <input type="number" class="form-control" name="mustImprove" min="0" max="999" required="required" value="{{product.mustImprove}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Bad</label>
+                                            <input type="number" class="form-control" name="bad" min="0" max="999" required="required" value="{{product.Bad}}">
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Guardar articulo</button>
+                                        <button type="reset" class="btn btn-default">Reset articulo</button>
+                                    </form>
                                 </div>
-                                <!-- /.col-lg -->
+                                <!-- /.col-lg-12 -->
                             </div>
                             <!-- /.row -->
                         </div>
                         <!-- /.panel-body -->
-                        {{/product}}
                     </div>
                     <!-- /.panel -->
                 </div>
