@@ -7,7 +7,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
   selector: 'app-admin-añadir-producto',
   templateUrl: './admin-añadir-producto.component.html'
 })
-export class AdminAñadirProductoComponent {
+export class AdminAñadirProductoComponent implements OnInit {
 
   private nuevo = {
       "nombre": "",
@@ -21,10 +21,16 @@ export class AdminAñadirProductoComponent {
       "categoria": ""
     }
 
+  private categorias: Object[] = [];
+
   constructor(private http: Http, private activatedRoute:  ActivatedRoute, private loginService: LoginService, private router: Router) { 
     if (this.loginService.isAdmin == false) {
       this.router.navigate(['/home']);
     }
+  }
+
+  ngOnInit() {
+    this.loadCategories();
   }
 
   anadirProducto() {
@@ -41,6 +47,23 @@ export class AdminAñadirProductoComponent {
         this.router.navigate(['/adminProductos']);
       },
       error  =>  console.error(error)
+    );
+  }
+
+loadCategories() {
+    let url = "https://localhost:8443/rest/admin/categories/"
+    const headers = new Headers({
+            'X-Requested-With': 'XMLHttpRequest'
+    });
+    const options = new RequestOptions({ withCredentials: true, headers });
+    this.http.get(url,options).subscribe(
+      response => {
+        let data = response.json();
+        for (var i=0; i< data.length; i++){
+          this.categorias.push(data[i]);
+        }
+      },
+      error => console.error(error)
     );
   }
 

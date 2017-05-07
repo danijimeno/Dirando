@@ -22,7 +22,7 @@ export class AdminModificarProdComponent implements OnInit {
       "stock": 0,
       "categoria": ""
     }
-//private nuevo: Object[] = [];
+
 private categorias: Object[] = [];
 
   constructor(private http: Http, private activatedRoute:  ActivatedRoute, private loginService: LoginService, private router: Router) { 
@@ -64,11 +64,7 @@ private categorias: Object[] = [];
       response  =>  {
         let data = response.json();
         console.log(data);
-        /*this.nuevo.push({
-          "image": data.image, "id": data.id, "nombre": data.nombre, "precio": data.precio,
-          "theBest": data.theBest, "mustImprove": data.mustImprove, "bad": data.bad, "desProducto": data.desProducto,
-          "stock": data.stock, "categoria": data.categoria
-        });*/
+        
         this.nuevo.nombre = data.nombre;
         this.nuevo.image = data.image;
         this.nuevo.desProducto = data.desProducto;

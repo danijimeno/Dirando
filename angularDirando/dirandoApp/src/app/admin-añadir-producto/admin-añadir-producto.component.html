@@ -104,11 +104,7 @@
                                         <div class="form-group">
                                             <label>Categoría</label>
                                             <select [(ngModel)]="nuevo.categoria" class="form-control" name="categoria" required="required">
-                                                <option>xco</option>
-                                                <option>downhill</option>
-                                                <option>road</option>
-                                                <option>cyclocross</option>
-                                                <option>helmet</option>
+                                                <option *ngFor="let categoria of categorias" [value]="categoria.nombre">{{categoria.nombre}}</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
