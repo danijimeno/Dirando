@@ -27,6 +27,8 @@ import {ShopService} from './shop/shop.service';
 import { AdministracionComponent } from './administracion/administracion.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminCategoriasComponent } from './admin-categorias/admin-categorias.component';
+import { AdminProductosComponent } from './admin-productos/admin-productos.component';
+import { AdminDetalleProductoComponent } from './admin-detalle-producto/admin-detalle-producto.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { AdminCategoriasComponent } from './admin-categorias/admin-categorias.co
     ShopComponent,
     AdministracionComponent,
     AdminComponent,
-    AdminCategoriasComponent
+    AdminCategoriasComponent,
+    AdminProductosComponent,
+    AdminDetalleProductoComponent
   ],
   imports: [
     BrowserModule,

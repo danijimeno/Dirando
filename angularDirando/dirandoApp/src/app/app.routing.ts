@@ -10,6 +10,8 @@ import { ModificarCuentaComponent } from './modificar-cuenta/modificar-cuenta.co
 import {ShopComponent} from './shop/shop.component';
 
 import { AdminCategoriasComponent } from './admin-categorias/admin-categorias.component';
+import { AdminProductosComponent } from './admin-productos/admin-productos.component';
+import { AdminDetalleProductoComponent } from './admin-detalle-producto/admin-detalle-producto.component';
 
 import { AdminComponent } from './admin/admin.component';
 
@@ -22,6 +24,8 @@ const appRoutes = [
   { path: 'detalleProducto/:id', component: DetalleProductoComponent },
   { path: 'cuenta', component: ModificarCuentaComponent },
   {path: 'Cart', component: ShopComponent},
+  { path: 'adminProductos', component: AdminProductosComponent },
+  { path: 'adminDetalleProducto/:id', component: AdminDetalleProductoComponent },
   //{ path: '**', redirectTo: '', pathMatch: 'full' },
   { path: 'adminCategorias', component: AdminCategoriasComponent},
   { path: 'administracion', pathMatch: 'prefix', component: AdminComponent},

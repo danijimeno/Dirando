@@ -30,13 +30,13 @@
                     <a href=""><i class="fa fa-home fa-fw"></i> Inicio</a>
                 </li>
                 <li>
-                    <a href=""><i class="fa fa-shopping-bag fa-fw"></i> Productos<span class="fa arrow"></span></a>
+                    <a [routerLink]="['/adminProductos']"><i class="fa fa-shopping-bag fa-fw"></i> Productos<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="">Añadir producto</a>
                         </li>
                         <li>
-                            <a href="">Productos existentes</a>
+                            <a [routerLink]="['/adminProductos']">Productos existentes</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
