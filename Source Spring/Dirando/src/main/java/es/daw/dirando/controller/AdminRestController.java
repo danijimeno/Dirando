@@ -1,5 +1,6 @@
 package es.daw.dirando.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -288,6 +289,29 @@ public class AdminRestController {
 			
 			if(ord != null){
 				return new ResponseEntity<>(ord, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
+		/*
+		 ********** INDEX ***********************
+		 * 
+		 */
+		
+		@RequestMapping(value = "/index", method = RequestMethod.GET)
+		public ResponseEntity<List<Long>> getIndex() {
+			
+			List<Long> list = new ArrayList<>();
+			list.add(orderService.getPedidoNumber());
+			list.add(productService.getProductsNumber());
+			list.add(userService.getUserNumber());
+			list.add(commentService.getCommentsNumber());
+			list.add(productService.getProductsNumber());
+			list.add(categoryService.getCategoryNumber());
+			
+			if(list.size() != 0){
+				return new ResponseEntity<>(list, HttpStatus.OK);
 			}else{
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}

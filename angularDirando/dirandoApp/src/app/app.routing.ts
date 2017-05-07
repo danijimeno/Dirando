@@ -14,7 +14,7 @@ import { AdminProductosComponent } from './admin-productos/admin-productos.compo
 import { AdminDetalleProductoComponent } from './admin-detalle-producto/admin-detalle-producto.component';
 import { AdminAñadirProductoComponent } from './admin-añadir-producto/admin-añadir-producto.component';
 
-import { AdminComponent } from './admin/admin.component';
+import { AdministracionComponent } from './administracion/administracion.component';
 
 
 const appRoutes = [
@@ -30,7 +30,7 @@ const appRoutes = [
   { path: 'adminDetalleProducto/:id', component: AdminDetalleProductoComponent },
   //{ path: '**', redirectTo: '', pathMatch: 'full' },
   { path: 'adminCategorias', component: AdminCategoriasComponent},
-  { path: 'administracion', pathMatch: 'prefix', component: AdminComponent},
+  { path: 'administracion', component: AdministracionComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 
 ]

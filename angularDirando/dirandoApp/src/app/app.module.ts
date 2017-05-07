@@ -25,7 +25,6 @@ import { LoginService } from './login/login.service';
 import {ShopService} from './shop/shop.service';
 
 import { AdministracionComponent } from './administracion/administracion.component';
-import { AdminComponent } from './admin/admin.component';
 import { AdminCategoriasComponent } from './admin-categorias/admin-categorias.component';
 import { AdminProductosComponent } from './admin-productos/admin-productos.component';
 import { AdminDetalleProductoComponent } from './admin-detalle-producto/admin-detalle-producto.component';
@@ -45,7 +44,6 @@ import { AdminAñadirProductoComponent } from './admin-añadir-producto/admin-a�
     ModificarCuentaComponent,
     ShopComponent,
     AdministracionComponent,
-    AdminComponent,
     AdminCategoriasComponent,
     AdminProductosComponent,
     AdminDetalleProductoComponent,
