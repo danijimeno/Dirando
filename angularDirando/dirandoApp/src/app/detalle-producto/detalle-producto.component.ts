@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../login/login.service';
+import {ShopService} from '../shop/shop.service';
 
 interface Rating{
   best: string,
@@ -26,8 +27,12 @@ export class DetalleProductoComponent{
     }
     private valoracion: string = "3";
   
-  constructor(private http: Http, private activatedRoute: ActivatedRoute, private loginService: LoginService) {
+  constructor(private http: Http, private activatedRoute: ActivatedRoute, private loginService: LoginService, private shopservice: ShopService) {
     this.loadProduct(this.activatedRoute.snapshot.params['id']);  
+  }
+
+  addCart(product) {
+    this.shopservice.addProductCart(product);
   }
 
   addComment(){

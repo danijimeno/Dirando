@@ -5,8 +5,7 @@ import { LoginService } from "../login/login.service";
 
 @Component({
   selector: 'app-administracion',
-  templateUrl: './administracion.component.html',
-  styleUrls: ['./administracion.component.css']
+  templateUrl: './administracion.component.html'
 })
 export class AdministracionComponent{
  

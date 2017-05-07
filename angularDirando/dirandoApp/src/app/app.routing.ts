@@ -16,7 +16,6 @@ import { AdminAñadirProductoComponent } from './admin-añadir-producto/admin-a�
 
 
 import { AdministracionComponent } from './administracion/administracion.component';
-import { AdminComponent } from './admin/admin.component';
 import { AdminUsuariosComponent } from './admin-usuarios/admin-usuarios.component';
 
 
