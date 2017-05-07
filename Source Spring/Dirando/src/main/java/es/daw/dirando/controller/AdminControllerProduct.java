@@ -68,7 +68,7 @@ public class AdminControllerProduct {
 				
 				//model.addAttribute("imageTitles", imageTitles);
 				
-				return "adminAddProduct";
+				return productDetail(model,product.getId());
 
 			} catch (Exception e) {
 				
@@ -81,6 +81,7 @@ public class AdminControllerProduct {
 		} else {
 			
 			model.addAttribute("error",	"The file is empty");
+			model.addAttribute("fileImageEmpty", true);
 			
 			return "adminAddProduct";
 		}
