@@ -28,7 +28,6 @@ export class AdminAñadirProductoComponent {
   }
 
   anadirProducto() {
-    console.log(this.nuevo);
     const headers = new Headers({
       'X-Requested-With': 'XMLHttpRequest'
     });
@@ -38,6 +37,8 @@ export class AdminAñadirProductoComponent {
       response  =>  {
         let data = response.json();
         console.log(data);
+        alert('Producto Añadido');
+        this.router.navigate(['/adminProductos']);
       },
       error  =>  console.error(error)
     );
