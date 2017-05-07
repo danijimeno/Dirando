@@ -52,8 +52,13 @@ AdminRestControllers + Services + Repositories [FRONTEND]
 ####
 ![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/DiagramAdminRestController-Services-Repository.jpg)
 
+## Diagrama ANGULAR 2: ##
+Components & Services
+####
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/DiagramaAngular.png)
+
 ## Template bootstrap ##
-El template de bootstrap que hemos usado ha sido en la zona de administración, hemos cambiado los cuerpos de las páginas y modificado alguna parte del menu.
+Hemos usado una plantilla Bootstrap para la zona de administración. Sin embargo, hemos cambiado los cuerpos de las páginas y modificado el menú.
 https://startbootstrap.com/template-overviews/sb-admin-2/
 
 # Dirando Wiki
