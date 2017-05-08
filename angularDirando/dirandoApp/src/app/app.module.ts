@@ -31,6 +31,7 @@ import { AdminDetalleProductoComponent } from './admin-detalle-producto/admin-de
 import { AdminAñadirProductoComponent } from './admin-añadir-producto/admin-añadir-producto.component';
 import { AdminUsuariosComponent } from './admin-usuarios/admin-usuarios.component';
 import { AdminModificarProdComponent } from './admin-modificar-prod/admin-modificar-prod.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { AdminModificarProdComponent } from './admin-modificar-prod/admin-modifi
     AdminDetalleProductoComponent,
     AdminAñadirProductoComponent,
     AdminUsuariosComponent,
-    AdminModificarProdComponent
+    AdminModificarProdComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
