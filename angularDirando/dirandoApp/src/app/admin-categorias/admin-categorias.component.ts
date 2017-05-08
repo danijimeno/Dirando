@@ -7,7 +7,7 @@ import { LoginService } from '../login/login.service';
   selector: 'app-admin-categorias',
   templateUrl: './admin-categorias.component.html'
 })
-export class AdminCategoriasComponent {
+export class AdminCategoriasComponent implements OnInit  {
 
   private categorias: Object[] = [];
 
@@ -21,6 +21,9 @@ export class AdminCategoriasComponent {
     if (this.loginService.isAdmin==false){
       this.router.navigate(['/home']);
     }
+  }
+
+  ngOnInit() {
     this.loadCategories();
   }
 

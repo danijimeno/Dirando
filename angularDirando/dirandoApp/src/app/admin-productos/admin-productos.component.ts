@@ -17,6 +17,10 @@ export class AdminProductosComponent implements OnInit {
     if (this.loginService.isAdmin==false){
       this.router.navigate(['/home']);
     }
+    
+  }
+
+  ngOnInit() {
     this.cargarProductos("ini");
   }
 
@@ -48,9 +52,6 @@ export class AdminProductosComponent implements OnInit {
   },
         error => console.error(error)
       );
-  }
-
-  ngOnInit() {
   }
 
 }

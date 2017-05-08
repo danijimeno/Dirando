@@ -7,10 +7,14 @@ import { LoginService } from '../login/login.service';
   selector: 'app-admin-usuarios',
   templateUrl: './admin-usuarios.component.html'
 })
-export class AdminUsuariosComponent {
+export class AdminUsuariosComponent implements OnInit {
 
   private usuarios : Object [] = [];
   constructor(private http: Http, private router: Router, private loginService: LoginService) { 
+    
+  }
+
+  ngOnInit() {
     this.cargarUsuarios();
   }
 

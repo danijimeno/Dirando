@@ -10,13 +10,17 @@ import {ShopService} from '../shop/shop.service';
   templateUrl: './indexbody.component.html'
 })
 
-export class IndexbodyComponent {
+export class IndexbodyComponent implements OnInit {
 
   private imagen: Object[] = [];
   private items: Object[] = [];
   private product:Product;
 
   constructor(private http: Http,private shopservice:ShopService) {
+    
+  }
+
+  ngOnInit() {
     this.loadCarousel();
     this.loadItemsIndex("0", "3");
   }

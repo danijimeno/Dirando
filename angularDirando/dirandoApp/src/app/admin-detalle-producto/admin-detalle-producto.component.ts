@@ -7,7 +7,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
   selector: 'app-admin-detalle-producto',
   templateUrl: './admin-detalle-producto.component.html'
 })
-export class AdminDetalleProductoComponent {
+export class AdminDetalleProductoComponent implements OnInit  {
 
   private producto: Object[] = [];
 
@@ -15,8 +15,12 @@ export class AdminDetalleProductoComponent {
     if (this.loginService.isAdmin == false) {
       this.router.navigate(['/home']);
     }
-    this.cargarProducto();
   }
+
+    ngOnInit() {
+      this.cargarProducto();
+    }
+
 
   cargarProducto() {
     const headers = new Headers({

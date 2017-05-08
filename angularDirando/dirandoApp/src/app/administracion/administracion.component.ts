@@ -7,7 +7,7 @@ import { LoginService } from "../login/login.service";
   selector: 'app-administracion',
   templateUrl: './administracion.component.html'
 })
-export class AdministracionComponent{
+export class AdministracionComponent implements OnInit {
  
 
   private URL: string = "https://localhost:8443/rest/admin/index/";
@@ -23,10 +23,10 @@ export class AdministracionComponent{
       if (this.loginService.isAdmin==false){
         this.router.navigate(['/home']);
       }
-      this.loadIndex();
   }
 
   ngOnInit() {
+    this.loadIndex();
   }
 
   loadIndex() {
@@ -48,13 +48,6 @@ export class AdministracionComponent{
 
       },
       error => console.error(error)
-    );
-  }
-
-  logOut() {
-    this.loginService.logOut().subscribe(
-      response => { },
-      error => console.log('Error when trying to exit' + error)
     );
   }
 
