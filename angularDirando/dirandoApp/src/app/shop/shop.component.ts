@@ -22,18 +22,24 @@ export class ShopComponent implements OnInit{
     }
 
     loadCart(){
-            this.shopservice.cartProductList().subscribe(
+        this.shopservice.cartProductList().subscribe(
            products => this.listProduct = products,
             error => console.log(error)
         );
     }
 
     clearCart(){
-        this.shopservice.delProductCart();
-        this.loadCart();
+        this.shopservice.delProductCart().subscribe(
+            response=> {this.loadCart();}
+        );
+        
     }
 
-    
-
+    payCart(){
+        this.shopservice.payCart().subscribe(
+            response=> {this.loadCart();}
+        );
+        
+    }
     
 }

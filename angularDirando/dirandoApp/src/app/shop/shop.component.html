@@ -47,7 +47,7 @@
             <div id="CarritoBtts">
                 <p class="col-md-8 col-sm-7"></p> 
                 <a (click)="clearCart()" class="btn btn-danger" role="button" id="deleteButton"><span class="glyphicon glyphicon-remove"></span>Delete Purchase Order</a> 
-                <button href="" class="btn btn-success" role="button" id="buyButton" [disabled]="!loginservice.isLogged"><span class="glyphicon glyphicon-shopping-cart"></span>Buy</button> </div>
+                <button (click)="payCart()" class="btn btn-success" role="button" id="buyButton" [disabled]="!loginservice.isLogged"><span class="glyphicon glyphicon-shopping-cart"></span>Buy</button> </div>
         </section>
         <!--FIN CONTENIDO AQUÍ!-->
         <br>

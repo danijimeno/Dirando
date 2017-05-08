@@ -33,8 +33,9 @@ export class ShopService{
             'X-Requested-With': 'XMLHttpRequest'
         });
         const options = new RequestOptions({ withCredentials: true, headers});        
-        this.http.delete(URL+'/clearCart',options).subscribe(
-            response => console.log('Delete cart correctly')
+        return this.http.delete(URL+'/clearCart',options).map(
+            response => {console.log('Delete cart correctly'),
+            this.cartSize()}
         );
     }
 
@@ -47,6 +48,7 @@ export class ShopService{
        return this.http.get(URL+'/cart',options).map(
           response => {let products = response.json() as Product[]
                         console.log(products);
+                        this.cartSize()
                         return products
           }
 
@@ -71,5 +73,18 @@ export class ShopService{
 
     
 
-    payCart(){}
+    payCart(){
+        const headers = new Headers({
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+    });
+        const options = new RequestOptions({ withCredentials: true, headers});
+
+       return this.http.post(URL+'/pay',this.products,options).map(
+            response => {console.log(response)
+            this.cartSize()},
+                    
+            error => console.info(error)
+        );
+    }
 }

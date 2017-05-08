@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.daw.dirando.service.OrderServices;
 import es.daw.dirando.service.UserServices;
+import es.daw.dirando.model.Pedido;
 import es.daw.dirando.model.Producto;
 import es.daw.dirando.repository.ProductoRepository;
 import es.daw.dirando.security.LoginControllerRest;
@@ -39,9 +40,10 @@ public class WebRestControllerOrder {
 	
 		/*Pay Process Methods*/
 			/*Makes effective the order*/
-			@RequestMapping(value = "/pay", method = RequestMethod.PUT)
+			@RequestMapping(value = "/pay", method = RequestMethod.POST)
 			public ResponseEntity<String> payProcess2(Authentication http) {
-				switch (us.isLoggedANDThereAreProducts(http)){
+				List<Producto> cart = os.getShoppingCart();
+				switch (us.isLoggedANDThereAreProducts(http,cart)){
 					case "0":
 						os.makeOrderfromSessionCart(http);
 						os.clearCart();

@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import es.daw.dirando.model.Pedido;
+import es.daw.dirando.model.Producto;
 import es.daw.dirando.model.Usuario;
 
 import es.daw.dirando.repository.UsuarioRepository;
@@ -71,6 +72,16 @@ public class UserServices {
 	    	}
 		}
 		
+		//The user are logged and the cart isn't empty?
+		public String isLoggedANDThereAreProducts (Authentication http,List<Producto> cart){
+			if(http != null && !cart.isEmpty()){
+	    		return "0";
+	    	}else if(cart.isEmpty()){
+	    		return "2";
+	    	}else{
+	    		return "1";
+	    	}
+		}
 		
 		//check that name is not in use and return boolean value.
 		public boolean isNameRepeat(String name){
