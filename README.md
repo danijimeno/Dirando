@@ -56,6 +56,8 @@ AdminRestControllers + Services + Repositories [FRONTEND]
 Components & Services
 ####
 ![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/DiagramaAngular.png)
+####
+![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/DiagramaAngular2.png)
 
 ## Template bootstrap ##
 Hemos usado una plantilla Bootstrap para la zona de administración. Sin embargo, hemos cambiado los cuerpos de las páginas y modificado el menú.
