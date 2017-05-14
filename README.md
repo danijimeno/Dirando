@@ -59,6 +59,12 @@ Components & Services
 ####
 ![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/DiagramaAngular2.png)
 
+## Ejecutar la plicación ##
+
+Para ejecutar la aplicación, lanzar los tres contenedores docker [del perfil de docker hub](https://hub.docker.com/u/rperezll/).
+
+Ejecutar el comando ``` docker-compose up ``` dentro del directorio que contiene el archivo ```docker-compose.yml```(dicho archivo se encuentra en la raíz del repositorio)
+
 ## Template bootstrap ##
 Hemos usado una plantilla Bootstrap para la zona de administración. Sin embargo, hemos cambiado los cuerpos de las páginas y modificado el menú.
 https://startbootstrap.com/template-overviews/sb-admin-2/
