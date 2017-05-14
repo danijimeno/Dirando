@@ -6,7 +6,7 @@ services:
 
   dirando:
 
-    image: pabloasekas/cookcinando-mysql
+    image: rperezll/dirando-mysql
 
     environment:
 

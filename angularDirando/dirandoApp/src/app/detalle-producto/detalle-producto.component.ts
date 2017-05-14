@@ -21,7 +21,7 @@ export class DetalleProductoComponent{
 
   private productos: Object[] = [];
   private comentarios: Object[] = [];
-
+  private URLimages: string;
   //Datos locales de comentarios para cargar en el template
     private comentario = {
       text: "",
@@ -31,7 +31,8 @@ export class DetalleProductoComponent{
     private domain;
   constructor( @Inject(DOCUMENT) private document: any, private http: Http, private activatedRoute: ActivatedRoute, private loginService: LoginService, private shopservice: ShopService) {
     this.domain=this.document.location.hostname;
-    this.loadProduct(this.activatedRoute.snapshot.params['id']);  
+    this.loadProduct(this.activatedRoute.snapshot.params['id']); 
+    this.URLimages="https://"+this.domain+":8443/";
   }
 
   addCart(product) {
@@ -69,7 +70,7 @@ export class DetalleProductoComponent{
           let ra : Rating = this.calcula(data.theBest, data.mustImprove, data.bad);
           
           this.productos.push({ 
-            "imagen": data.image,"id": data.id,"nombre": data.nombre,"precio": data.precio,
+            "imagen": this.URLimages + data.image,"id": data.id,"nombre": data.nombre,"precio": data.precio,
             "best": ra.best,"mustImprove": ra.improve,"bad": ra.bad,"descripcion": data.desProducto,
             "stock": data.stock });
             console.log(data);
