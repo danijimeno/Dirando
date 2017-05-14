@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import {Router} from '@angular/router';
 import { LoginService } from '../login/login.service';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-usuarios',
@@ -10,8 +12,9 @@ import { LoginService } from '../login/login.service';
 export class AdminUsuariosComponent implements OnInit {
 
   private usuarios : Object [] = [];
-  constructor(private http: Http, private router: Router, private loginService: LoginService) { 
-    
+  private domain;
+  constructor( @Inject(DOCUMENT) private document: any, private http: Http, private router: Router, private loginService: LoginService) { 
+    this.domain=this.document.location.hostname;
   }
 
   ngOnInit() {
@@ -23,7 +26,7 @@ export class AdminUsuariosComponent implements OnInit {
             'X-Requested-With': 'XMLHttpRequest'
     });
     const options = new RequestOptions({ withCredentials: true, headers });
-    let url = "https://localhost:8443/rest/admin/users";
+    let url = "https://"+this.domain+":8443/rest/admin/users";
       this.http.get(url, options).subscribe(
         response => {
           let data = response.json();

@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../login/login.service';
 import {ShopService} from '../shop/shop.service';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 interface Rating{
   best: string,
@@ -26,8 +28,9 @@ export class DetalleProductoComponent{
       rating: ""
     }
     private valoracion: string = "3";
-  
-  constructor(private http: Http, private activatedRoute: ActivatedRoute, private loginService: LoginService, private shopservice: ShopService) {
+    private domain;
+  constructor( @Inject(DOCUMENT) private document: any, private http: Http, private activatedRoute: ActivatedRoute, private loginService: LoginService, private shopservice: ShopService) {
+    this.domain=this.document.location.hostname;
     this.loadProduct(this.activatedRoute.snapshot.params['id']);  
   }
 
@@ -36,7 +39,7 @@ export class DetalleProductoComponent{
   }
 
   addComment(){
-    let url = "https://localhost:8443/rest/commentary2";
+    let url = "https://"+this.domain+":8443/rest/commentary2";
     let data = {
         "name": this.loginService.user.name,
         "idProduct": this.activatedRoute.snapshot.params['id'],
@@ -58,7 +61,7 @@ export class DetalleProductoComponent{
   loadProduct(id: number){
     this.productos.length=0;
     this.comentarios.length=0;
-    let url = "https://localhost:8443/rest/productDetail/"+id;
+    let url = "https://"+this.domain+":8443/rest/productDetail/"+id;
       this.http.get(url).subscribe(
         response => {
           let data = response.json();

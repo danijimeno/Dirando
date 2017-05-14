@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import  {  ActivatedRoute, Router  }  from  '@angular/router';
 import { LoginService } from '../login/login.service';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-detalle-producto',
@@ -10,8 +12,9 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 export class AdminDetalleProductoComponent implements OnInit  {
 
   private producto: Object[] = [];
-
-  constructor(private http: Http, private activatedRoute:  ActivatedRoute, private loginService: LoginService, private router: Router) {
+  private domain;
+  constructor( @Inject(DOCUMENT) private document: any, private http: Http, private activatedRoute:  ActivatedRoute, private loginService: LoginService, private router: Router) {
+    this.domain=this.document.location.hostname;
     if (this.loginService.isAdmin == false) {
       this.router.navigate(['/home']);
     }
@@ -27,7 +30,7 @@ export class AdminDetalleProductoComponent implements OnInit  {
       'X-Requested-With': 'XMLHttpRequest'
     });
     const options = new RequestOptions({ withCredentials: true, headers });
-    let  url  =  "https://localhost:8443/rest/productDetail/" + this.activatedRoute.snapshot.params['id'];
+    let  url  =  "https://"+this.domain+":8443/rest/productDetail/" + this.activatedRoute.snapshot.params['id'];
     this.http.get(url, options).subscribe(
       response  =>  {
         let data = response.json();
@@ -47,7 +50,7 @@ export class AdminDetalleProductoComponent implements OnInit  {
       'X-Requested-With': 'XMLHttpRequest'
     });
     const options = new RequestOptions({ withCredentials: true, headers });
-    let  url  =  "https://localhost:8443/rest/admin/products/" + this.activatedRoute.snapshot.params['id'];
+    let  url  =  "https://"+this.domain+":8443/rest/admin/products/" + this.activatedRoute.snapshot.params['id'];
     this.http.delete(url, options).subscribe(
       response  =>  {
         alert('El producto ha sido eliminado');

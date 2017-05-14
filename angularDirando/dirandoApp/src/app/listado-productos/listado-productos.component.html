@@ -4,7 +4,7 @@
         <div  class="row" id="productosLista">
             <!-- To content input use ajax query -->
             <div  *ngFor="let item of items" class="col-sm-6 col-md-4">
-                <div  class="thumbnail"> <img class="img-responsive" src="https://localhost:8443/{{item.imagen}}">
+                <div  class="thumbnail"> <img class="img-responsive" src="{{item.imagen}}">
                     <div class="btn-group  pop-imagenes" role="group">
                     <a href="/detalleProducto/{{item.id}}" class="btn btn-secondary" role="button">View</a> 
                     <a (click)="addCart(item.id)" class="btn btn-primary"

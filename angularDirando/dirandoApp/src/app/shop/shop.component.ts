@@ -12,10 +12,7 @@ import {Product} from '../product.model';
 
 export class ShopComponent implements OnInit{
     listProduct:Product[];
-    constructor(private shopservice:ShopService,private loginservice:LoginService){
-        
-        
-    }
+    constructor(private shopservice:ShopService,private loginservice:LoginService){}
 
     ngOnInit(){
         this.loadCart();

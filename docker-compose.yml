@@ -4,19 +4,19 @@ version: "2.0"
 
 services: 
 
-  dirandoHost:
+  dirando:
 
-    image: rperezll/dirando-mysql
+    image: pabloasekas/cookcinando-mysql
 
     environment:
 
-      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_ROOT_PASSWORD=root
 
       - MYSQL_DATABASE=dirandobd
 
       - MYSQL_USER=root
 
-      - MYSQL_PASSWORD=pass
+      - MYSQL_PASSWORD=root
 
   webapp:
 
@@ -24,7 +24,7 @@ services:
 
     depends_on:
 
-      - dirandoHost
+      - dirando
 
     ports:
 
@@ -32,17 +32,17 @@ services:
 
     environment:
 
-      - DATABASE_HOST=dirandoHost
+      - DATABASE_HOST=dirando
 
       - DATABASE_USER=root
 
-      - DATABASE_PASSWORD=pass
+      - DATABASE_PASSWORD=root
 
       - DATABASE_NAME=dirandobd
 
       - DATABASE_PORT=3306
 
-  dirandoAngular:
+  cookcinandoAngular:
 
     image: rperezll/dirando-angular
 

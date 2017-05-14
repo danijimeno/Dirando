@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Router } from "@angular/router";
 import { LoginService } from "../login/login.service";
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-administracion',
@@ -10,7 +13,7 @@ import { LoginService } from "../login/login.service";
 export class AdministracionComponent implements OnInit {
  
 
-  private URL: string = "https://localhost:8443/rest/admin/index/";
+  private URL: string;
 
   private numPed;
   private numProd;
@@ -19,7 +22,8 @@ export class AdministracionComponent implements OnInit {
   private numPunt;
   private numCat;
 
-  constructor(private  http:  Http,private loginService: LoginService, private router: Router) { 
+  constructor( @Inject(DOCUMENT) private document: any, private  http:  Http,private loginService: LoginService, private router: Router) { 
+      this.URL = "https://"+this.document.location.hostname+":8443/rest/admin/index/";
       if (this.loginService.isAdmin==false){
         this.router.navigate(['/home']);
       }

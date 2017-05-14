@@ -1,8 +1,10 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/Rx';
+import { Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
-const URL = 'https://localhost:8443/rest';
+
 
 export interface User {
     id?: number;
@@ -17,12 +19,14 @@ export interface User {
 
 @Injectable()
 export class LoginService {
-
+    private URL : string;
     isLogged = false;
     isAdmin = false;
     user: User;
-
-    constructor(private http: Http) {
+    private domain;
+    constructor( @Inject(DOCUMENT) private document: any, private http: Http) {
+        this.domain = this.document.location.hostname;
+        this.URL ="https://"+this.domain+":8443/rest";
         this.reqIsLogged();
     }
 
@@ -34,7 +38,7 @@ export class LoginService {
 
         const options = new RequestOptions({ withCredentials: true, headers });
 
-        this.http.get(URL + '/login', options).subscribe(
+        this.http.get(this.URL + '/login', options).subscribe(
             response => this.processLogInResponse(response),
             error => {
                 if (error.status !== 401) {
@@ -70,7 +74,7 @@ export class LoginService {
 
         const options = new RequestOptions({ withCredentials: true, headers });
 
-        return this.http.get(URL + '/login', options).map(
+        return this.http.get(this.URL + '/login', options).map(
             response => {
                 this.processLogInResponse(response);
                 return this.user;
@@ -81,7 +85,7 @@ export class LoginService {
 
     logOut() {
 
-        return this.http.get(URL + '/logout', { withCredentials: true }).map(
+        return this.http.get(this.URL + '/logout', { withCredentials: true }).map(
             response => {
                 this.isLogged = false;
                 this.isAdmin = false;

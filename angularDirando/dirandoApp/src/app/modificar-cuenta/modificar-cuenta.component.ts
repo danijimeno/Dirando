@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {LoginService} from '../login/login.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-modificar-cuenta',
@@ -18,8 +20,10 @@ export class ModificarCuentaComponent{
         password: "",
         address: ""
     };
-
-  constructor(private http: Http, private router: Router, private loginService: LoginService) {}
+    private domain;
+  constructor( @Inject(DOCUMENT) private document: any, private http: Http, private router: Router, private loginService: LoginService) {
+        this.domain=this.document.location.hostname;
+  }
   
   modifica() {
     this.body = {
@@ -30,7 +34,7 @@ export class ModificarCuentaComponent{
         password: this.edit.password,
         address: this.edit.address
     };
-    let url = "https://localhost:8443/rest/account2";
+    let url = "https://"+this.domain+":8443/rest/account2";
     this.http.put(url,this.body).subscribe(
       response => {console.log(response),
                   this.loginService.logOut()

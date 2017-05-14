@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-registro',
@@ -17,8 +19,11 @@ export class RegistroComponent{
         address: ""
     };
     private body : Object;
+    private domain;
+  constructor( @Inject(DOCUMENT) private document: any, private router: Router, private http: Http) { 
+        this.domain=this.document.location.hostname;
 
-  constructor( private router: Router, private http: Http) { }
+  }
 
   crear() {
     this.body = {
@@ -29,7 +34,7 @@ export class RegistroComponent{
         password: this.edit.password,
         address: this.edit.address
     };
-    let url = "https://localhost:8443/rest/user";
+    let url = "https://"+this.domain+":8443/rest/user";
     this.http.post(url,this.body).subscribe(
       response => console.log(response),
       error => console.error(error)

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import  {  ActivatedRoute, Router  }  from  '@angular/router';
 import { LoginService } from '../login/login.service';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-modificar-prod',
@@ -24,8 +26,10 @@ export class AdminModificarProdComponent implements OnInit {
     }
 
 private categorias: Object[] = [];
+private domain;
 
-  constructor(private http: Http, private activatedRoute:  ActivatedRoute, private loginService: LoginService, private router: Router) { 
+  constructor( @Inject(DOCUMENT) private document: any, private http: Http, private activatedRoute:  ActivatedRoute, private loginService: LoginService, private router: Router) { 
+    this.domain=this.document.location.hostname;
     if (this.loginService.isAdmin == false) {
       this.router.navigate(['/home']);
     }
@@ -42,7 +46,7 @@ private categorias: Object[] = [];
       'X-Requested-With': 'XMLHttpRequest'
     });
     const options = new RequestOptions({ withCredentials: true, headers });
-    let  url  =  "https://localhost:8443/rest/admin/products/" + this.activatedRoute.snapshot.params['id'];
+    let  url  =  "https://"+this.domain+":8443/rest/admin/products/" + this.activatedRoute.snapshot.params['id'];
     this.http.put(url, this.nuevo ,options).subscribe(
       response  =>  {
         let data = response.json();
@@ -59,7 +63,7 @@ private categorias: Object[] = [];
       'X-Requested-With': 'XMLHttpRequest'
     });
     const options = new RequestOptions({ withCredentials: true, headers });
-    let  url  =  "https://localhost:8443/rest/productDetail/" + this.activatedRoute.snapshot.params['id'];
+    let  url  =  "https://"+this.domain+":8443/rest/productDetail/" + this.activatedRoute.snapshot.params['id'];
     this.http.get(url, options).subscribe(
       response  =>  {
         let data = response.json();
@@ -81,7 +85,7 @@ private categorias: Object[] = [];
   }
 
   loadCategories() {
-    let url = "https://localhost:8443/rest/admin/categories/"
+    let url = "https://"+this.domain+":8443/rest/admin/categories/"
     const headers = new Headers({
             'X-Requested-With': 'XMLHttpRequest'
     });

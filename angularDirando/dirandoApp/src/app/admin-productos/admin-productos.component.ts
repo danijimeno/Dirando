@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import {Router} from '@angular/router';
 import { LoginService } from '../login/login.service';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-productos',
@@ -12,8 +14,9 @@ export class AdminProductosComponent implements OnInit {
    private productos: Object[] = [];
    private page: number = 0;
    private size: number = 10;
-
-  constructor(private http: Http, private router: Router, private loginService: LoginService) { 
+   private domain;
+  constructor( @Inject(DOCUMENT) private document: any, private http: Http, private router: Router, private loginService: LoginService) { 
+    this.domain=this.document.location.hostname;
     if (this.loginService.isAdmin==false){
       this.router.navigate(['/home']);
     }
@@ -39,7 +42,7 @@ export class AdminProductosComponent implements OnInit {
             'X-Requested-With': 'XMLHttpRequest'
     });
     const options = new RequestOptions({ withCredentials: true, headers });
-    let url = "https://localhost:8443/rest/admin/products/?page="+ this.page +"&size="+ this.size;
+    let url = "https://"+this.domain+":8443/rest/admin/products/?page="+ this.page +"&size="+ this.size;
       this.http.get(url,options).subscribe(
         response => {
         

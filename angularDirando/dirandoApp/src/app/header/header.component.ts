@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { LoginService } from '../login/login.service';
 import {ShopService} from '../shop/shop.service';
 import { Observable } from 'rxjs/Observable';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 
 @Component({

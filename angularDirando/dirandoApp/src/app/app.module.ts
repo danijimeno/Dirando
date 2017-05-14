@@ -34,6 +34,7 @@ import { AdminModificarProdComponent } from './admin-modificar-prod/admin-modifi
 import { AdminComponent } from './admin/admin.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,8 +64,9 @@ import { AdminComponent } from './admin/admin.component';
     routing,
     CommonModule
   ],
-  providers: [LoginService,ShopService],
+  providers: [ LoginService,ShopService,
+  {provide: Window, useValue: window} ],
 
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

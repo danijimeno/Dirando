@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { LoginService } from '../login/login.service';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-categorias',
@@ -11,13 +13,14 @@ export class AdminCategoriasComponent implements OnInit  {
 
   private categorias: Object[] = [];
 
-  private URL: string = "https://localhost:8443/rest/admin/categories/";
+  private URL: string;
 
   private nuevaCat = {
     "nombre": ""
   }
 
-  constructor(private  http:  Http,  private router: Router, private loginService: LoginService) { 
+  constructor( @Inject(DOCUMENT) private document: any, private  http:  Http,  private router: Router, private loginService: LoginService) { 
+    this.URL = "https://"+this.document.location.hostname+":8443/rest/admin/categories/";
     if (this.loginService.isAdmin==false){
       this.router.navigate(['/home']);
     }
