@@ -59,7 +59,7 @@ Components & Services
 ####
 ![logo](https://github.com/danijimeno/Dirando/blob/master/Diagramas/DiagramaAngular2.png)
 
-## Ejecutar la plicación ##
+## Ejecutar la aplicación ##
 
 Para ejecutar la aplicación, lanzar los tres contenedores docker [del perfil de docker hub](https://hub.docker.com/u/rperezll/).
 
