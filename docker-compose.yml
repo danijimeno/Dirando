@@ -4,7 +4,7 @@ version: "2.0"
 
 services: 
 
-  dirando:
+  dirandobd:
 
     image: rperezll/dirando-mysql
 
@@ -18,13 +18,13 @@ services:
 
       - MYSQL_PASSWORD=root
 
-  webapp:
+  backend:
 
     image: rperezll/dirando-backend
 
     depends_on:
 
-      - dirando
+      - dirandobd
 
     ports:
 
@@ -42,13 +42,13 @@ services:
 
       - DATABASE_PORT=3306
 
-  cookcinandoAngular:
+  frontend:
 
     image: rperezll/dirando-angular
 
     depends_on:
 
-      - webapp
+      - backend
 
     ports:
 
@@ -56,4 +56,4 @@ services:
 
     environment:
 
-      - API_URL=webapp
+      - API_URL=backend
