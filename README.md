@@ -1,6 +1,10 @@
 # Dirando
 *Aplicación web de compra de productos de ciclismo*
 
+## Video Review ##
+
+[Review: Dirando SPA+Tradicional Docker](https://www.youtube.com/watch?v=H7A0KFiLqSQ&feature=youtu.be) . 
+
 ## Descripción de la temática de la web
 *La aplicación dispondrá de una parte pública y otra pivada. La pública estará destinada a los clientes externos, con posibilidad de interactuar con los productos, ver sus descripciones, precios o su disponibilidad. Si el cliente está registrado, las funcionalidades aumentan (p.ej historial de compra). No obstante, si no está registrado, podrá añadir productos a su carro/pedido (aunque para finalizar su compra deba estar registrado). Además, se podrá simular el proceso de pago.
 Por otro lado, la parte privada de la aplicación poseerá el control sobre la lista de productos alojados, sus categorías, descripciones y demás. Dichas funcionalidades de gestión estarán disponibles para el/los administrador/es mediante usuarios específicos.*
