@@ -139,6 +139,46 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion"
+											href="#collapse4"><strong>My Orders info</strong>  </a>
+									</h4> </div>
+                                <div id="collapse4" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                              {{#pedidos}}
+                                              <li><span><strong><u>Order {{id}}</u></strong></span></li>
+                                               <div class="table-responsive table-striped">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Num Article</th>
+                                                                <th>Id</th>
+                                                                <th>Product</th>
+                                                                <th>Price</th>
+                                                                <th>Image</th>
+                                                            </tr>
+                                                        </thead>
+                                                        {{#sCart}}
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><strong>{{-index}}</strong></td>
+                                                                <td>{{id}}</td>
+                                                                <td>{{nombre}}</td>
+                                                                <td>{{precio}}</td>
+                                                                <td><img class="CarritoJPG" width="30%" src="/{{image}}"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                        {{/sCart}}
+                                                    </table>
+                                                </div>
+                                                <!-- /.table-responsive -->
+                                                <!-- <button type="button" class="btn btn-primary"><i class="fa fa-credit-card fa-fw"></i> Checkout </button> -->
+                                            {{/pedidos}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
 										<a  data-parent="#accordion"
 											href="/modifyAccount"><strong>Modify Account</strong>  </a>
 									</h4> </div>
