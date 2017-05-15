@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 
 import es.daw.dirando.model.Pedido;
 import es.daw.dirando.model.Producto;
-
+import es.daw.dirando.model.Usuario;
 import es.daw.dirando.repository.PedidoRepository;
+import es.daw.dirando.repository.ProductoRepository;
 import es.daw.dirando.repository.UsuarioRepository;
 
 @Service
@@ -29,6 +30,12 @@ public class OrderServices {
 	@Autowired
 	private PedidoRepository pedidoRepository;
 	
+	@Autowired
+	private ProductoRepository productoRepository;
+	
+
+	private Pedido pedidoNuevo = new Pedido();
+	
 		/****************************/
 		/*Tools for the session cart*/
 		/****************************/
@@ -36,6 +43,11 @@ public class OrderServices {
 			public void addCartSession(long info, String name, float price){
 				this.pedido.setPedido(new Producto ( info, name, price ));
 				System.out.println("Con el nuevo item el tamaño del carrito es"+cartSize());
+				
+				List<Producto> list = this.pedidoNuevo.getsCart();
+				Producto prod = productoRepository.findOne(info);
+				list.add(prod);
+				this.pedidoNuevo.setsCart(list);
 			}
 			//Calculate cart size
 			public int cartSize(){
@@ -48,6 +60,7 @@ public class OrderServices {
 			//Clear the shopping cart
 			public void clearCart(){
 				pedido.getPedidos().clear();
+				this.pedidoNuevo = new Pedido();
 			}
 		/****************************/
 		
@@ -58,7 +71,12 @@ public class OrderServices {
 		
 		//Add the cart into the user account
 		public void makeOrderfromSessionCart (Authentication http){
-			usuarioRepository.findUserByName(http.getName()).setPedidos(pedido);
+			//usuarioRepository.findUserByName(http.getName()).setPedidos(pedido);
+			
+			Usuario user = usuarioRepository.findUserByName(http.getName());
+			List<Pedido> orders = user.getPedidos();
+			orders.add(pedidoNuevo);
+			user.setPedidos(orders);
 		}
 		
 		/*Count items numbers about order*/

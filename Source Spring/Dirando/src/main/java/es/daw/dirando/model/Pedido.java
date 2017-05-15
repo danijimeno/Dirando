@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,7 @@ public class Pedido {
 	private long id;
 	
 	@Column(name="shoppingCart")
-	@OneToMany
+	@ManyToMany
 	private List<Producto> sCart;
 
 	public Pedido (){
@@ -51,6 +51,14 @@ public class Pedido {
 	
 	public void setPedido (Producto p){
 		sCart.add(p);
+	}
+	
+	public void setsCart(List<Producto> sCart) {
+		this.sCart = sCart;
+	}
+	
+	public List<Producto> getsCart() {
+		return sCart;
 	}
 	
 }

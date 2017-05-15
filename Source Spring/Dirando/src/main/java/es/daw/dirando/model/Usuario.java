@@ -84,7 +84,8 @@ public class Usuario {
 		this.address=address;
 		this.phone=Long.parseLong(phone);
 		this.role = new ArrayList<>(Arrays.asList(role));
-		
+		this.pedidos = new ArrayList<Pedido>();
+		this.comments = new ArrayList<Comment>();
 	}
 	
 	
@@ -174,4 +175,7 @@ public class Usuario {
 		this.address=address;
 	}
 	
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 }
