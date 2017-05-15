@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import {ShopService} from '../shop/shop.service';
 import { Inject, Injectable } from '@angular/core';
+import {Product} from '../product.model';
 import { DOCUMENT } from '@angular/platform-browser';
 
 
@@ -14,6 +15,7 @@ export class ListadoProductosComponent{
 
   private items: Object[] = [];
   private categoria: string;
+  private product:Product;
   private page: number;
   private size: number;
   private domain;
@@ -25,8 +27,8 @@ export class ListadoProductosComponent{
     this.URLimages="https://"+this.domain+":8443/";
   }
 
-  addCart(id:number){
-    this.shopservice.addProductCart(id);
+  addCart(product){
+    this.shopservice.addProductCart(product);
   }
 
 

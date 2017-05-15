@@ -7,8 +7,9 @@
                 <div  class="thumbnail"> <img class="img-responsive" src="{{item.imagen}}">
                     <div class="btn-group  pop-imagenes" role="group">
                     <a [routerLink]= "['/detalleProducto/',item.id]" class="btn btn-secondary" role="button">View</a> 
-                    <a (click)="addCart(item.id)" class="btn btn-primary"
-                            role="button">Add to cart</a> </div>
+                    <a (click)="addCart(item)" class="btn btn-primary"
+                            role="button" id="AddCart-button{{item.id}}"  data-name="{{item.nombre}}"
+                            data-id="{{item.id}}">Add to cart</a> </div>
                     <div class="caption">
                         <h3 class="desc-articulo">{{item.nombre}}</h3>
                         <p class="cortar">{{item.descripcion}}</p> <span class="precio">{{item.precio}}€</span>
